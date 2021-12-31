@@ -33,7 +33,7 @@ export default function References({ data }) {
                                         <div className='text-2xl text-lightgray' >
                                             <FontAwesomeIcon icon={faLink} />
                                         </div>
-                                        <div className='col-span-4 -ml-3' >
+                                        <div className='col-span-4 -ml-3 overflow-hidden overflow-ellipsis' >
                                             {item.link}
                                         </div>
                                     </a>
@@ -41,7 +41,7 @@ export default function References({ data }) {
                                         <div className='text-2xl text-lightgray' >
                                             <FontAwesomeIcon icon={faGithub} />
                                         </div>
-                                        <div className='col-span-4 -ml-3' >
+                                        <div className='col-span-4 -ml-3  overflow-hidden overflow-ellipsis' >
                                             {item.github
                                                 ?
                                                 item.github
