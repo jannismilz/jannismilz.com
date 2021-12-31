@@ -1,0 +1,11 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.noOutline {
+    outline: none !important;
+}
+
+.instagramBackground {
+    background: linear-gradient(90deg, #FEDA75 0%, #FA7E1E 25%, #D62976 50.52%, #962FBF 76.04%, #4F5BD5 100%);
+}
