@@ -13,6 +13,10 @@ export default function Skills({ data }) {
         <>
             <Head>
                 <title>Skills | Jannis Milz</title>
+                <meta
+                    name="description"
+                    content="Meta description for the About page"
+                />
             </Head>
             <Header />
             <div className='min-h-screen pt-24 px-8 lg:px-16 dark:bg-darkgray'>

@@ -122,7 +122,7 @@ export function Header() {
 				<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 				<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@500&display=swap" rel="stylesheet" />
 				<link rel="shortcut icon" href="/favicon.ico" />
-				<title>Home | Jannis Milz</title>
+				{router.pathname === '/' ? <title>Home | Jannis Milz</title> : ''}
 			</Head>
 			<div className="grid grid-cols-3 h-20 text-darkgray absolute w-full top-0 dark:bg-darkgray dark:text-white z-50">
 				<button className="flex col-span-1 mx-auto my-auto" onClick={() => redirect('/')}>
