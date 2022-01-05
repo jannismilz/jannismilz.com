@@ -1,6 +1,11 @@
 export default function (req, res) {
     require('dotenv').config()
 
+    if(!req.body.name || !req.body.email || !req.body.message) {
+      res.send('No access to this page')
+      return
+    }
+
     let nodemailer = require('nodemailer')
     const transporter = nodemailer.createTransport({
       port: 465,
@@ -26,7 +31,6 @@ export default function (req, res) {
         else
           console.log("Info: ", info);
     })
-  
-    console.log("Body: ", req.body)
+
     res.send(200)
   }
