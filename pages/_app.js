@@ -28,9 +28,6 @@ function MyApp({ Component, pageProps }) {
     <>
       <Head>
         <link rel="shortcut icon" href="/favicon.png" />
-        <script>
-          window.__REACT_DEVTOOLS_GLOBAL_HOOK__.inject = function () {}
-        </script>
       </Head>
       <ThemeProvider attribute='class' defaultTheme='light'>
         <Component {...pageProps} />
