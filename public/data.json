@@ -52,6 +52,11 @@
             "name": "NodeJS",
             "logo": "./images/skills/nodejs.png",
             "type": "framework"
+        },
+        {
+            "name": "TypeORM",
+            "logo": "./images/skills/typeorm.png",
+            "type": "framework"
         }
     ]
 }
