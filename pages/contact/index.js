@@ -79,9 +79,9 @@ export default function Contact() {
                 </div>
                 <div className='h-screen flex flex-col gap-10 justify-center items-center max-w-[80%] m-auto -mt-12 lg:mt-0' >
                     <div className='text-xl italic text-center' >
-                        I’m always interested in project ideas and oportunities. Feel free to reach out to me with your amazing ideas or just say hi.👋
+                        I'm always interested in project ideas and oportunities. Feel free to reach out to me with your amazing ideas or just say hi.👋
                     </div>
-                    <hr className='text-[#D4D4D4] w-3/4 -mb-4' />
+                    {/* <hr className='text-[#D4D4D4] w-3/4 -mb-4' />
                     <div className='w-full' >
                         <form>
                             <formGroup id='contactForm' >
@@ -148,7 +148,7 @@ export default function Contact() {
                                 onClick={(e)=>{handleSubmit(e)}}
                             />
                         </form >
-                    </div>
+                    </div> */}
                 </div>
             </div>
             <Footer />
