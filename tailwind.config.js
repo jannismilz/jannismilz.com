@@ -24,7 +24,7 @@ module.exports = {
       },
       gridTemplateColumns: {
         'autofill': 'repeat(auto-fill, minmax(300px, 1fr))',
-        'autofillSkills': 'repeat(auto-fill, minmax(100px, 1fr))',
+        'autofillSkills': 'repeat(auto-fill, minmax(120px, 1fr))',
       },
       boxShadow: {
         'reference': '0 8px 16px 0 rgba(0,0,0,0.2)',

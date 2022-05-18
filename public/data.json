@@ -11,47 +11,77 @@
         {
             "name": "HTML",
             "logo": "./images/skills/html.png",
-            "type": "language"
+            "type": "Language"
         },
         {
             "name": "CSS",
             "logo": "./images/skills/css.png",
-            "type": "language"
+            "type": "Language"
         },
         {
             "name": "JavaScript",
             "logo": "./images/skills/javascript.png",
-            "type": "language"
+            "type": "Language"
         },
         {
             "name": "ReactJS",
             "logo": "./images/skills/reactjs.png",
-            "type": "framework"
+            "type": "Framework"
         },
         {
             "name": "ExpressJS",
             "logo": "./images/skills/expressjs.png",
-            "type": "framework"
+            "type": "Framework"
         },
         {
             "name": "TailwindCSS",
             "logo": "./images/skills/tailwindcss.png",
-            "type": "framework"
+            "type": "Framework"
         },
         {
             "name": "NextJS",
             "logo": "./images/skills/nextjs.png",
-            "type": "framework"
+            "type": "Framework"
         },
         {
             "name": "Python",
             "logo": "./images/skills/python.png",
-            "type": "language"
+            "type": "Language"
         },
         {
             "name": "NodeJS",
             "logo": "./images/skills/nodejs.png",
-            "type": "framework"
+            "type": "Framework"
+        },
+        {
+            "name": "TypeORM",
+            "logo": "./images/skills/typeorm.png",
+            "type": "Framework"
+        },
+        {
+            "name": "GitHub",
+            "logo": "./images/skills/github.png",
+            "type": "Others"
+        },
+        {
+            "name": "Git",
+            "logo": "./images/skills/git.png",
+            "type": "Others"
+        },
+        {
+            "name": "Docker",
+            "logo": "./images/skills/docker.webp",
+            "type": "Others"
+        },
+        {
+            "name": "NPM",
+            "logo": "./images/skills/npm.png",
+            "type": "Others"
+        },
+        {
+            "name": "Markdown",
+            "logo": "./images/skills/markdown.png",
+            "type": "Language"
         }
     ]
 }
