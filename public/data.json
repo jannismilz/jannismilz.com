@@ -102,6 +102,16 @@
             "name": "GitLab",
             "logo": "./images/skills/gitlab.png",
             "type": "Others"
+        },
+        {
+            "name": "Prisma",
+            "logo": "./images/skills/prisma.png",
+            "type": "Framework"
+        },
+        {
+            "name": "Bash",
+            "logo": "./images/skills/bash.png",
+            "type": "Language"
         }
     ]
 }
