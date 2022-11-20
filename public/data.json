@@ -79,9 +79,29 @@
             "type": "Others"
         },
         {
-            "name": "Markdown",
-            "logo": "./images/skills/markdown.png",
+            "name": "Laravel",
+            "logo": "./images/skills/laravel.png",
+            "type": "Framework"
+        },
+        {
+            "name": "TypeScript",
+            "logo": "./images/skills/typescript.png",
             "type": "Language"
+        },
+        {
+            "name": "PHP",
+            "logo": "./images/skills/php.png",
+            "type": "Language"
+        },
+        {
+            "name": "SvelteKit",
+            "logo": "./images/skills/sveltekit.png",
+            "type": "Framework"
+        },
+        {
+            "name": "GitLab",
+            "logo": "./images/skills/gitlab.png",
+            "type": "Others"
         }
     ]
 }
