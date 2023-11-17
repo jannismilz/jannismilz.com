@@ -73,9 +73,8 @@ export default function Contact() {
             <Header />
             <div className='flex flex-col-reverse lg:grid lg:grid-cols-2 max-w-8xl m-auto mt-10 lg:mt-0 dark:bg-darkgray' >
                 <div className='lg:h-screen flex flex-col gap-10 justify-center items-center mb-16 lg:mb-0' >
-                    <ContactLink href="https://github.com/JannisMilz" bg="bg-[#333333]" icon="faGithub" name="@JannisMilz" />
-                    <ContactLink href="https://www.linkedin.com/in/jannis-milz-700031207/" bg="bg-[#0A66C2]" icon="faLinkedin" name="@Jannis Milz" />
-                    <ContactLink href="https://discordapp.com/users/532515511863476226" bg="bg-[#7289DA]" icon="faDiscord" name="@AquaDev#8112" />
+                    <ContactLink href="https://github.com/jannismilz" bg="bg-[#333333]" icon="faGithub" name="@jannismilz" />
+                    <ContactLink href="https://www.linkedin.com/in/jannis-milz-700031207" bg="bg-[#0A66C2]" icon="faLinkedin" name="@Jannis Milz" />
                 </div>
                 <div className='h-screen flex flex-col gap-10 justify-center items-center max-w-[80%] m-auto -mt-12 lg:mt-0' >
                     <div className='text-xl italic text-center' >
