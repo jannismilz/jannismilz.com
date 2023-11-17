@@ -7,8 +7,6 @@ services:
     portfolio:
         container_name: portfolio
         image: ghcr.io/jannismilz/portfolio:v1
-        ports:
-            - "4040:3000"
         networks:
             - personal
         restart: unless-stopped
