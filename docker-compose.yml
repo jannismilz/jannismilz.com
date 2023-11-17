@@ -10,9 +10,9 @@ services:
         ports:
             - "4040:3000"
         networks:
-            - jannis
+            - personal
         restart: unless-stopped
 
 networks:
-    jannis:
+    personal:
         external: true
