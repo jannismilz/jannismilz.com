@@ -79,7 +79,7 @@ export function Header() {
 							<div className="px-2 py-2 dark:bg-gray">
 								<Menu.Item>
 									<MyLink
-										href="https://blog.jannismilz.com" 
+										href="https://jannismilz.com/blog" 
 										target="_blank" 
 										className={`duration-200 hover:text-lightblue`}
 									>
