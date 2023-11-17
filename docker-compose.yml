@@ -1,19 +1,18 @@
 version: "3.8"
 
 services:
-  #######################################
-  # Portfolio container
-  #######################################
-  portfolio:
-    build:
-      context: .
-    container_name: portfolio
-    ports:
-      - "4040:3000"
-    networks:
-      - jannis
-    restart: unless-stopped
+    #######################################
+    # Portfolio container
+    #######################################
+    portfolio:
+        container_name: portfolio
+        image: ghcr.io/jannismilz/portfolio:v1
+        ports:
+            - "4040:3000"
+        networks:
+            - jannis
+        restart: unless-stopped
 
 networks:
-  jannis:
-    external: true
+    jannis:
+        external: true
