@@ -6,7 +6,7 @@ services:
     #######################################
     portfolio:
         container_name: portfolio
-        image: ghcr.io/jannismilz/portfolio:v1
+        image: ghcr.io/jannismilz/portfolio:v1.1
         networks:
             - personal
         restart: unless-stopped
