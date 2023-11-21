@@ -4,8 +4,8 @@ services:
     #######################################
     # Portfolio container
     #######################################
-    portfolio:
-        container_name: portfolio
+    jannismilz:
+        container_name: jannismilz.com
         image: ghcr.io/jannismilz/jannismilz.com:latest
         networks:
             - personal
