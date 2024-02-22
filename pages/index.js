@@ -92,7 +92,7 @@ export function Header() {
                             <div className="px-2 py-2 dark:bg-gray">
                                 <Menu.Item>
                                     <MyLink
-                                        href="/blog"
+                                        href="https://medium.com/@jannismilz"
                                         target="_blank"
                                         className={`duration-200 hover:text-lightblue`}
                                     >
@@ -209,7 +209,7 @@ export function Header() {
                             <span className="mr-2">💪</span> Skills
                         </a>
                         <a
-                            href="/blog"
+                            href="https://medium.com/@jannismilz"
                             target="_blank"
                             className={`duration-200 hover:text-lightblue`}
                         >
