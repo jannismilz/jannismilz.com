@@ -1,10 +1,29 @@
-# Personal website
+# jannismilz.com
 
-[![Continuous Delivery](https://github.com/jannismilz/jannismilz.com/actions/workflows/cd.yml/badge.svg?branch=main)](https://github.com/jannismilz/jannismilz.com/actions/workflows/cd.yml)
+Repository for the [jannismilz.com](https://jannismilz.com) website. My personal website.
 
-## Tech Stack
+## Run locally
 
-- NextJS
-- TailwindCSS
-- HeadlessUI
-- Docker
+To get started with this template, first install the npm dependencies:
+
+```bash
+npm install
+```
+
+Next, create a `.env.local` file in the root of your project and set the `NEXT_PUBLIC_SITE_URL` variable to your site's public URL:
+
+```
+NEXT_PUBLIC_SITE_URL=https://example.com
+```
+
+Next, run the development server:
+
+```bash
+npm run dev
+```
+
+Finally, open [http://localhost:3000](http://localhost:3000) in your browser to view the website.
+
+## License
+
+This site template is a commercial product and is licensed under the [Tailwind UI license](https://tailwindui.com/license).
