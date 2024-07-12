@@ -26,4 +26,4 @@ Finally, open [http://localhost:3000](http://localhost:3000) in your browser to 
 
 ## License
 
-This site template is a commercial product and is licensed under the [Tailwind UI license](https://tailwindui.com/license).
+This site contains code from a TailwindUI template and is licensed under the [Tailwind UI license](https://tailwindui.com/license).
