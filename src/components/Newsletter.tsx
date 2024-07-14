@@ -1,6 +1,3 @@
-'use client'
-
-import { redirect } from 'next/navigation'
 import { Button } from './Button'
 
 function MailIcon(props: React.ComponentPropsWithoutRef<'svg'>) {
@@ -27,10 +24,6 @@ function MailIcon(props: React.ComponentPropsWithoutRef<'svg'>) {
 }
 
 export default function Newsletter() {
-  // const handleSubmit = () => {
-  //   redirect('/thank-you')
-  // }
-
   return (
     <form
       action="https://app.convertkit.com/forms/6822352/subscriptions"

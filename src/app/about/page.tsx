@@ -5,7 +5,7 @@ import clsx from 'clsx'
 
 import { Container } from '@/components/Container'
 import { GitHubIcon, LinkedInIcon } from '@/components/SocialIcons'
-import portraitImage from '@/images/portrait.jpg'
+import portraitImage from '@/images/portrait.jpeg'
 
 function SocialLink({
   className,
@@ -63,34 +63,37 @@ export default function About() {
         </div>
         <div className="lg:order-first lg:row-span-2">
           <h1 className="text-4xl font-bold tracking-tight text-zinc-800 sm:text-5xl dark:text-zinc-100">
-            TODO
+            Either I find a way or I create one.
           </h1>
           <div className="mt-6 space-y-7 text-base text-zinc-600 dark:text-zinc-400">
             <p>
-              I’ve loved making things for as long as I can remember, and wrote
-              my first program when I was 6 years old, just two weeks after my
-              mom brought home the brand new Macintosh LC 550 that I taught
-              myself to type on.
+              This sentence has been my life motto for a long time and I think
+              it sums up my personality quite well. I just admire the fact that
+              there's no reason why it shouldn't work if you set your mind up to
+              finding a way.
             </p>
             <p>
-              The only thing I loved more than computers as a kid was space.
-              When I was 8, I climbed the 40-foot oak tree at the back of our
-              yard while wearing my older sister’s motorcycle helmet, counted
-              down from three, and jumped — hoping the tree was tall enough that
-              with just a bit of momentum I’d be able to get to orbit.
+              {/* Programmieren */}
+              When I was growing up, I was surrouned by all kinds of technology
+              so my path was pretty much destined. I started programming at the
+              age of 12 and have been improving my skillset and expanding my
+              horizon ever since. So much so that I now do it professionally as
+              a software developer.
             </p>
             <p>
-              I spent the next few summers indoors working on a rocket design,
-              while I recovered from the multiple surgeries it took to fix my
-              badly broken legs. It took nine iterations, but when I was 15 I
-              sent my dad’s Blackberry into orbit and was able to transmit a
-              photo back down to our family computer from space.
+              {/* Sport / Verein */}
+              Sport also plays a big role in my life, gymnastics and athletics
+              to be precise. I've been a member of the local club for over 10
+              years. I also started to train the younger children like I once
+              was and pass on my knowledge. This volunteering work has been very
+              rewarding and a great change to my own training and everyday life.
             </p>
             <p>
-              Today, I’m the founder of Planetaria, where we’re working on
-              civilian space suits and manned shuttle kits you can assemble at
-              home so that the next generation of kids really <em>can</em> make
-              it to orbit — from the comfort of their own backyards.
+              {/* Interessen */}
+              I'm also interested and curious about a variety of topics.
+              Sometimes I can't hold myself back and need to dig deeper into a
+              topics. They range from self improvement, to biographies, to
+              designing, to psychology, even to unsolvable math problems.
             </p>
           </div>
         </div>
