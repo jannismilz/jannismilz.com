@@ -1,7 +1,7 @@
 const articles: Article[] = [
   {
     date: '22.09.2025',
-    description: 'SwissSkills 2025 interview as a Web Technologies contestant',
+    description: 'SwissSkills 2025 Interview als Teilnehmer in Web Technologies',
     link: 'https://www.plattformj.ch/artikel/236098/?utm_source=jannismilz.com&utm_medium=referral',
     title: '«Die Zukunft hängt von meiner Entwicklung ab – nicht von der KI»',
   },
