@@ -1,5 +1,11 @@
 const articles: Article[] = [
   {
+    date: '22.09.2025',
+    description: 'SwissSkills 2025 interview as a Web Technologies contestant',
+    link: 'https://www.plattformj.ch/artikel/236098/?utm_source=jannismilz.com&utm_medium=referral',
+    title: '«Die Zukunft hängt von meiner Entwicklung ab – nicht von der KI»',
+  },
+  {
     date: '11.05.2024',
     description: 'Gain back time by using these simple browser shortcuts.',
     link: 'https://medium.com/@jannismilz/these-browser-keyboard-shortcuts-are-pure-productivity-f665c0f850b7',
