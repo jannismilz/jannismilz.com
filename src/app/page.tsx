@@ -191,7 +191,7 @@ export default function Home() {
             Software developer, founder, and curious by nature.
           </h1>
           <p className="mt-6 text-base text-zinc-600 dark:text-zinc-400">
-            I’m Jannis, a software developer based in Switzerland. Always curious to learn new technologies and experiment with them until it breaks again...
+            I’m Jannis, a software developer based in Switzerland. Always curious to learn new technologies and experiment with them until it breaks...
           </p>
           <div className="mt-6 flex gap-6">
             <SocialLink
