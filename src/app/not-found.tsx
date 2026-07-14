@@ -1,23 +1,31 @@
-import { Button } from '@/components/Button'
-import { Container } from '@/components/Container'
+import Link from 'next/link'
+
+import { Eyebrow } from '@/components/Eyebrow'
 
 export default function NotFound() {
   return (
-    <Container className="flex h-full items-center pt-16 sm:pt-32">
-      <div className="flex flex-col items-center">
-        <p className="text-base font-semibold text-zinc-400 dark:text-zinc-500">
-          404
-        </p>
-        <h1 className="mt-4 text-4xl font-bold tracking-tight text-zinc-800 sm:text-5xl dark:text-zinc-100">
-          Page not found
-        </h1>
-        <p className="mt-4 text-base text-zinc-600 dark:text-zinc-400">
-          Sorry, we couldn’t find the page you’re looking for.
-        </p>
-        <Button href="/" variant="secondary" className="mt-4">
-          Go back home
-        </Button>
-      </div>
-    </Container>
+    <section className="pt-16 sm:pt-24">
+      <Eyebrow>Correction</Eyebrow>
+      <h1 className="mt-5 font-serif text-[38px] leading-[1.1] sm:text-[48px]">
+        This page never went to print.
+      </h1>
+      <p className="mt-5 max-w-[52ch] text-ink-muted">
+        In an earlier edition we may have implied this page exists. We regret
+        the error.
+      </p>
+      <Link
+        href="/"
+        className="group mt-6 inline-block text-[15px] text-accent"
+      >
+        Return to the front page
+        <span
+          className="inline-block transition-transform group-hover:translate-x-1"
+          aria-hidden="true"
+        >
+          {' '}
+          →
+        </span>
+      </Link>
+    </section>
   )
 }

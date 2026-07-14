@@ -1,9 +1,19 @@
+export interface Article {
+  title: string
+  description: string
+  date: string
+  link: string
+  lang?: 'de'
+}
+
 const articles: Article[] = [
   {
     date: '22.09.2025',
-    description: 'SwissSkills 2025 Interview als Teilnehmer in Web Technologies',
+    description:
+      'SwissSkills 2025 Interview als Teilnehmer in Web Technologies',
     link: 'https://www.plattformj.ch/artikel/236098/?utm_source=jannismilz.com&utm_medium=referral',
     title: '«Die Zukunft hängt von meiner Entwicklung ab – nicht von der KI»',
+    lang: 'de',
   },
   {
     date: '11.05.2024',
@@ -69,13 +79,11 @@ const articles: Article[] = [
   },
 ]
 
-export interface Article {
-  title: string
-  description: string
-  date: string
-  link: string
+export function getAllArticles() {
+  return articles.sort((a, z) => +parseDate(z.date) - +parseDate(a.date))
 }
 
-export function getAllArticles() {
-  return articles.sort((a, z) => +new Date(z.date) - +new Date(a.date))
+export function parseDate(dateString: string) {
+  const [day, month, year] = dateString.split('.').map(Number)
+  return new Date(year, month - 1, day)
 }

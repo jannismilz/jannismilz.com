@@ -1,0 +1,158 @@
+<!-- @dsCard group="Pages" -->
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>404 — Correction</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:ital,wght@0,400..700;1,400..700&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --paper: #FAF6EF;
+    --paper-raised: #F3EDDF;
+    --ink: #1A1815;
+    --ink-muted: #6E6558;
+    --hairline: #E3DAC6;
+    --accent: #C8371E;
+    --accent-amber: #C77B0A;
+    --serif: "Instrument Serif", "Iowan Old Style", Georgia, "Times New Roman", serif;
+    --sans: "Instrument Sans", -apple-system, "Helvetica Neue", Arial, sans-serif;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body { background: var(--paper); }
+  body {
+    color: var(--ink);
+    font: 400 17px/1.65 var(--sans);
+    -webkit-font-smoothing: antialiased;
+  }
+  ::selection { background: #F9E3DB; color: #A62B16; }
+  a { color: inherit; }
+
+  .page { max-width: 1200px; margin: 0 auto; padding: 32px 48px 48px; }
+
+  /* ---- Masthead ---- */
+  .double-rule {
+    height: 5px; /* 1px + 3px gap + 1px */
+    border-top: 1px solid var(--ink);
+    border-bottom: 1px solid var(--ink);
+  }
+  .masthead-row {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    gap: 24px;
+    flex-wrap: wrap;
+    padding: 20px 0 16px;
+    border-bottom: 1px solid var(--hairline);
+  }
+  .masthead-name {
+    font-family: var(--serif);
+    font-size: 28px;
+    font-weight: 400;
+    letter-spacing: .08em;
+    text-transform: uppercase;
+    line-height: 1;
+  }
+  .masthead-name a { text-decoration: none; }
+  .masthead-dateline { margin-top: 8px; font-size: 13px; color: var(--ink-muted); }
+  .masthead-right { display: flex; align-items: center; gap: 20px; }
+  .masthead-nav { font-size: 14px; }
+  .masthead-nav a { text-decoration: none; }
+  .masthead-nav a:hover { color: var(--accent); }
+  .masthead-nav .sep { color: var(--ink-muted); margin: 0 10px; }
+  .theme-toggle { display: inline-flex; color: var(--ink-muted); }
+
+  /* ---- Correction notice ---- */
+  .correction {
+    max-width: 52ch;
+    margin: 0 auto;
+    padding: 128px 0 96px;
+  }
+  .eyebrow {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: .12em;
+    text-transform: uppercase;
+    color: var(--ink-muted);
+    margin-bottom: 24px;
+  }
+  .eyebrow::after { content: ""; flex: 1; height: 1px; background: var(--hairline); }
+  .correction h1 {
+    font-family: var(--serif);
+    font-size: 52px;
+    font-weight: 400;
+    line-height: 1.05;
+  }
+  .correction p { margin-top: 20px; }
+  .correction .back {
+    display: inline-block;
+    margin-top: 28px;
+    font-size: 15px;
+    color: var(--accent);
+    text-decoration: none;
+  }
+  .correction .back:hover { text-decoration: underline; text-underline-offset: 4px; }
+
+  /* ---- Footer ---- */
+  .footer {
+    border-top: 1px solid var(--hairline);
+    padding-top: 24px;
+    font-size: 13px;
+    color: var(--ink-muted);
+  }
+  .footer-row { display: flex; justify-content: space-between; align-items: baseline; gap: 24px; flex-wrap: wrap; }
+  .footer a { text-decoration: underline; text-decoration-color: var(--hairline); text-underline-offset: 3px; }
+  .footer a:hover { color: var(--accent); text-decoration-color: var(--accent); }
+  .footer-links span { margin: 0 6px; }
+  .footer-joke { margin-top: 14px; font-family: var(--serif); font-style: italic; font-size: 14px; }
+</style>
+</head>
+<body>
+<div class="page">
+
+  <header>
+    <div class="double-rule"></div>
+    <div class="masthead-row">
+      <div>
+        <p class="masthead-name"><a href="#">Jannis Milz</a></p>
+        <p class="masthead-dateline">Z&uuml;rich, Switzerland &middot; Programming since age 12</p>
+      </div>
+      <div class="masthead-right">
+        <nav class="masthead-nav">
+          <a href="#">Front page</a><span class="sep">&middot;</span><a href="#">Projects</a>
+        </nav>
+        <span class="theme-toggle" aria-label="Toggle theme">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" aria-hidden="true">
+            <circle cx="12" cy="12" r="4"></circle>
+            <path d="M12 2.5v2M12 19.5v2M4.93 4.93l1.42 1.42M17.65 17.65l1.42 1.42M2.5 12h2M19.5 12h2M4.93 19.07l1.42-1.42M17.65 6.35l1.42-1.42"></path>
+          </svg>
+        </span>
+      </div>
+    </div>
+  </header>
+
+  <main class="correction">
+    <p class="eyebrow">Correction</p>
+    <h1>This page never went to print.</h1>
+    <p>In an earlier edition we may have implied this page exists. We regret the error.</p>
+    <a class="back" href="#">Return to the front page &rarr;</a>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-row">
+      <p>&copy; 2026 Jannis Milz &middot; Z&uuml;rich</p>
+      <p class="footer-links">
+        <a href="https://github.com/jannismilz">GitHub</a><span>&middot;</span><a href="https://www.linkedin.com/in/jannis-milz-700031207/">LinkedIn</a><span>&middot;</span><a href="mailto:hi@jannismilz.com">hi@jannismilz.com</a>
+      </p>
+    </div>
+    <p class="footer-joke">Set in Instrument Serif &amp; Sans. No cookies, no tracking &mdash; this paper doesn&rsquo;t follow you home.</p>
+  </footer>
+
+</div>
+</body>
+</html>

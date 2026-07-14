@@ -1,0 +1,118 @@
+<!-- @dsCard group="Components" -->
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The Letter</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:ital,wght@0,400..700;1,400..700&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --paper: #FAF6EF;
+    --paper-raised: #F3EDDF;
+    --ink: #1A1815;
+    --ink-muted: #6E6558;
+    --hairline: #E3DAC6;
+    --accent: #C8371E;
+    --accent-amber: #C77B0A;
+    --serif: "Instrument Serif", "Iowan Old Style", Georgia, "Times New Roman", serif;
+    --sans: "Instrument Sans", -apple-system, "Helvetica Neue", Arial, sans-serif;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body { background: var(--paper); }
+  body {
+    color: var(--ink);
+    font: 400 17px/1.65 var(--sans);
+    -webkit-font-smoothing: antialiased;
+    padding: 64px 48px 72px;
+  }
+  ::selection { background: #F9E3DB; color: #A62B16; }
+
+  .letter-wrap { max-width: 1100px; margin: 0 auto; }
+  .letter { max-width: 65ch; margin: 0 auto; }
+
+  .headline {
+    font-family: var(--serif);
+    font-size: 56px;
+    font-weight: 400;
+    line-height: 1.05;
+    margin-bottom: 12px;
+  }
+  .grad {
+    background: linear-gradient(90deg, var(--accent), var(--accent-amber));
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+
+  .letter p { margin-top: 1.5em; position: relative; }
+
+  .drop::first-letter {
+    float: left;
+    font-family: var(--serif);
+    font-size: 76px;
+    line-height: .8;
+    padding: 6px 12px 0 0;
+    color: var(--accent);
+  }
+
+  .mn-ref {
+    color: var(--accent);
+    font-weight: 600;
+    text-decoration: none;
+  }
+  .margin-note {
+    position: absolute;
+    left: calc(100% + 44px);
+    top: 4px;
+    width: 220px;
+    font-family: var(--serif);
+    font-style: italic;
+    font-size: 15px;
+    line-height: 1.5;
+    color: var(--ink-muted);
+  }
+  .margin-note .mn-ref { font-style: normal; font-weight: 400; }
+
+  /* Below 1280px the note folds inline, footnote-style */
+  @media (max-width: 1279px) {
+    .margin-note {
+      position: static;
+      display: block;
+      width: auto;
+      max-width: 44ch;
+      margin: 14px 0 0 24px;
+      padding-left: 16px;
+      border-left: 1px solid var(--hairline);
+    }
+  }
+
+  .signoff {
+    font-family: var(--serif);
+    font-style: italic;
+    font-size: 28px;
+    line-height: 1.2;
+    margin-top: 1.8em;
+  }
+</style>
+</head>
+<body>
+  <div class="letter-wrap">
+    <div class="letter">
+      <h1 class="headline">Either I find a way, or I <span class="grad">create</span> one.</h1>
+
+      <p class="drop">I started programming at twelve, mostly to make the computer do things I was too impatient to do myself. The computer had opinions. We argued. I&rsquo;ve been arguing happily ever since.</p>
+
+      <p>These days I&rsquo;m an apprentice software developer at BSI in Z&uuml;rich. Before that I spent two years at the University of Zurich &mdash; long enough to learn a lot, and to notice that I learn fastest with my hands on real code.</p>
+
+      <p>When I&rsquo;m not at a keyboard I&rsquo;m usually upside down. Gymnastics and athletics have been part of my life for over a decade, and for most of it I&rsquo;ve also been coaching kids at the local club.<a class="mn-ref" href="#note-1" aria-describedby="note-1">*</a>
+        <span class="margin-note" id="note-1" role="note"><span class="mn-ref">*</span>Coaching kids is mostly debugging, except the bugs run away.</span>
+      </p>
+
+      <p class="signoff">&mdash; Jannis</p>
+    </div>
+  </div>
+</body>
+</html>

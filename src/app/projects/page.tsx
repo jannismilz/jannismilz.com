@@ -1,79 +1,81 @@
 import { type Metadata } from 'next'
-import Image from 'next/image'
-import { Card } from '@/components/Card'
-import { SimpleLayout } from '@/components/SimpleLayout'
-import logoBBWHeroes from '@/images/logos/projects/bbwheroes.png'
-import logoLinuxCookbook from '@/images/logos/projects/linuxcookbook.avif'
 
-const projects = [
-  {
-    name: 'BBW Heroes',
-    description:
-      'BBW students can share their their works with others and grow together.',
-    link: { href: 'https://bbwheroes.ch', label: 'bbwheroes.ch' },
-    logo: logoBBWHeroes,
-  },
-  {
-    name: 'Linux Cookbook',
-    description:
-      'A school project to learn the basics of Linux and how to use it.',
-    link: {
-      href: 'https://bbw-linux-cookbook.gitbook.io',
-      label: 'bbw-linux-cookbook.gitbook.io',
-    },
-    logo: logoLinuxCookbook,
-  },
-]
-
-function LinkIcon(props: React.ComponentPropsWithoutRef<'svg'>) {
-  return (
-    <svg viewBox="0 0 24 24" aria-hidden="true" {...props}>
-      <path
-        d="M15.712 11.823a.75.75 0 1 0 1.06 1.06l-1.06-1.06Zm-4.95 1.768a.75.75 0 0 0 1.06-1.06l-1.06 1.06Zm-2.475-1.414a.75.75 0 1 0-1.06-1.06l1.06 1.06Zm4.95-1.768a.75.75 0 1 0-1.06 1.06l1.06-1.06Zm3.359.53-.884.884 1.06 1.06.885-.883-1.061-1.06Zm-4.95-2.12 1.414-1.415L12 6.344l-1.415 1.413 1.061 1.061Zm0 3.535a2.5 2.5 0 0 1 0-3.536l-1.06-1.06a4 4 0 0 0 0 5.656l1.06-1.06Zm4.95-4.95a2.5 2.5 0 0 1 0 3.535L17.656 12a4 4 0 0 0 0-5.657l-1.06 1.06Zm1.06-1.06a4 4 0 0 0-5.656 0l1.06 1.06a2.5 2.5 0 0 1 3.536 0l1.06-1.06Zm-7.07 7.07.176.177 1.06-1.06-.176-.177-1.06 1.06Zm-3.183-.353.884-.884-1.06-1.06-.884.883 1.06 1.06Zm4.95 2.121-1.414 1.414 1.06 1.06 1.415-1.413-1.06-1.061Zm0-3.536a2.5 2.5 0 0 1 0 3.536l1.06 1.06a4 4 0 0 0 0-5.656l-1.06 1.06Zm-4.95 4.95a2.5 2.5 0 0 1 0-3.535L6.344 12a4 4 0 0 0 0 5.656l1.06-1.06Zm-1.06 1.06a4 4 0 0 0 5.657 0l-1.061-1.06a2.5 2.5 0 0 1-3.535 0l-1.061 1.06Zm7.07-7.07-.176-.177-1.06 1.06.176.178 1.06-1.061Z"
-        fill="currentColor"
-      />
-    </svg>
-  )
-}
+import { Eyebrow } from '@/components/Eyebrow'
+import { FigureFrame } from '@/components/FigureFrame'
+import { ProjectEntry } from '@/components/ProjectEntry'
+import { projects } from '@/lib/projects'
 
 export const metadata: Metadata = {
   title: 'Projects',
-  description: 'Things I’ve made to get a little bit better everytime.',
+  description:
+    'Things Jannis Milz has shipped, broken, and shipped again — eintrittli, Weborb, and other projects.',
+}
+
+function SwissSkillsHighlight() {
+  return (
+    <section className="mt-12 border border-hairline bg-paper-raised p-6 sm:p-8">
+      <p className="text-[11px] font-medium tracking-[0.12em] text-accent uppercase">
+        Highlight
+      </p>
+      <h2 className="mt-2 font-serif text-[28px] leading-tight">
+        SwissSkills 2025 — Web Technologies
+      </h2>
+      <div className="mt-4 gap-8 sm:flex">
+        <div className="text-[15px] leading-relaxed">
+          <p>
+            In 2025 I competed among Switzerland&rsquo;s best young web
+            developers at SwissSkills. A newspaper even interviewed me about AI;
+            the short version of my answer made it into the headline: my future
+            depends on my development — not on it.
+          </p>
+          <a
+            href="https://www.plattformj.ch/artikel/236098/?utm_source=jannismilz.com&utm_medium=referral"
+            target="_blank"
+            className="group mt-4 inline-block text-[14px] text-accent"
+          >
+            Read the interview{' '}
+            <span className="text-[11px] tracking-[0.08em] text-ink-muted uppercase">
+              German
+            </span>
+            <span
+              className="inline-block transition-transform group-hover:translate-x-1"
+              aria-hidden="true"
+            >
+              {' '}
+              →
+            </span>
+          </a>
+        </div>
+        <FigureFrame
+          className="mt-6 shrink-0 sm:mt-0 sm:w-56"
+          placeholder="photo from the competition floor, eventually"
+          captionLead="On assignment."
+          caption="SwissSkills 2025, Bern."
+        />
+      </div>
+    </section>
+  )
 }
 
 export default function Projects() {
   return (
-    <SimpleLayout
-      title="Things I’ve made to get a little bit better everytime."
-      intro="I’ve worked on lots of little projects but these are the most serious ones and the ones that I’m most proud of."
-    >
-      <ul
-        role="list"
-        className="grid grid-cols-1 gap-x-12 gap-y-16 sm:grid-cols-2 lg:grid-cols-3"
-      >
+    <>
+      <header className="pt-12 sm:pt-16">
+        <Eyebrow>The portfolio</Eyebrow>
+        <h1 className="mt-4 font-serif text-[38px] leading-[1.1] sm:text-[48px]">
+          Shipped, broken, and shipped again.
+        </h1>
+        <p className="mt-4 max-w-[52ch] text-[16px] text-ink-muted">
+          The projects I&rsquo;m most proud of — from a live product to school
+          projects that taught me why the live product works. More to come.
+        </p>
+      </header>
+      <div className="mt-8 divide-y divide-hairline">
         {projects.map((project) => (
-          <Card as="li" key={project.name}>
-            <div className="relative z-10 flex h-12 w-12 items-center justify-center rounded-full bg-white shadow-md shadow-zinc-800/5 ring-1 ring-zinc-900/5 dark:border dark:border-zinc-700/50 dark:bg-zinc-800 dark:ring-0">
-              <Image
-                src={project.logo}
-                alt=""
-                className="h-8 w-8 rounded-full"
-                unoptimized
-              />
-            </div>
-            <h2 className="mt-6 text-base font-semibold text-zinc-800 dark:text-zinc-100">
-              <Card.Link target="_blank" href={project.link.href}>
-                {project.name}
-              </Card.Link>
-            </h2>
-            <Card.Description>{project.description}</Card.Description>
-            <p className="relative z-10 mt-6 flex text-sm font-medium text-zinc-400 transition group-hover:text-blue-500 dark:text-zinc-200">
-              <LinkIcon className="h-6 w-6 flex-none" />
-              <span className="ml-2">{project.link.label}</span>
-            </p>
-          </Card>
+          <ProjectEntry key={project.name} project={project} />
         ))}
-      </ul>
-    </SimpleLayout>
+      </div>
+      <SwissSkillsHighlight />
+    </>
   )
 }

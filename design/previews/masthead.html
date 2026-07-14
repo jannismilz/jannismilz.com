@@ -1,0 +1,142 @@
+<!-- @dsCard group="Components" -->
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Masthead</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:ital,wght@0,400..700;1,400..700&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --paper: #FAF6EF;
+    --paper-raised: #F3EDDF;
+    --ink: #1A1815;
+    --ink-muted: #6E6558;
+    --hairline: #E3DAC6;
+    --accent: #C8371E;
+    --accent-amber: #C77B0A;
+    --serif: "Instrument Serif", "Iowan Old Style", Georgia, "Times New Roman", serif;
+    --sans: "Instrument Sans", -apple-system, "Helvetica Neue", Arial, sans-serif;
+  }
+  .dark {
+    --paper: #0B1220;
+    --paper-raised: #121B2E;
+    --ink: #EDE7DA;
+    --ink-muted: #98A0B0;
+    --hairline: #1E293D;
+    --accent: #FF6B4A;
+    --accent-amber: #FFA02E;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body { background: #FAF6EF; }
+  body { font: 400 17px/1.65 var(--sans); -webkit-font-smoothing: antialiased; }
+  ::selection { background: #F9E3DB; color: #A62B16; }
+  .dark ::selection { background: #3A1710; color: #FFB29E; }
+
+  .theme-block { background: var(--paper); color: var(--ink); padding: 40px 48px 56px; }
+
+  .anno {
+    font-size: 10px;
+    font-weight: 500;
+    letter-spacing: .08em;
+    text-transform: uppercase;
+    color: var(--ink-muted);
+    opacity: .8;
+    margin-bottom: 20px;
+  }
+
+  .masthead { max-width: 1100px; margin: 0 auto; }
+  .double-rule {
+    height: 5px; /* 1px rule + 3px gap + 1px rule */
+    border-top: 1px solid var(--ink);
+    border-bottom: 1px solid var(--ink);
+  }
+  .masthead-row {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    gap: 24px;
+    flex-wrap: wrap;
+    padding: 20px 0 16px;
+    border-bottom: 1px solid var(--hairline);
+  }
+  .masthead-name {
+    font-family: var(--serif);
+    font-size: 28px;
+    font-weight: 400;
+    letter-spacing: .08em;
+    text-transform: uppercase;
+    line-height: 1;
+  }
+  .masthead-name a { color: inherit; text-decoration: none; }
+  .masthead-dateline { margin-top: 8px; font-size: 13px; color: var(--ink-muted); }
+  .masthead-right { display: flex; align-items: center; gap: 20px; }
+  .masthead-nav { font-size: 14px; }
+  .masthead-nav a { color: var(--ink); text-decoration: none; }
+  .masthead-nav a:hover { color: var(--accent); }
+  .masthead-nav .sep { color: var(--ink-muted); margin: 0 10px; }
+  .theme-toggle {
+    display: inline-flex;
+    align-items: center;
+    color: var(--ink-muted);
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 2px;
+  }
+  .theme-toggle:hover { color: var(--accent); }
+</style>
+</head>
+<body>
+
+  <section class="theme-block">
+    <p class="anno">Masthead &mdash; light / paper</p>
+    <header class="masthead">
+      <div class="double-rule"></div>
+      <div class="masthead-row">
+        <div>
+          <p class="masthead-name"><a href="#">Jannis Milz</a></p>
+          <p class="masthead-dateline">Z&uuml;rich, Switzerland &middot; Programming since age 12</p>
+        </div>
+        <div class="masthead-right">
+          <nav class="masthead-nav">
+            <a href="#">Front page</a><span class="sep">&middot;</span><a href="#">Projects</a>
+          </nav>
+          <button class="theme-toggle" aria-label="Switch to dark theme">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" aria-hidden="true">
+              <circle cx="12" cy="12" r="4"></circle>
+              <path d="M12 2.5v2M12 19.5v2M4.93 4.93l1.42 1.42M17.65 17.65l1.42 1.42M2.5 12h2M19.5 12h2M4.93 19.07l1.42-1.42M17.65 6.35l1.42-1.42"></path>
+            </svg>
+          </button>
+        </div>
+      </div>
+    </header>
+  </section>
+
+  <section class="theme-block dark">
+    <p class="anno">Masthead &mdash; dark / night ink</p>
+    <header class="masthead">
+      <div class="double-rule"></div>
+      <div class="masthead-row">
+        <div>
+          <p class="masthead-name"><a href="#">Jannis Milz</a></p>
+          <p class="masthead-dateline">Z&uuml;rich, Switzerland &middot; Programming since age 12</p>
+        </div>
+        <div class="masthead-right">
+          <nav class="masthead-nav">
+            <a href="#">Front page</a><span class="sep">&middot;</span><a href="#">Projects</a>
+          </nav>
+          <button class="theme-toggle" aria-label="Switch to light theme">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round" aria-hidden="true">
+              <path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8Z"></path>
+            </svg>
+          </button>
+        </div>
+      </div>
+    </header>
+  </section>
+
+</body>
+</html>

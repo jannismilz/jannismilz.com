@@ -1,29 +1,30 @@
 # jannismilz.com
 
-Repository for the [jannismilz.com](https://jannismilz.com) website. My personal website.
+Repository for the [jannismilz.com](https://jannismilz.com) website. My
+personal website, designed like a modern newspaper: warm paper, Instrument
+Serif & Sans, and a signed letter on the front page.
+
+## Stack
+
+Next.js (App Router, static output) · React · Tailwind CSS v4 · next-themes
+(light "paper" / dark "night ink").
+
+The design system lives in `design/SPEC.md`, with standalone HTML previews in
+`design/previews/` (synced to a Claude Design project).
 
 ## Run locally
 
-To get started with this template, first install the npm dependencies:
-
 ```bash
 npm install
-```
-
-Next, create a `.env.local` file in the root of your project and set the `NEXT_PUBLIC_SITE_URL` variable to your site's public URL:
-
-```
-NEXT_PUBLIC_SITE_URL=https://example.com
-```
-
-Next, run the development server:
-
-```bash
 npm run dev
 ```
 
-Finally, open [http://localhost:3000](http://localhost:3000) in your browser to view the website.
+Then open [http://localhost:3000](http://localhost:3000).
+
+Optionally set `NEXT_PUBLIC_SITE_URL` in `.env.local` (defaults to
+`https://jannismilz.com` for metadata).
 
 ## License
 
-This site contains code from a TailwindUI template and is licensed under the [Tailwind UI license](https://tailwindui.com/license).
+This site started from a TailwindUI template and is licensed under the
+[Tailwind UI license](https://tailwindui.com/license).

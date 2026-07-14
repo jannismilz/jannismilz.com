@@ -1,14 +1,8 @@
-export function formatDate(dateString: string) {
-  const splittedDateString = dateString.split('.').map(Number)
-  const date = new Date(
-    splittedDateString[2],
-    splittedDateString[1] - 1,
-    splittedDateString[0],
-  )
+import { parseDate } from '@/lib/articles'
 
-  return date.toLocaleDateString('de-DE', {
-    day: 'numeric',
-    month: 'long',
+export function formatDate(dateString: string) {
+  return parseDate(dateString).toLocaleDateString('en-GB', {
+    month: 'short',
     year: 'numeric',
   })
 }
