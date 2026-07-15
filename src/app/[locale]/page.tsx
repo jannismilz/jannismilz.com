@@ -29,7 +29,7 @@ const personJsonLd = {
   jobTitle: 'Software Developer',
   sameAs: [
     'https://github.com/jannismilz',
-    'https://www.linkedin.com/in/jannis-milz-700031207/',
+    'https://www.linkedin.com/in/jannis-milz/',
     'https://medium.com/@jannismilz',
   ],
 }
@@ -69,7 +69,7 @@ function LetterOpening() {
         <p>{t('p2')}</p>
       </div>
       <div className="clear-both pt-6">
-        <PullQuote caption={t('pullQuoteCaption')}>{t('pullQuote')}</PullQuote>
+        <PullQuote>{t('pullQuote')}</PullQuote>
       </div>
     </section>
   )

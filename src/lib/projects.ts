@@ -18,15 +18,9 @@ export const projectCategories: ProjectCategory[] = [
 export const projects: Project[] = [
   {
     slug: 'eintrittli',
-    name: 'eintrittli',
+    name: 'Eintrittli',
     category: 'product',
     link: { href: 'https://eintrittli.ch', label: 'eintrittli.ch' },
-  },
-  {
-    slug: 'weborb',
-    name: 'weborb.ch',
-    category: 'studio',
-    link: { href: 'https://weborb.ch', label: 'weborb.ch' },
   },
   {
     slug: 'typst-payqr-swiss',

@@ -25,20 +25,20 @@
   "home": {
     "headline": "Either I find a way,<br></br>or I <gradient>create one</gradient>.",
     "letter": {
-      "p1": "Hallo, I’m Jannis, a software developer from Switzerland. The sentence up there has been my life motto for years: I only believe something can’t work once I’ve seriously searched for a way.",
-      "p1Note": "Also known as stubbornness, but “motto” reads better on a website.",
-      "p2": "I started programming at twelve; today I do it professionally at BSI. Away from the keyboard I’ve been doing gymnastics at my local club for more than ten years, and these days I coach the younger kids, the way someone once coached me.",
+      "p1": "Hallo, I’m Jannis, a tinkerer and gymnast from Switzerland. Just like my life motto: I only believe something can’t work once I’ve seriously searched for a way.",
+      "p1Note": "Also known as stubbornness, but “motto” reads better.",
+      "p2": "I started programming at an early age; today I do it professionally with passion. Away from the keyboard I’ve been doing gymnastics at my club for more than ten years, and these days I coach the younger kids.",
       "pullQuote": "“Experiment until it breaks. Then figure out why.”",
-      "pullQuoteCaption": "My learning method since day one.",
-      "figureAPlaceholder": "photo of me mid-somersault, eventually",
+      "figureAPlaceholder": "Photo of me mid-somersault, eventually",
       "figureACaptionLead": "Exhibit A.",
       "figureACaption": "Regularly upside down for ten-plus years."
     },
     "now": {
       "title": "Now",
-      "item1": "Building <link>eintrittli.ch</link> with Weborb, a door check-in system so simple it makes clipboards nervous.",
-      "item2": "Apprentice software developer at BSI.",
-      "item3": "Competed at SwissSkills 2025 in Web Technologies."
+      "item1": "Building <link>eintrittli.ch</link>, an easy to use door check-in system.",
+      "item2": "Software developer at BSI.",
+      "item3": "Volunteer accountant at my gymnastics club.",
+      "item4": "Competed at SwissSkills 2025 in Web Technologies."
     },
     "fresh": {
       "title": "Fresh off the press",
@@ -47,8 +47,7 @@
     "projects": {
       "title": "Projects",
       "all": "All projects",
-      "eintrittli": "A simple check-in system for events and clubs.",
-      "weborb": "The small Swiss web studio behind my projects."
+      "eintrittli": "A simple check-in system for events and clubs."
     },
     "closing": {
       "eyebrow": "In closing",
@@ -57,7 +56,7 @@
       "p2Note": "Haven’t solved one yet. The name checks out.",
       "p3": "This site is the paper edition of all that. Have a look around, and if something sparks a thought, write me: <mail>hi@jannismilz.com</mail>.",
       "signoff": "Jannis",
-      "figureBPlaceholder": "photo from coaching the kids, eventually",
+      "figureBPlaceholder": "Photo from coaching the kids, eventually",
       "figureBCaptionLead": "Exhibit B.",
       "figureBCaption": "Passing on what someone once taught me."
     }
@@ -65,19 +64,15 @@
   "projects": {
     "meta": {
       "title": "Projects",
-      "description": "Things Jannis Milz has shipped, broken, and shipped again: eintrittli, Weborb, and other projects."
+      "description": "Things Jannis Milz has shipped, broken, and shipped again: Eintrittli and other projects."
     },
     "eyebrow": "The portfolio",
     "headline": "Shipped, broken, and shipped again.",
-    "intro": "The projects I’m most proud of: from a live product to school projects that taught me why the live product works. More to come.",
+    "intro": "The projects I’m most proud of: from a live product to school projects that taught me why the live product works.",
     "categories": {
       "product": {
         "title": "Products",
         "tagline": "Things you can already use today."
-      },
-      "studio": {
-        "title": "The studio",
-        "tagline": "Where the projects are made and grow up."
       },
       "openSource": {
         "title": "Open source",
@@ -90,10 +85,7 @@
     },
     "items": {
       "eintrittli": {
-        "description": "A simple entry check-in system for events and clubs: configurable forms, data export, and deliberately nothing else. No payments, no login, no fuss. Built and run with Weborb."
-      },
-      "weborb": {
-        "description": "The small Swiss web studio where my projects grow up and ship: home of eintrittli, and of whatever comes next."
+        "description": "A simple entry check-in system for events and clubs: configurable forms, data export, and deliberately nothing else. No payments, no login, no fuss."
       },
       "typst-payqr-swiss": {
         "description": "A Swiss QR bill generator for the Typst typesetting system. Invoices deserve nice typography too."
@@ -110,7 +102,7 @@
       "title": "SwissSkills 2025 · Web Technologies",
       "body": "In 2025 I competed among Switzerland’s best young web developers at SwissSkills. A newspaper even interviewed me about AI; the short version of my answer made it into the headline: my future depends on my development, not on it.",
       "readInterview": "Read the interview",
-      "figurePlaceholder": "photo from the competition floor, eventually",
+      "figurePlaceholder": "Photo from the competition floor, eventually",
       "figureCaptionLead": "On assignment.",
       "figureCaption": "SwissSkills 2025, Bern."
     }
@@ -122,7 +114,7 @@
     },
     "eyebrow": "Writing",
     "headline": "What’s been on my mind.",
-    "intro": "My own thoughts, typeset and published right here. No algorithm, no paywall, just letters.",
+    "intro": "My own thoughts, typeset and published right here.",
     "ownTitle": "My writing",
     "ownTagline": "Thoughts at full length, published right here.",
     "highlightsTitle": "Highlights",
