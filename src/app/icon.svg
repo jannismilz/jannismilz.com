@@ -10,17 +10,11 @@
     }
   </style>
   <rect class="paper" width="64" height="64" />
-  <!-- Masthead double rule -->
-  <rect class="ink" x="8" y="8" width="48" height="3" />
-  <rect class="ink" x="8" y="15" width="48" height="3" />
-  <!-- Signature initial -->
   <text
-    class="accent"
-    x="34"
-    y="56"
+    x="30"
+    y="50"
     text-anchor="middle"
-    font-family="Georgia, 'Iowan Old Style', 'Times New Roman', serif"
-    font-style="italic"
-    font-size="46"
-  >J</text>
+    font-family="Georgia, 'Times New Roman', serif"
+    font-size="48"
+  ><tspan class="ink">J</tspan><tspan class="accent">.</tspan></text>
 </svg>
