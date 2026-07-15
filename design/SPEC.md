@@ -44,10 +44,10 @@ Semantic tokens that flip between themes (CSS variables):
 - **Masthead** (site header): thin double rule on top (1px + 3px gap + 1px),
   "JANNIS MILZ" serif letterspaced caps, small dateline with personality words
   ("Programmierer · Turner · Tüftler" / "Programmer · Gymnast · Tinkerer"),
-  right side (vertically centered): nav "Der Brief · Projekte · Texte" (EN:
-  "The Letter · Projects · Writing") + theme toggle + tiny uppercase locale
-  switch showing the language you'd switch TO ("EN"/"DE"). Single hairline
-  below. Mobile: stacks, nav stays one row.
+  right side (vertically centered): nav "Titelseite · Projekte · Schreiben"
+  (EN: "Front page · Projects · Writing") + theme toggle + tiny uppercase
+  locale switch showing the language you'd switch TO ("EN"/"DE"). Single
+  hairline below. Mobile: stacks, nav stays one row.
 - **Letter**: big serif headline ("Entweder finde ich einen Weg, oder ich
   erschaffe einen." / "Either I find a way, or I create one."), body
   paragraphs, ends with a serif-italic sign-off "Jannis" (~28px, like a
