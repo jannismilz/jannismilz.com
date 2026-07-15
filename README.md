@@ -23,8 +23,3 @@ Then open [http://localhost:3000](http://localhost:3000).
 
 Optionally set `NEXT_PUBLIC_SITE_URL` in `.env.local` (defaults to
 `https://jannismilz.com` for metadata).
-
-## License
-
-This site started from a TailwindUI template and is licensed under the
-[Tailwind UI license](https://tailwindui.com/license).
