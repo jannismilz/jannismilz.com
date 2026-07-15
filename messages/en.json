@@ -29,7 +29,7 @@
       "p1Note": "Also known as stubbornness, but “motto” reads better.",
       "p2": "I started programming at an early age; today I do it professionally with passion. Away from the keyboard I’ve been doing gymnastics at my club for more than ten years, and these days I coach the younger kids.",
       "pullQuote": "“Experiment until it breaks. Then figure out why.”",
-      "figureAPlaceholder": "Photo of me mid-somersault, eventually",
+      "figureAAlt": "Jannis doing a handstand on a mountain summit, the valley far below.",
       "figureACaptionLead": "Exhibit A.",
       "figureACaption": "Regularly upside down for ten-plus years."
     },
@@ -56,9 +56,9 @@
       "p2Note": "Haven’t solved one yet. The name checks out.",
       "p3": "This site is the paper edition of all that. Have a look around, and if something sparks a thought, write me: <mail>hi@jannismilz.com</mail>.",
       "signoff": "Jannis",
-      "figureBPlaceholder": "Photo from coaching the kids, eventually",
+      "figureBAlt": "Jannis working at his desk in the evening, two screens glowing.",
       "figureBCaptionLead": "Exhibit B.",
-      "figureBCaption": "Passing on what someone once taught me."
+      "figureBCaption": "The newsroom, just before deadline."
     }
   },
   "projects": {
@@ -102,7 +102,7 @@
       "title": "SwissSkills 2025 · Web Technologies",
       "body": "In 2025, I competed against Switzerland's best young web developers at SwissSkills. I was even interviewed by a newspaper. The short version of my answer made the headlines.",
       "readInterview": "Read the interview",
-      "figurePlaceholder": "Photo from the competition floor, eventually",
+      "figureAlt": "Jannis smiling at his SwissSkills competition booth.",
       "figureCaptionLead": "On assignment.",
       "figureCaption": "SwissSkills 2025, Bern."
     }

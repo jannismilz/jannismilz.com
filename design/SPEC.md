@@ -70,14 +70,17 @@ Semantic tokens that flip between themes (CSS variables):
   width), title (16px, sans medium), external-link arrow ↗ on hover. Articles
   in a different language than the page get a small uppercase language tag.
   No cards, no borders except hairline separators.
-- **Figures (photos)**: three slots (gymnastics in the home opening, coaching
-  in the home closing, SwissSkills in the highlight box). Figures must sit IN
-  flowing text (floated, sm:w-48, 3:4) — standalone header figures looked
-  wrong-sized and were removed. A figure = frame with 1px hairline border,
-  slight paper-raised bg, and a 13px caption below in ink-muted with a
-  serif-italic lead-in. Until real photos exist, the frame shows a dashed
-  inner border and a small centered serif-italic placeholder line. User fills
-  in real photos over time.
+- **Figures (photos)**: three slots, all with real photos from
+  `src/images/photos/` (handstand.jpeg 3:4 in the home opening, working.jpeg
+  1:1 in the home closing "newsroom", swissskills.jpg 4:3 in the highlight
+  box). Figures must sit IN flowing text (floated, sm:w-48) — standalone
+  header figures looked wrong-sized and were removed. A figure = frame with
+  1px hairline border, slight paper-raised bg, cover-cropped next/image with
+  blur placeholder inside, and a 13px caption below in ink-muted with a
+  serif-italic lead-in. FigureFrame still supports the dashed placeholder
+  mode for future empty slots. New source photos: bake EXIF rotation in and
+  downscale to ~1200px with sharp before committing (next/image on Vercel
+  handles the rest: resizing, WebP/AVIF, caching).
 - **Footer**: hairline above, then: "© 2026 Jannis Milz · Zürich" /
   links (GitHub, LinkedIn, hi@jannismilz.com) / joke line: "Gedruckt in
   Zürich, gelesen, wo immer du gerade bist." ("Printed in Zürich, read

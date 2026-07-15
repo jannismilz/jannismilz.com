@@ -6,6 +6,7 @@ import { Eyebrow } from '@/components/Eyebrow'
 import { FigureFrame } from '@/components/FigureFrame'
 import { ProjectEntry } from '@/components/ProjectEntry'
 import { SectionHeader } from '@/components/SectionHeader'
+import swissskillsImage from '@/images/photos/swissskills.jpg'
 import { projectCategories, projects } from '@/lib/projects'
 import { alternatesFor } from '@/lib/seo'
 
@@ -61,7 +62,8 @@ function SwissSkillsHighlight() {
         </div>
         <FigureFrame
           className="mt-6 shrink-0 sm:mt-0 sm:w-56"
-          placeholder={t('figurePlaceholder')}
+          image={swissskillsImage}
+          alt={t('figureAlt')}
           captionLead={t('figureCaptionLead')}
           caption={t('figureCaption')}
         />

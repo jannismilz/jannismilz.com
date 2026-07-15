@@ -7,6 +7,8 @@ import { FigureFrame } from '@/components/FigureFrame'
 import { MarginNote } from '@/components/MarginNote'
 import { PullQuote } from '@/components/PullQuote'
 import { Link } from '@/i18n/navigation'
+import handstandImage from '@/images/photos/handstand.jpeg'
+import workingImage from '@/images/photos/working.jpeg'
 import { formatDate, parseDate } from '@/lib/formatDate'
 import { projects } from '@/lib/projects'
 import { alternatesFor } from '@/lib/seo'
@@ -58,7 +60,8 @@ function LetterOpening() {
         <FigureFrame
           className="sm:float-right sm:mt-1 sm:mb-2 sm:ml-8 sm:w-48"
           aspect="3/4"
-          placeholder={t('figureAPlaceholder')}
+          image={handstandImage}
+          alt={t('figureAAlt')}
           captionLead={t('figureACaptionLead')}
           caption={t('figureACaption')}
         />
@@ -88,6 +91,7 @@ function Now() {
     }),
     t('item2'),
     t('item3'),
+    t('item4'),
   ]
 
   return (
@@ -263,8 +267,9 @@ function LetterClosing() {
       <div className="mt-6 space-y-5">
         <FigureFrame
           className="sm:float-right sm:mt-1 sm:mb-2 sm:ml-8 sm:w-48"
-          aspect="3/4"
-          placeholder={t('figureBPlaceholder')}
+          aspect="1/1"
+          image={workingImage}
+          alt={t('figureBAlt')}
           captionLead={t('figureBCaptionLead')}
           caption={t('figureBCaption')}
         />

@@ -29,7 +29,7 @@
       "p1Note": "Auch bekannt als Sturheit. Aber «Motto» liest sich besser.",
       "p2": "Früh habe ich angefangen zu programmieren, heute mache ich es beruflich mit Leidenschaft. Abseits der Tastatur turne ich seit über zehn Jahren im Verein und trainiere inzwischen die Jüngeren.",
       "pullQuote": "«Ausprobieren, bis etwas kaputtgeht. Dann herausfinden, warum.»",
-      "figureAPlaceholder": "Irgendwann ein Foto von mir mitten im Salto",
+      "figureAAlt": "Jannis macht einen Handstand auf einem Berggipfel, im Hintergrund das Tal.",
       "figureACaptionLead": "Beweisstück A.",
       "figureACaption": "Seit über zehn Jahren regelmässig kopfüber."
     },
@@ -56,9 +56,9 @@
       "p2Note": "Gelöst habe ich noch keines. Der Name hält, was er verspricht.",
       "p3": "Diese Seite ist die Zeitungsausgabe von all dem. Schau dich um, und wenn dich etwas zum Denken bringt, schreib mir: <mail>hi@jannismilz.com</mail>.",
       "signoff": "Jannis",
-      "figureBPlaceholder": "Irgendwann ein Foto vom Training mit den Kids",
+      "figureBAlt": "Jannis arbeitet abends am Schreibtisch vor zwei Bildschirmen.",
       "figureBCaptionLead": "Beweisstück B.",
-      "figureBCaption": "Weitergeben, was mir jemand beigebracht hat."
+      "figureBCaption": "Die Redaktion, kurz vor Redaktionsschluss."
     }
   },
   "projects": {
@@ -102,7 +102,7 @@
       "title": "SwissSkills 2025 · Web Technologien",
       "body": "2025 habe ich mich an den SwissSkills mit den besten jungen Webentwicklern der Schweiz gemessen. Ich wurde sogar von einer Zeitung interviewt. Die Kurzversion meiner Antwort wurde zur Schlagzeile.",
       "readInterview": "Zum Interview",
-      "figurePlaceholder": "Irgendwann ein Foto vom Wettkampfboden",
+      "figureAlt": "Jannis lächelt an seinem Wettkampfplatz an den SwissSkills in die Kamera.",
       "figureCaptionLead": "Im Einsatz.",
       "figureCaption": "SwissSkills 2025, Bern."
     }
