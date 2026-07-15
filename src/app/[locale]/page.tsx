@@ -59,8 +59,8 @@ function LetterOpening() {
       <div className="mt-8 space-y-5">
         <FigureFrame
           className="sm:float-right sm:mt-1 sm:mb-2 sm:ml-8 sm:w-48"
-          aspect="3/4"
-          image={handstandImage}
+          aspect="1/1"
+          image={workingImage}
           alt={t('figureAAlt')}
           captionLead={t('figureACaptionLead')}
           caption={t('figureACaption')}
@@ -267,8 +267,8 @@ function LetterClosing() {
       <div className="mt-6 space-y-5">
         <FigureFrame
           className="sm:float-right sm:mt-1 sm:mb-2 sm:ml-8 sm:w-48"
-          aspect="1/1"
-          image={workingImage}
+          aspect="3/4"
+          image={handstandImage}
           alt={t('figureBAlt')}
           captionLead={t('figureBCaptionLead')}
           caption={t('figureBCaption')}
