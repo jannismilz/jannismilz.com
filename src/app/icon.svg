@@ -1,20 +1,14 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
-  <style>
-    .paper { fill: #faf6ef; }
-    .ink { fill: #1a1815; }
-    .accent { fill: #c8371e; }
-    @media (prefers-color-scheme: dark) {
-      .paper { fill: #0b1220; }
-      .ink { fill: #ede7da; }
-      .accent { fill: #ff6b4a; }
-    }
-  </style>
-  <rect class="paper" width="64" height="64" />
+  <rect fill="#faf6ef" width="64" height="64" />
+  <!-- Masthead double rule -->
+  <rect fill="#1a1815" x="8" y="7" width="48" height="3" />
+  <rect fill="#1a1815" x="8" y="14" width="48" height="3" />
   <text
-    x="30"
-    y="50"
+    fill="#1a1815"
+    x="32"
+    y="57"
     text-anchor="middle"
     font-family="Georgia, 'Times New Roman', serif"
-    font-size="48"
-  ><tspan class="ink">J</tspan><tspan class="accent">.</tspan></text>
+    font-size="44"
+  >J</text>
 </svg>
