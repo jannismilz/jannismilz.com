@@ -3,7 +3,6 @@ import { useLocale, useTranslations } from 'next-intl'
 import { getTranslations, setRequestLocale } from 'next-intl/server'
 
 import { Eyebrow } from '@/components/Eyebrow'
-import { FigureFrame } from '@/components/FigureFrame'
 import { Link } from '@/i18n/navigation'
 import { formatDate } from '@/lib/formatDate'
 import { alternatesFor } from '@/lib/seo'
@@ -160,22 +159,14 @@ export default async function Writing({
 
   return (
     <>
-      <header className="gap-8 pt-12 sm:flex sm:items-start sm:justify-between sm:pt-16">
-        <div>
-          <Eyebrow>{t('eyebrow')}</Eyebrow>
-          <h1 className="mt-4 font-serif text-[38px] leading-[1.1] sm:text-[48px]">
-            {t('headline')}
-          </h1>
-          <p className="mt-4 max-w-[52ch] text-[16px] text-ink-muted">
-            {t('intro')}
-          </p>
-        </div>
-        <FigureFrame
-          className="mt-6 shrink-0 sm:mt-2 sm:w-44"
-          placeholder={t('figurePlaceholder')}
-          captionLead={t('figureCaptionLead')}
-          caption={t('figureCaption')}
-        />
+      <header className="pt-12 sm:pt-16">
+        <Eyebrow>{t('eyebrow')}</Eyebrow>
+        <h1 className="mt-4 font-serif text-[38px] leading-[1.1] sm:text-[48px]">
+          {t('headline')}
+        </h1>
+        <p className="mt-4 max-w-[52ch] text-[16px] text-ink-muted">
+          {t('intro')}
+        </p>
       </header>
       <OwnArticles />
       <Highlights />

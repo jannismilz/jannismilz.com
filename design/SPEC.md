@@ -58,8 +58,6 @@ Semantic tokens that flip between themes (CSS variables):
   with a left hairline border. These carry the jokes.
 - **Pull quote**: a short line lifted from the letter, 26–30px serif italic
   between two hairlines, small caps caption below. One per page max.
-- **PS box**: letter postscript as a bordered paper-raised aside after the
-  signature (e.g. pointing to the other language edition).
 - **Section labels**: eyebrow + hairline (see typography).
 - **Project entries**: newspaper listing rows — serif title (22px), optional
   status in ink-muted small caps (omitted where a category heading already
@@ -72,17 +70,18 @@ Semantic tokens that flip between themes (CSS variables):
   width), title (16px, sans medium), external-link arrow ↗ on hover. Articles
   in a different language than the page get a small uppercase language tag.
   No cards, no borders except hairline separators.
-- **Figures (photos)**: a handful across the site (currently five slots:
-  gymnastics + coaching on home, desk on writing, eintrittli on projects,
-  SwissSkills in the highlight box). A figure = 4:3 or 3:4 frame with 1px
-  hairline border, slight paper-raised bg, and a 13px caption below in
-  ink-muted with a serif-italic lead-in. Until real photos exist, the frame
-  shows a dashed inner border and a small centered serif-italic placeholder
-  line (e.g. "photo of me mid-somersault, eventually"). User fills in real
-  photos over time.
+- **Figures (photos)**: three slots (gymnastics in the home opening, coaching
+  in the home closing, SwissSkills in the highlight box). Figures must sit IN
+  flowing text (floated, sm:w-48, 3:4) — standalone header figures looked
+  wrong-sized and were removed. A figure = frame with 1px hairline border,
+  slight paper-raised bg, and a 13px caption below in ink-muted with a
+  serif-italic lead-in. Until real photos exist, the frame shows a dashed
+  inner border and a small centered serif-italic placeholder line. User fills
+  in real photos over time.
 - **Footer**: hairline above, then: "© 2026 Jannis Milz · Zürich" /
-  links (GitHub, LinkedIn, hi@jannismilz.com) / joke line: "No cookies, no
-  tracking. This paper doesn't follow you home."
+  links (GitHub, LinkedIn, hi@jannismilz.com) / joke line: "Gedruckt in
+  Zürich, gelesen, wo immer du gerade bist." ("Printed in Zürich, read
+  wherever you happen to be.")
 - **404**: newspaper correction notice: eyebrow "CORRECTION", serif headline
   "This page never went to print.", body "In an earlier edition we may have
   implied this page exists. We regret the error." + link "Return to the front
@@ -90,24 +89,31 @@ Semantic tokens that flip between themes (CSS variables):
 
 ## Page structure
 
-### Home (`/`) — the letter, everything at a glance
+### Home (`/`) — a short letter opening, content blocks, a short sign-off
+The letter is deliberately SHORT (user rejected long body text twice):
 1. Masthead
-2. Letter: headline, then short paragraphs broken up by callouts so no big
-   text wall (user request 2026-07): intro/motto (+ margin note), origin/BSI
-   paragraph, PULL QUOTE ("Ausprobieren, bis etwas kaputtgeht…"), gymnastics
-   figure (float right) + two short coaching paragraphs, coaching figure
-   (float left, cleared) + curiosity paragraph (+ margin note), contact
-   paragraph. Signed "Jannis", then the PS box (points to the EN/DE switch).
-3. NOW — three short items: building eintrittli.ch with Weborb; apprentice at
-   BSI; competed at SwissSkills 2025 in Web Technologies. (Work history lives
-   here and in the letter; there is no separate WORK or SELECTED PROJECTS
-   section — projects live only on /projects.)
-4. Footer.
+2. Letter opening: headline, gymnastics figure floated right, TWO paragraphs
+   only (motto + margin note; programming/BSI + gymnastics/coaching in two
+   sentences), then the pull quote ("Ausprobieren, bis etwas kaputtgeht…").
+3. JETZT / NOW — three short items: building eintrittli.ch with Weborb;
+   apprentice at BSI; competed at SwissSkills 2025.
+4. FRISCH GEDRUCKT / FRESH OFF THE PRESS — the 3 latest pieces from the
+   writing page (own posts + highlights mixed, sorted by date) + "Alle
+   Texte →" link.
+5. PROJEKTE / PROJECTS — compact two-row teaser (eintrittli, weborb.ch) with
+   one-line taglines + "Alle Projekte →" link.
+6. ZUM SCHLUSS / IN CLOSING — coaching figure floated right, three short
+   paragraphs (tough crowd of ten-year-olds; curiosity + margin note;
+   contact/mail). Signed "Jannis". No PS box (user removed it).
+7. Footer.
 
 ### Projects (`/projects`)
 Eyebrow "DAS PORTFOLIO" / "THE PORTFOLIO", serif headline, intro sentence,
-small eintrittli figure right of the header, then entries grouped by
-category: Products (eintrittli), The studio (weborb.ch), Open source
+then entries grouped by category, each category set off like its own
+newspaper section: thin double rule (h-1 border-y ink), 26px serif category
+title with a serif-italic tagline beside it (e.g. Produkte — "Dinge, die man
+heute schon benutzen kann."), then the entries with hairline separators.
+Categories: Products (eintrittli), The studio (weborb.ch), Open source
 (typst-payqr-swiss), School projects (BBW Heroes, Linux Cookbook). Entries
 show no status label (the category heading carries it). SwissSkills 2025
 highlight box (Web Technologies competitor + interview link + figure
@@ -137,6 +143,9 @@ hreflang alternates + sitemap + robots are generated (`src/lib/seo.ts`,
 ## Voice
 
 First person, warm, direct, lightly self-deprecating. Jokes are short asides,
-never in the way. No em-dashes anywhere in site copy; use commas, colons, or
-periods instead (verbatim external titles keep theirs). German copy uses
-«guillemets» for quotes.
+never in the way. NO tech jokes or tech jargon in the copy (no "deployment",
+"standup", "code review", "cookies/tracking" quips) — the site is written for
+readers of all kinds, not just tech people; his profession may be stated as a
+fact, never as an in-joke. No em-dashes anywhere in site copy; use commas,
+colons, or periods instead (verbatim external titles keep theirs). German
+copy uses «guillemets» for quotes.

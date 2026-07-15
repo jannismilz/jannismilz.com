@@ -1,7 +1,7 @@
 {
   "metadata": {
     "title": "Jannis Milz · Software developer, curious by nature",
-    "description": "Jannis Milz is a software developer from Switzerland: building eintrittli, coaching gymnastics, and poking at new technologies until they break."
+    "description": "Jannis Milz is a software developer from Switzerland: building eintrittli, coaching gymnastics, and curious by nature."
   },
   "header": {
     "dateline": "Programmer · Gymnast · Tinkerer",
@@ -20,35 +20,46 @@
   },
   "footer": {
     "copyright": "© {year} Jannis Milz · Zürich",
-    "joke": "No cookies, no tracking. This paper doesn’t follow you home."
+    "joke": "Printed in Zürich, read wherever you happen to be."
   },
   "home": {
     "headline": "Either I find a way,<br></br>or I <gradient>create one</gradient>.",
     "letter": {
       "p1": "Hallo, I’m Jannis, a software developer from Switzerland. The sentence up there has been my life motto for years: I only believe something can’t work once I’ve seriously searched for a way.",
       "p1Note": "Also known as stubbornness, but “motto” reads better on a website.",
-      "p2": "I grew up surrounded by all kinds of technology, so this path was more or less destined. I started programming at twelve; today I do it professionally, as an apprentice software developer at BSI, after two years at the University of Zurich.",
+      "p2": "I started programming at twelve; today I do it professionally at BSI. Away from the keyboard I’ve been doing gymnastics at my local club for more than ten years, and these days I coach the younger kids, the way someone once coached me.",
       "pullQuote": "“Experiment until it breaks. Then figure out why.”",
-      "pullQuoteCaption": "My learning method since day one. The breaking comes naturally, the fixing is the skill.",
-      "p3": "Away from the keyboard I do gymnastics and athletics, more than ten years at my local club by now. These days I coach the younger kids, the way someone once coached me.",
-      "p4": "It keeps me honest: no code review is as tough a crowd as a group of ten-year-olds.",
-      "p5": "The rest of my head belongs to whatever last caught my curiosity: biographies, design, psychology, and the occasional unsolvable math problem.",
-      "p5Note": "Haven’t solved one yet. The name checks out.",
-      "p6": "This site is the paper edition of all that. Have a look around, and if something sparks a thought, write me: <mail>hi@jannismilz.com</mail>.",
-      "signoff": "Jannis",
-      "ps": "PS: This paper is also printed in German, the original edition. The little switch in the masthead changes editions.",
+      "pullQuoteCaption": "My learning method since day one.",
       "figureAPlaceholder": "photo of me mid-somersault, eventually",
       "figureACaptionLead": "Exhibit A.",
-      "figureACaption": "Gymnastics, the analog kind of deployment.",
-      "figureBPlaceholder": "photo from coaching the kids, eventually",
-      "figureBCaptionLead": "Exhibit B.",
-      "figureBCaption": "The coaching bench instead of the daily standup."
+      "figureACaption": "Regularly upside down for ten-plus years."
     },
     "now": {
       "title": "Now",
       "item1": "Building <link>eintrittli.ch</link> with Weborb, a door check-in system so simple it makes clipboards nervous.",
       "item2": "Apprentice software developer at BSI.",
       "item3": "Competed at SwissSkills 2025 in Web Technologies."
+    },
+    "fresh": {
+      "title": "Fresh off the press",
+      "all": "All writing"
+    },
+    "projects": {
+      "title": "Projects",
+      "all": "All projects",
+      "eintrittli": "A simple check-in system for events and clubs.",
+      "weborb": "The small Swiss web studio behind my projects."
+    },
+    "closing": {
+      "eyebrow": "In closing",
+      "p1": "Coaching keeps me honest, by the way: there is no tougher crowd than a group of ten-year-olds.",
+      "p2": "The rest of my head belongs to whatever last caught my curiosity: biographies, design, psychology, and the occasional unsolvable math problem.",
+      "p2Note": "Haven’t solved one yet. The name checks out.",
+      "p3": "This site is the paper edition of all that. Have a look around, and if something sparks a thought, write me: <mail>hi@jannismilz.com</mail>.",
+      "signoff": "Jannis",
+      "figureBPlaceholder": "photo from coaching the kids, eventually",
+      "figureBCaptionLead": "Exhibit B.",
+      "figureBCaption": "Passing on what someone once taught me."
     }
   },
   "projects": {
@@ -59,14 +70,23 @@
     "eyebrow": "The portfolio",
     "headline": "Shipped, broken, and shipped again.",
     "intro": "The projects I’m most proud of: from a live product to school projects that taught me why the live product works. More to come.",
-    "figurePlaceholder": "screenshot of eintrittli, eventually",
-    "figureCaptionLead": "Hot off the press.",
-    "figureCaption": "eintrittli, the first real product.",
     "categories": {
-      "product": "Products",
-      "studio": "The studio",
-      "openSource": "Open source",
-      "school": "School projects"
+      "product": {
+        "title": "Products",
+        "tagline": "Things you can already use today."
+      },
+      "studio": {
+        "title": "The studio",
+        "tagline": "Where the projects are made and grow up."
+      },
+      "openSource": {
+        "title": "Open source",
+        "tagline": "Free to take and reuse."
+      },
+      "school": {
+        "title": "School projects",
+        "tagline": "Where I learned the craft."
+      }
     },
     "items": {
       "eintrittli": {
@@ -107,9 +127,6 @@
     "highlightsTitle": "Highlights",
     "archiveTitle": "From the archive",
     "archiveNote": "Mostly from my 2024 Medium era, preserved here like old newspapers.",
-    "figurePlaceholder": "photo of the desk, eventually",
-    "figureCaptionLead": "The newsroom.",
-    "figureCaption": "One desk, a stack of ideas.",
     "langTag": {
       "de": "German",
       "en": "English"

@@ -28,7 +28,7 @@ function SwissSkillsHighlight() {
   const locale = useLocale()
 
   return (
-    <section className="mt-14 border border-hairline bg-paper-raised p-6 sm:p-8">
+    <section className="mt-16 border border-hairline bg-paper-raised p-6 sm:p-8">
       <p className="text-[11px] font-medium tracking-[0.12em] text-accent uppercase">
         {t('highlight')}
       </p>
@@ -69,6 +69,10 @@ function SwissSkillsHighlight() {
   )
 }
 
+/**
+ * Each category reads like its own newspaper section: a thin double
+ * rule, a serif section title with an italic tagline, then the entries.
+ */
 function ProjectGroups() {
   const t = useTranslations('projects')
 
@@ -81,9 +85,17 @@ function ProjectGroups() {
         if (entries.length === 0) return null
 
         return (
-          <section key={category} className="mt-12">
-            <Eyebrow>{t(`categories.${category}`)}</Eyebrow>
-            <div className="divide-y divide-hairline">
+          <section key={category} className="mt-14">
+            <div className="h-1 border-y border-ink" aria-hidden="true" />
+            <div className="mt-5 flex flex-col gap-x-4 sm:flex-row sm:items-baseline">
+              <h2 className="font-serif text-[26px]">
+                {t(`categories.${category}.title`)}
+              </h2>
+              <p className="font-serif text-[15px] text-ink-muted italic">
+                {t(`categories.${category}.tagline`)}
+              </p>
+            </div>
+            <div className="mt-1 divide-y divide-hairline">
               {entries.map((project) => (
                 <ProjectEntry
                   key={project.slug}
@@ -110,22 +122,14 @@ export default async function Projects({
 
   return (
     <>
-      <header className="gap-8 pt-12 sm:flex sm:items-start sm:justify-between sm:pt-16">
-        <div>
-          <Eyebrow>{t('eyebrow')}</Eyebrow>
-          <h1 className="mt-4 font-serif text-[38px] leading-[1.1] sm:text-[48px]">
-            {t('headline')}
-          </h1>
-          <p className="mt-4 max-w-[52ch] text-[16px] text-ink-muted">
-            {t('intro')}
-          </p>
-        </div>
-        <FigureFrame
-          className="mt-6 shrink-0 sm:mt-2 sm:w-44"
-          placeholder={t('figurePlaceholder')}
-          captionLead={t('figureCaptionLead')}
-          caption={t('figureCaption')}
-        />
+      <header className="pt-12 sm:pt-16">
+        <Eyebrow>{t('eyebrow')}</Eyebrow>
+        <h1 className="mt-4 font-serif text-[38px] leading-[1.1] sm:text-[48px]">
+          {t('headline')}
+        </h1>
+        <p className="mt-4 max-w-[52ch] text-[16px] text-ink-muted">
+          {t('intro')}
+        </p>
       </header>
       <ProjectGroups />
       <SwissSkillsHighlight />

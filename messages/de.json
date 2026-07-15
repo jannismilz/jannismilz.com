@@ -1,7 +1,7 @@
 {
   "metadata": {
     "title": "Jannis Milz · Softwareentwickler, neugierig von Natur",
-    "description": "Jannis Milz ist Softwareentwickler aus der Schweiz. Er baut eintrittli, gibt Turntraining und probiert neue Technologien aus, bis sie kaputtgehen."
+    "description": "Jannis Milz ist Softwareentwickler aus der Schweiz. Er baut eintrittli, turnt und trainiert den Nachwuchs, und ist von Natur aus neugierig."
   },
   "header": {
     "dateline": "Programmierer · Turner · Tüftler",
@@ -20,35 +20,46 @@
   },
   "footer": {
     "copyright": "© {year} Jannis Milz · Zürich",
-    "joke": "Keine Cookies, kein Tracking. Diese Zeitung verfolgt dich nicht nach Hause."
+    "joke": "Gedruckt in Zürich, gelesen, wo immer du gerade bist."
   },
   "home": {
     "headline": "Entweder finde ich einen Weg,<br></br>oder ich <gradient>erschaffe einen</gradient>.",
     "letter": {
       "p1": "Hallo, ich bin Jannis, Softwareentwickler aus der Schweiz. Der Satz da oben ist seit Jahren mein Lebensmotto: Ich glaube erst, dass etwas nicht geht, wenn ich ernsthaft nach einem Weg gesucht habe.",
       "p1Note": "Auch bekannt als Sturheit. Aber «Motto» liest sich besser auf einer Website.",
-      "p2": "Aufgewachsen bin ich zwischen allerlei Technik, der Weg war also mehr oder weniger vorgezeichnet. Mit zwölf habe ich angefangen zu programmieren, heute mache ich es beruflich: als Lernender Applikationsentwickler bei BSI, davor zwei Jahre an der Universität Zürich.",
+      "p2": "Mit zwölf habe ich angefangen zu programmieren, heute mache ich es beruflich bei BSI. Abseits der Tastatur turne ich seit über zehn Jahren im örtlichen Verein und trainiere inzwischen die Jüngeren, so wie mich damals jemand trainiert hat.",
       "pullQuote": "«Ausprobieren, bis etwas kaputtgeht. Dann herausfinden, warum.»",
-      "pullQuoteCaption": "Meine Lernmethode, seit Tag eins. Das Kaputtmachen kommt von allein, das Reparieren ist die Kunst.",
-      "p3": "Abseits der Tastatur turne ich, seit über zehn Jahren im örtlichen Verein, dazu Leichtathletik. Inzwischen trainiere ich die Jüngeren, so wie mich damals jemand trainiert hat.",
-      "p4": "Das hält mich ehrlich: Kein Code-Review ist ein so hartes Publikum wie eine Gruppe Zehnjähriger.",
-      "p5": "Der Rest meines Kopfes gehört dem, was zuletzt meine Neugier geweckt hat: Biografien, Design, Psychologie und ab und zu ein unlösbares Matheproblem.",
-      "p5Note": "Gelöst habe ich noch keines. Der Name hält, was er verspricht.",
-      "p6": "Diese Seite ist die Zeitungsausgabe von all dem. Schau dich um, und wenn dich etwas zum Denken bringt, schreib mir: <mail>hi@jannismilz.com</mail>.",
-      "signoff": "Jannis",
-      "ps": "PS: Diese Zeitung gibt es auch auf Englisch. Der kleine Schalter im Zeitungskopf wechselt die Ausgabe.",
+      "pullQuoteCaption": "Meine Lernmethode, seit Tag eins.",
       "figureAPlaceholder": "irgendwann ein Foto von mir mitten im Salto",
       "figureACaptionLead": "Beweisstück A.",
-      "figureACaption": "Turnen, die analoge Art von Deployment.",
-      "figureBPlaceholder": "irgendwann ein Foto vom Training mit den Kids",
-      "figureBCaptionLead": "Beweisstück B.",
-      "figureBCaption": "Trainerbank statt Daily Standup."
+      "figureACaption": "Seit über zehn Jahren regelmässig kopfüber."
     },
     "now": {
       "title": "Jetzt",
       "item1": "Ich baue <link>eintrittli.ch</link> mit Weborb, ein Tür-Check-in-System, so simpel, dass Klemmbretter nervös werden.",
       "item2": "Lernender Applikationsentwickler bei BSI.",
       "item3": "2025 an den SwissSkills in Web Technologies angetreten."
+    },
+    "fresh": {
+      "title": "Frisch gedruckt",
+      "all": "Alle Texte"
+    },
+    "projects": {
+      "title": "Projekte",
+      "all": "Alle Projekte",
+      "eintrittli": "Ein simples Check-in-System für Events und Vereine.",
+      "weborb": "Das kleine Schweizer Webstudio hinter meinen Projekten."
+    },
+    "closing": {
+      "eyebrow": "Zum Schluss",
+      "p1": "Das Trainieren hält mich übrigens ehrlich: Es gibt kein strengeres Publikum als eine Gruppe Zehnjähriger.",
+      "p2": "Der Rest meines Kopfes gehört dem, was zuletzt meine Neugier geweckt hat: Biografien, Design, Psychologie und ab und zu ein unlösbares Matheproblem.",
+      "p2Note": "Gelöst habe ich noch keines. Der Name hält, was er verspricht.",
+      "p3": "Diese Seite ist die Zeitungsausgabe von all dem. Schau dich um, und wenn dich etwas zum Denken bringt, schreib mir: <mail>hi@jannismilz.com</mail>.",
+      "signoff": "Jannis",
+      "figureBPlaceholder": "irgendwann ein Foto vom Training mit den Kids",
+      "figureBCaptionLead": "Beweisstück B.",
+      "figureBCaption": "Weitergeben, was mir jemand beigebracht hat."
     }
   },
   "projects": {
@@ -59,14 +70,23 @@
     "eyebrow": "Das Portfolio",
     "headline": "Gebaut, zerlegt und wieder gebaut.",
     "intro": "Die Projekte, auf die ich am stolzesten bin: von einem echten Produkt bis zu Schulprojekten, die mir gezeigt haben, warum das echte Produkt funktioniert. Mehr folgt.",
-    "figurePlaceholder": "irgendwann ein Screenshot von eintrittli",
-    "figureCaptionLead": "Frisch ab Presse.",
-    "figureCaption": "eintrittli, das erste echte Produkt.",
     "categories": {
-      "product": "Produkte",
-      "studio": "Das Studio",
-      "openSource": "Open Source",
-      "school": "Schulprojekte"
+      "product": {
+        "title": "Produkte",
+        "tagline": "Dinge, die man heute schon benutzen kann."
+      },
+      "studio": {
+        "title": "Das Studio",
+        "tagline": "Wo die Projekte entstehen und erwachsen werden."
+      },
+      "openSource": {
+        "title": "Open Source",
+        "tagline": "Zum Mitnehmen und Weiterverwenden."
+      },
+      "school": {
+        "title": "Schulprojekte",
+        "tagline": "Wo ich das Handwerk gelernt habe."
+      }
     },
     "items": {
       "eintrittli": {
@@ -107,9 +127,6 @@
     "highlightsTitle": "Highlights",
     "archiveTitle": "Aus dem Archiv",
     "archiveNote": "Vor allem aus meiner Medium-Phase 2024, aufbewahrt wie alte Zeitungen.",
-    "figurePlaceholder": "irgendwann ein Foto vom Schreibtisch",
-    "figureCaptionLead": "Die Redaktion.",
-    "figureCaption": "Ein Schreibtisch, ein Stapel Ideen.",
     "langTag": {
       "de": "Deutsch",
       "en": "Englisch"
