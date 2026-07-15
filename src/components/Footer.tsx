@@ -15,7 +15,7 @@ export function Footer() {
   let t = useTranslations('footer')
 
   return (
-    <footer className="mt-20 pb-10">
+    <footer className="mt-8 pb-10">
       <div className="border-t border-hairline" aria-hidden="true" />
       <div className="mt-6 flex flex-col gap-2 text-[13px] sm:flex-row sm:items-baseline sm:justify-between">
         <p className="text-ink-muted">

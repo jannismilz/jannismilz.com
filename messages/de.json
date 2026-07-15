@@ -51,7 +51,7 @@
     },
     "closing": {
       "eyebrow": "Zum Schluss",
-      "p1": "Das Trainieren hält mich übrigens ehrlich: Es gibt kein strengeres Publikum als eine Gruppe Zehnjähriger.",
+      "p1": "Das Trainieren gibt mir übrigens genauso viel zurück, wie es fordert: dieses Gefühl, an einer neuen Bewegung zu tüfteln, bis sie endlich sitzt.",
       "p2": "Der Rest meines Kopfes gehört dem, was zuletzt meine Neugier geweckt hat: Biografien, Design, Psychologie und ab und zu ein unlösbares Matheproblem.",
       "p2Note": "Gelöst habe ich noch keines. Der Name hält, was er verspricht.",
       "p3": "Diese Seite ist die Zeitungsausgabe von all dem. Schau dich um, und wenn dich etwas zum Denken bringt, schreib mir: <mail>hi@jannismilz.com</mail>.",
@@ -88,7 +88,7 @@
         "description": "Ein simples Eintritts- und Check-in-System für Events und Vereine: konfigurierbare Formulare, Datenexport und bewusst sonst nichts. Keine Zahlungen, kein Login, kein Aufwand."
       },
       "typst-payqr-swiss": {
-        "description": "Ein Generator für Schweizer QR-Rechnungen im Satzsystem Typst. Auch Rechnungen verdienen schöne Typografie."
+        "description": "Ein Generator für Schweizer QR-Rechnungen in Typst."
       },
       "bbw-heroes": {
         "description": "Eine Plattform, auf der BBW-Lernende ihre Arbeiten mit anderen teilen und gemeinsam wachsen."
@@ -100,7 +100,7 @@
     "swissskills": {
       "highlight": "Highlight",
       "title": "SwissSkills 2025 · Web Technologien",
-      "body": "2025 habe ich mich an den SwissSkills mit den besten jungen Webentwicklern der Schweiz gemessen. Eine Zeitung hat mich sogar zum Thema KI interviewt; die Kurzversion meiner Antwort wurde zur Schlagzeile: Meine Zukunft hängt von meiner Entwicklung ab, nicht von ihr.",
+      "body": "2025 habe ich mich an den SwissSkills mit den besten jungen Webentwicklern der Schweiz gemessen. Ich wurde sogar von einer Zeitung interviewt. Die Kurzversion meiner Antwort wurde zur Schlagzeile.",
       "readInterview": "Zum Interview",
       "figurePlaceholder": "Irgendwann ein Foto vom Wettkampfboden",
       "figureCaptionLead": "Im Einsatz.",

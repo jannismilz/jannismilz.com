@@ -51,7 +51,7 @@
     },
     "closing": {
       "eyebrow": "In closing",
-      "p1": "Coaching keeps me honest, by the way: there is no tougher crowd than a group of ten-year-olds.",
+      "p1": "Coaching gives me back as much as it demands, by the way: that same thrill of tinkering with a new move until it finally clicks.",
       "p2": "The rest of my head belongs to whatever last caught my curiosity: biographies, design, psychology, and the occasional unsolvable math problem.",
       "p2Note": "Haven’t solved one yet. The name checks out.",
       "p3": "This site is the paper edition of all that. Have a look around, and if something sparks a thought, write me: <mail>hi@jannismilz.com</mail>.",
@@ -88,7 +88,7 @@
         "description": "A simple entry check-in system for events and clubs: configurable forms, data export, and deliberately nothing else. No payments, no login, no fuss."
       },
       "typst-payqr-swiss": {
-        "description": "A Swiss QR bill generator for the Typst typesetting system. Invoices deserve nice typography too."
+        "description": "A Swiss QR bill generator for Typst."
       },
       "bbw-heroes": {
         "description": "A platform where BBW students share their work with others and grow together."
@@ -100,7 +100,7 @@
     "swissskills": {
       "highlight": "Highlight",
       "title": "SwissSkills 2025 · Web Technologies",
-      "body": "In 2025 I competed among Switzerland’s best young web developers at SwissSkills. A newspaper even interviewed me about AI; the short version of my answer made it into the headline: my future depends on my development, not on it.",
+      "body": "In 2025, I competed against Switzerland's best young web developers at SwissSkills. I was even interviewed by a newspaper. The short version of my answer made the headlines.",
       "readInterview": "Read the interview",
       "figurePlaceholder": "Photo from the competition floor, eventually",
       "figureCaptionLead": "On assignment.",
