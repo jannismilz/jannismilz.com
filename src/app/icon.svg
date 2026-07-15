@@ -1,0 +1,26 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+  <style>
+    .paper { fill: #faf6ef; }
+    .ink { fill: #1a1815; }
+    .accent { fill: #c8371e; }
+    @media (prefers-color-scheme: dark) {
+      .paper { fill: #0b1220; }
+      .ink { fill: #ede7da; }
+      .accent { fill: #ff6b4a; }
+    }
+  </style>
+  <rect class="paper" width="64" height="64" />
+  <!-- Masthead double rule -->
+  <rect class="ink" x="8" y="8" width="48" height="3" />
+  <rect class="ink" x="8" y="15" width="48" height="3" />
+  <!-- Signature initial -->
+  <text
+    class="accent"
+    x="34"
+    y="56"
+    text-anchor="middle"
+    font-family="Georgia, 'Iowan Old Style', 'Times New Roman', serif"
+    font-style="italic"
+    font-size="46"
+  >J</text>
+</svg>
