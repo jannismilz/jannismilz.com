@@ -1,0 +1,157 @@
+<!-- @dsCard group="Foundations" -->
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Foundations — Type Scale</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:ital,wght@0,400..700;1,400..700&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --paper: #FAF6EF;
+    --paper-raised: #F3EDDF;
+    --ink: #1A1815;
+    --ink-muted: #6E6558;
+    --hairline: #E3DAC6;
+    --accent: #C8371E;
+    --accent-amber: #C77B0A;
+    --serif: "Instrument Serif", "Iowan Old Style", Georgia, "Times New Roman", serif;
+    --sans: "Instrument Sans", -apple-system, "Helvetica Neue", Arial, sans-serif;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body { background: var(--paper); }
+  body {
+    color: var(--ink);
+    font: 400 17px/1.65 var(--sans);
+    -webkit-font-smoothing: antialiased;
+    padding: 56px 48px 64px;
+    max-width: 900px;
+    margin: 0 auto;
+  }
+  ::selection { background: #F9E3DB; color: #A62B16; }
+
+  .card-title {
+    font-family: var(--sans);
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: .12em;
+    text-transform: uppercase;
+    color: var(--ink-muted);
+    display: flex;
+    align-items: center;
+    gap: 14px;
+  }
+  .card-title::after { content: ""; flex: 1; height: 1px; background: var(--hairline); }
+
+  .specimen { padding: 30px 0; border-bottom: 1px solid var(--hairline); }
+  .specimen:last-child { border-bottom: none; }
+
+  .anno {
+    font-family: var(--sans);
+    font-size: 10px;
+    font-weight: 500;
+    letter-spacing: .08em;
+    text-transform: uppercase;
+    color: var(--ink-muted);
+    opacity: .8;
+    margin-bottom: 14px;
+  }
+
+  .masthead-title {
+    font-family: var(--serif);
+    font-size: 28px;
+    font-weight: 400;
+    letter-spacing: .08em;
+    text-transform: uppercase;
+    line-height: 1.1;
+  }
+  .display-h1 {
+    font-family: var(--serif);
+    font-size: 56px;
+    font-weight: 400;
+    line-height: 1.05;
+    max-width: 16em;
+  }
+  .section-heading {
+    font-family: var(--serif);
+    font-size: 28px;
+    font-weight: 400;
+    line-height: 1.2;
+  }
+  .eyebrow {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    font-family: var(--sans);
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: .12em;
+    text-transform: uppercase;
+    color: var(--ink-muted);
+  }
+  .eyebrow::after { content: ""; flex: 1; height: 1px; background: var(--hairline); }
+  .body-copy { font: 400 17px/1.65 var(--sans); max-width: 65ch; }
+  .meta { font-size: 13px; line-height: 1.5; color: var(--ink-muted); }
+  .margin-note {
+    font-family: var(--serif);
+    font-style: italic;
+    font-size: 15px;
+    line-height: 1.5;
+    color: var(--ink-muted);
+    max-width: 28ch;
+  }
+  .margin-note .ref { color: var(--accent); font-style: normal; }
+  .signoff {
+    font-family: var(--serif);
+    font-style: italic;
+    font-size: 28px;
+    line-height: 1.2;
+  }
+</style>
+</head>
+<body>
+  <p class="card-title">Type Scale</p>
+
+  <section class="specimen">
+    <p class="anno">Masthead title — Instrument Serif 400 &middot; 28px &middot; caps &middot; +0.08em</p>
+    <p class="masthead-title">Jannis Milz</p>
+  </section>
+
+  <section class="specimen">
+    <p class="anno">Display H1 — Instrument Serif 400 &middot; 56px &middot; line-height 1.05</p>
+    <h1 class="display-h1">Either I find a way, or I create one.</h1>
+  </section>
+
+  <section class="specimen">
+    <p class="anno">Section heading — Instrument Serif 400 &middot; 28px &middot; line-height 1.2</p>
+    <h2 class="section-heading">Selected projects, carefully typeset</h2>
+  </section>
+
+  <section class="specimen">
+    <p class="anno">Eyebrow label — Instrument Sans 600 &middot; 11px &middot; caps &middot; +0.12em &middot; hairline rule</p>
+    <p class="eyebrow">Selected Projects</p>
+  </section>
+
+  <section class="specimen">
+    <p class="anno">Body — Instrument Sans 400 &middot; 17px &middot; line-height 1.65 &middot; measure ~65ch</p>
+    <p class="body-copy">These days I&rsquo;m an apprentice software developer at BSI in Z&uuml;rich. Before that I spent two years at the University of Zurich &mdash; long enough to learn a lot, and to notice that I learn fastest with my hands on real code.</p>
+  </section>
+
+  <section class="specimen">
+    <p class="anno">Meta / small — Instrument Sans 400 &middot; 13px &middot; ink-muted</p>
+    <p class="meta">Z&uuml;rich, Switzerland &middot; Programming since age 12</p>
+  </section>
+
+  <section class="specimen">
+    <p class="anno">Margin note — Instrument Serif italic &middot; 15px &middot; line-height 1.5 &middot; ink-muted</p>
+    <p class="margin-note"><span class="ref">*</span>Coaching kids is mostly debugging, except the bugs run away.</p>
+  </section>
+
+  <section class="specimen">
+    <p class="anno">Signature sign-off — Instrument Serif italic &middot; 28px</p>
+    <p class="signoff">&mdash; Jannis</p>
+  </section>
+</body>
+</html>

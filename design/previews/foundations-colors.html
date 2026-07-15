@@ -1,0 +1,168 @@
+<!-- @dsCard group="Foundations" -->
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Foundations — Color Tokens</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:ital,wght@0,400..700;1,400..700&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --paper: #FAF6EF;
+    --paper-raised: #F3EDDF;
+    --ink: #1A1815;
+    --ink-muted: #6E6558;
+    --hairline: #E3DAC6;
+    --accent: #C8371E;
+    --accent-amber: #C77B0A;
+    --serif: "Instrument Serif", "Iowan Old Style", Georgia, "Times New Roman", serif;
+    --sans: "Instrument Sans", -apple-system, "Helvetica Neue", Arial, sans-serif;
+  }
+  .dark {
+    --paper: #0B1220;
+    --paper-raised: #121B2E;
+    --ink: #EDE7DA;
+    --ink-muted: #98A0B0;
+    --hairline: #1E293D;
+    --accent: #FF6B4A;
+    --accent-amber: #FFA02E;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body { background: #FAF6EF; }
+  body { font: 400 17px/1.65 var(--sans); -webkit-font-smoothing: antialiased; }
+  ::selection { background: #F9E3DB; color: #A62B16; }
+  .dark ::selection { background: #3A1710; color: #FFB29E; }
+
+  .half { background: var(--paper); color: var(--ink); padding: 48px; }
+
+  .half-title {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: .12em;
+    text-transform: uppercase;
+    color: var(--ink-muted);
+    margin-bottom: 28px;
+  }
+  .half-title::after { content: ""; flex: 1; height: 1px; background: var(--hairline); }
+
+  .swatches {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+    gap: 24px 20px;
+    max-width: 860px;
+  }
+  .swatch-chip {
+    height: 64px;
+    border: 1px solid var(--hairline);
+  }
+  .swatch-name { margin-top: 8px; font-size: 13px; font-weight: 600; }
+  .swatch-hex {
+    font-size: 12px;
+    color: var(--ink-muted);
+    letter-spacing: .04em;
+    font-variant-numeric: tabular-nums;
+  }
+
+  .row-label {
+    font-size: 10px;
+    font-weight: 500;
+    letter-spacing: .08em;
+    text-transform: uppercase;
+    color: var(--ink-muted);
+    opacity: .8;
+    margin: 36px 0 12px;
+  }
+
+  .gradient-bar {
+    height: 40px;
+    max-width: 860px;
+    background: linear-gradient(90deg, var(--accent), var(--accent-amber));
+  }
+  .gradient-demo {
+    margin-top: 10px;
+    font-family: var(--serif);
+    font-size: 32px;
+    line-height: 1.1;
+  }
+  .grad {
+    background: linear-gradient(90deg, var(--accent), var(--accent-amber));
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+
+  .selection-pairs { display: flex; flex-wrap: wrap; gap: 20px; max-width: 860px; }
+  .selection-pair { flex: 1 1 260px; border: 1px solid var(--hairline); padding: 16px 18px; }
+  .selection-sample { font-size: 16px; padding: 2px 4px; }
+  .sel-light { background: #F9E3DB; color: #A62B16; }
+  .sel-dark { background: #3A1710; color: #FFB29E; }
+  .selection-meta { margin-top: 8px; font-size: 12px; color: var(--ink-muted); letter-spacing: .02em; }
+</style>
+</head>
+<body>
+
+  <section class="half">
+    <p class="half-title">Light &mdash; &ldquo;Paper&rdquo;</p>
+    <div class="swatches">
+      <div><div class="swatch-chip" style="background:#FAF6EF"></div><p class="swatch-name">paper</p><p class="swatch-hex">#FAF6EF</p></div>
+      <div><div class="swatch-chip" style="background:#F3EDDF"></div><p class="swatch-name">paper-raised</p><p class="swatch-hex">#F3EDDF</p></div>
+      <div><div class="swatch-chip" style="background:#1A1815"></div><p class="swatch-name">ink</p><p class="swatch-hex">#1A1815</p></div>
+      <div><div class="swatch-chip" style="background:#6E6558"></div><p class="swatch-name">ink-muted</p><p class="swatch-hex">#6E6558</p></div>
+      <div><div class="swatch-chip" style="background:#E3DAC6"></div><p class="swatch-name">hairline</p><p class="swatch-hex">#E3DAC6</p></div>
+      <div><div class="swatch-chip" style="background:#C8371E"></div><p class="swatch-name">accent</p><p class="swatch-hex">#C8371E</p></div>
+      <div><div class="swatch-chip" style="background:#C77B0A"></div><p class="swatch-name">accent-amber</p><p class="swatch-hex">#C77B0A</p></div>
+    </div>
+
+    <p class="row-label">Accent gradient &mdash; accent &rarr; accent-amber, headline emphasis only</p>
+    <div class="gradient-bar"></div>
+    <p class="gradient-demo">Either I find a way, or I <span class="grad">create</span> one.</p>
+
+    <p class="row-label">Text selection &mdash; try selecting this page</p>
+    <div class="selection-pairs">
+      <div class="selection-pair">
+        <span class="selection-sample sel-light">Selected text on paper looks like this.</span>
+        <p class="selection-meta">light &middot; bg #F9E3DB &middot; text #A62B16</p>
+      </div>
+      <div class="selection-pair">
+        <span class="selection-sample sel-dark">Selected text on night ink looks like this.</span>
+        <p class="selection-meta">dark &middot; bg #3A1710 &middot; text #FFB29E</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="half dark">
+    <p class="half-title">Dark &mdash; &ldquo;Night ink&rdquo;</p>
+    <div class="swatches">
+      <div><div class="swatch-chip" style="background:#0B1220"></div><p class="swatch-name">paper</p><p class="swatch-hex">#0B1220</p></div>
+      <div><div class="swatch-chip" style="background:#121B2E"></div><p class="swatch-name">paper-raised</p><p class="swatch-hex">#121B2E</p></div>
+      <div><div class="swatch-chip" style="background:#EDE7DA"></div><p class="swatch-name">ink</p><p class="swatch-hex">#EDE7DA</p></div>
+      <div><div class="swatch-chip" style="background:#98A0B0"></div><p class="swatch-name">ink-muted</p><p class="swatch-hex">#98A0B0</p></div>
+      <div><div class="swatch-chip" style="background:#1E293D"></div><p class="swatch-name">hairline</p><p class="swatch-hex">#1E293D</p></div>
+      <div><div class="swatch-chip" style="background:#FF6B4A"></div><p class="swatch-name">accent</p><p class="swatch-hex">#FF6B4A</p></div>
+      <div><div class="swatch-chip" style="background:#FFA02E"></div><p class="swatch-name">accent-amber</p><p class="swatch-hex">#FFA02E</p></div>
+    </div>
+
+    <p class="row-label">Accent gradient &mdash; accent &rarr; accent-amber, headline emphasis only</p>
+    <div class="gradient-bar"></div>
+    <p class="gradient-demo">Either I find a way, or I <span class="grad">create</span> one.</p>
+
+    <p class="row-label">Text selection &mdash; try selecting this half</p>
+    <div class="selection-pairs">
+      <div class="selection-pair">
+        <span class="selection-sample sel-light">Selected text on paper looks like this.</span>
+        <p class="selection-meta">light &middot; bg #F9E3DB &middot; text #A62B16</p>
+      </div>
+      <div class="selection-pair">
+        <span class="selection-sample sel-dark">Selected text on night ink looks like this.</span>
+        <p class="selection-meta">dark &middot; bg #3A1710 &middot; text #FFB29E</p>
+      </div>
+    </div>
+  </section>
+
+</body>
+</html>

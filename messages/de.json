@@ -1,0 +1,136 @@
+{
+  "metadata": {
+    "title": "Jannis Milz · Softwareentwickler, neugierig von Natur",
+    "description": "Jannis Milz ist Softwareentwickler aus der Schweiz. Er baut Eintrittli, turnt und trainiert den Nachwuchs, und ist von Natur aus neugierig."
+  },
+  "header": {
+    "dateline": "Programmierer · Turner · Tüftler",
+    "nav": {
+      "letter": "Titelseite",
+      "projects": "Projekte",
+      "writing": "Schreiben"
+    },
+    "localeSwitch": "Read this page in English"
+  },
+  "themeToggle": {
+    "toMorning": "Zur Morgenausgabe wechseln",
+    "toEvening": "Zur Abendausgabe wechseln",
+    "morning": "Morgenausgabe",
+    "evening": "Abendausgabe"
+  },
+  "footer": {
+    "copyright": "© {year} Jannis Milz · Zürich",
+    "joke": "Gedruckt in Zürich, gelesen, wo immer du gerade bist."
+  },
+  "home": {
+    "headline": "Entweder finde ich einen Weg,<br></br>oder ich <gradient>erschaffe einen</gradient>.",
+    "letter": {
+      "p1": "Hallo, ich bin Jannis, Tüftler und Turner aus der Schweiz. Ganz nach meinem Lebensmotto: Ich glaube erst, dass etwas nicht geht, wenn ich ernsthaft nach einem Weg gesucht habe.",
+      "p1Note": "Auch bekannt als Sturheit. Aber «Motto» liest sich besser.",
+      "p2": "Früh habe ich angefangen zu programmieren, heute mache ich es beruflich mit Leidenschaft. Abseits der Tastatur turne ich seit über zehn Jahren im Verein und trainiere inzwischen die Jüngeren.",
+      "pullQuote": "«Ausprobieren, bis etwas kaputtgeht. Dann herausfinden, warum.»",
+      "figureAAlt": "Jannis arbeitet abends am Schreibtisch vor zwei Bildschirmen.",
+      "figureACaptionLead": "Beweisstück A.",
+      "figureACaption": "Die Redaktion, kurz vor Redaktionsschluss."
+    },
+    "now": {
+      "title": "Jetzt",
+      "item1": "Ich baue <link>eintrittli.ch</link>, ein einfaches Tür-Check-in-System.",
+      "item2": "Applikationsentwickler bei BSI.",
+      "item3": "Ehrenamtlicher Kassier in meinem Turnverein",
+      "item4": "2025 an den SwissSkills in Web Technologien angetreten."
+    },
+    "fresh": {
+      "title": "Frisch gedruckt",
+      "all": "Alle Texte"
+    },
+    "projects": {
+      "title": "Projekte",
+      "all": "Alle Projekte",
+      "eintrittli": "Ein einfaches Check-in-System für Events und Vereine."
+    },
+    "closing": {
+      "eyebrow": "Zum Schluss",
+      "p1": "Das Trainieren gibt mir übrigens genauso viel zurück, wie es fordert: dieses Gefühl, an einer neuen Bewegung zu tüfteln, bis sie endlich sitzt.",
+      "p2": "Der Rest meines Kopfes gehört dem, was zuletzt meine Neugier geweckt hat: Biografien, Design, Psychologie und ab und zu ein unlösbares Matheproblem.",
+      "p2Note": "Gelöst habe ich noch keines. Der Name hält, was er verspricht.",
+      "p3": "Diese Seite ist die Zeitungsausgabe von all dem. Schau dich um, und wenn dich etwas zum Denken bringt, schreib mir: <mail>hi@jannismilz.com</mail>.",
+      "signoff": "Jannis",
+      "figureBAlt": "Jannis macht einen Handstand auf einem Berggipfel, im Hintergrund das Tal.",
+      "figureBCaptionLead": "Beweisstück B.",
+      "figureBCaption": "Seit über zehn Jahren regelmässig kopfüber."
+    }
+  },
+  "projects": {
+    "meta": {
+      "title": "Projekte",
+      "description": "Was Jannis Milz gebaut, zerlegt und wieder gebaut hat: Eintrittli und andere Projekte."
+    },
+    "eyebrow": "Das Portfolio",
+    "headline": "Gebaut, zerlegt und wieder gebaut.",
+    "intro": "Die Projekte, auf die ich am stolzesten bin: von einem echten Produkt bis zu Schulprojekten, die mir gezeigt haben, warum das echte Produkt funktioniert.",
+    "categories": {
+      "product": {
+        "title": "Produkte",
+        "tagline": "Dinge, die man heute schon benutzen kann."
+      },
+      "openSource": {
+        "title": "Open Source",
+        "tagline": "Zum Mitnehmen und Weiterverwenden."
+      },
+      "school": {
+        "title": "Schulprojekte",
+        "tagline": "Wo ich das Handwerk gelernt habe."
+      }
+    },
+    "items": {
+      "eintrittli": {
+        "description": "Ein simples Eintritts- und Check-in-System für Events und Vereine: konfigurierbare Formulare, Datenexport und bewusst sonst nichts. Keine Zahlungen, kein Login, kein Aufwand."
+      },
+      "typst-payqr-swiss": {
+        "description": "Ein Generator für Schweizer QR-Rechnungen in Typst."
+      },
+      "bbw-heroes": {
+        "description": "Eine Plattform, auf der BBW-Lernende ihre Arbeiten mit anderen teilen und gemeinsam wachsen."
+      },
+      "linux-cookbook": {
+        "description": "Ein Leitfaden zu den Grundlagen von Linux und wie man es wirklich benutzt, geschrieben, während ich sie selbst gelernt habe."
+      }
+    },
+    "swissskills": {
+      "highlight": "Highlight",
+      "title": "SwissSkills 2025 · Web Technologien",
+      "body": "2025 habe ich mich an den SwissSkills mit den besten jungen Webentwicklern der Schweiz gemessen. Ich wurde sogar von einer Zeitung interviewt. Die Kurzversion meiner Antwort wurde zur Schlagzeile.",
+      "readInterview": "Zum Interview",
+      "figureAlt": "Jannis lächelt an seinem Wettkampfplatz an den SwissSkills in die Kamera.",
+      "figureCaptionLead": "Im Einsatz.",
+      "figureCaption": "SwissSkills 2025, Bern."
+    }
+  },
+  "writing": {
+    "meta": {
+      "title": "Schreiben",
+      "description": "Eigene Texte von Jannis Milz, hier veröffentlicht, plus Highlights aus der Presse und ein Archiv älterer Artikel."
+    },
+    "eyebrow": "Schreiben",
+    "headline": "Was mir durch den Kopf geht.",
+    "intro": "Eigene Gedanken, hier gesetzt und gedruckt.",
+    "ownTitle": "Eigene Texte",
+    "ownTagline": "Gedanken in voller Länge, direkt hier veröffentlicht.",
+    "highlightsTitle": "Highlights",
+    "highlightsTagline": "Wo mein Name sonst noch aufgetaucht ist.",
+    "archiveTitle": "Aus dem Archiv",
+    "archiveNote": "Vor allem aus meiner Medium-Phase 2024, aufbewahrt wie alte Zeitungen.",
+    "langTag": {
+      "de": "Deutsch",
+      "en": "Englisch"
+    },
+    "backToWriting": "Zurück zum Schreiben"
+  },
+  "notFound": {
+    "eyebrow": "Korrektur",
+    "headline": "Diese Seite ging nie in Druck.",
+    "body": "In einer früheren Ausgabe haben wir womöglich den Eindruck erweckt, diese Seite existiere. Wir bedauern den Fehler.",
+    "back": "Zurück zur Titelseite"
+  }
+}

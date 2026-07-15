@@ -1,14 +1,14 @@
-export function formatDate(dateString: string) {
-  const splittedDateString = dateString.split('.').map(Number)
-  const date = new Date(
-    splittedDateString[2],
-    splittedDateString[1] - 1,
-    splittedDateString[0],
-  )
+/** Parses the site's `DD.MM.YYYY` date strings. */
+export function parseDate(dateString: string) {
+  const [day, month, year] = dateString.split('.').map(Number)
+  return new Date(year, month - 1, day)
+}
 
-  return date.toLocaleDateString('de-DE', {
-    day: 'numeric',
-    month: 'long',
+const dateLocales = { de: 'de-CH', en: 'en-GB' } as const
+
+export function formatDate(dateString: string, locale: 'de' | 'en' = 'en') {
+  return parseDate(dateString).toLocaleDateString(dateLocales[locale], {
+    month: 'short',
     year: 'numeric',
   })
 }

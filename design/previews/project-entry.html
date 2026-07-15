@@ -1,0 +1,146 @@
+<!-- @dsCard group="Components" -->
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Project Entries</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:ital,wght@0,400..700;1,400..700&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --paper: #FAF6EF;
+    --paper-raised: #F3EDDF;
+    --ink: #1A1815;
+    --ink-muted: #6E6558;
+    --hairline: #E3DAC6;
+    --accent: #C8371E;
+    --accent-amber: #C77B0A;
+    --serif: "Instrument Serif", "Iowan Old Style", Georgia, "Times New Roman", serif;
+    --sans: "Instrument Sans", -apple-system, "Helvetica Neue", Arial, sans-serif;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body { background: var(--paper); }
+  body {
+    color: var(--ink);
+    font: 400 17px/1.65 var(--sans);
+    -webkit-font-smoothing: antialiased;
+    padding: 56px 48px 64px;
+    max-width: 760px;
+    margin: 0 auto;
+  }
+  ::selection { background: #F9E3DB; color: #A62B16; }
+
+  .eyebrow {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: .12em;
+    text-transform: uppercase;
+    color: var(--ink-muted);
+    margin-bottom: 8px;
+  }
+  .eyebrow::after { content: ""; flex: 1; height: 1px; background: var(--hairline); }
+
+  .proj {
+    display: block;
+    position: relative;
+    padding: 24px 0;
+    border-bottom: 1px solid var(--hairline);
+    text-decoration: none;
+    color: inherit;
+  }
+
+  .proj-top { display: flex; align-items: baseline; gap: 12px; }
+  .proj-name {
+    font-family: var(--serif);
+    font-size: 22px;
+    font-weight: 400;
+    line-height: 1.2;
+  }
+  .proj-year {
+    font-size: 13px;
+    letter-spacing: .08em;
+    color: var(--ink-muted);
+    font-variant-caps: all-small-caps;
+    font-variant-numeric: tabular-nums;
+  }
+  .proj-arrow {
+    margin-left: auto;
+    color: var(--ink-muted);
+    font-size: 18px;
+    display: inline-block;
+    transition: transform .15s ease, color .15s ease;
+  }
+  .proj-desc { margin-top: 6px; font-size: 16px; max-width: 60ch; }
+  .proj-link {
+    margin-top: 8px;
+    font-size: 13px;
+    color: var(--ink-muted);
+    letter-spacing: .02em;
+  }
+
+  .proj:hover .proj-name, .proj.is-hover .proj-name {
+    text-decoration: underline;
+    text-decoration-color: var(--accent);
+    text-decoration-thickness: 2px;
+    text-underline-offset: 6px;
+  }
+  .proj:hover .proj-arrow, .proj.is-hover .proj-arrow {
+    transform: translateX(4px);
+    color: var(--accent);
+  }
+
+  .anno {
+    position: absolute;
+    top: 8px;
+    right: 0;
+    font-size: 10px;
+    font-weight: 500;
+    letter-spacing: .08em;
+    text-transform: uppercase;
+    color: var(--ink-muted);
+    opacity: .8;
+  }
+</style>
+</head>
+<body>
+
+  <h2 class="eyebrow">Selected Projects</h2>
+
+  <a class="proj is-hover" href="https://eintrittli.ch">
+    <span class="anno">hover</span>
+    <span class="proj-top">
+      <span class="proj-name">Eintrittli</span>
+      <span class="proj-year">2025</span>
+      <span class="proj-arrow">&rarr;</span>
+    </span>
+    <span class="proj-desc">A simple entry check-in system for events: configurable forms, data export &mdash; deliberately no payments, no login.</span>
+    <span class="proj-link">eintrittli.ch</span>
+  </a>
+
+  <a class="proj" href="https://weborb.ch">
+    <span class="proj-top">
+      <span class="proj-name">weborb.ch</span>
+      <span class="proj-year">2024</span>
+      <span class="proj-arrow">&rarr;</span>
+    </span>
+    <span class="proj-desc">The small Swiss web studio eintrittli ships from. Websites and tools, built close to the people who use them.</span>
+    <span class="proj-link">weborb.ch</span>
+  </a>
+
+  <a class="proj" href="https://github.com/jannismilz/typst-payqr-swiss">
+    <span class="proj-top">
+      <span class="proj-name">typst-payqr-swiss</span>
+      <span class="proj-year">2024</span>
+      <span class="proj-arrow">&rarr;</span>
+    </span>
+    <span class="proj-desc">A Swiss QR bill generator for Typst &mdash; because invoices deserve good typography too.</span>
+    <span class="proj-link">github.com/jannismilz</span>
+  </a>
+
+</body>
+</html>

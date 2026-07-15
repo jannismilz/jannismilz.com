@@ -1,4 +1,60 @@
-@import 'tailwindcss/base';
-@import 'tailwindcss/components';
-@import './prism.css';
-@import 'tailwindcss/utilities';
+@import 'tailwindcss';
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+:root {
+  --paper: #faf6ef;
+  --paper-raised: #f3eddf;
+  --ink: #1a1815;
+  --ink-muted: #6e6558;
+  --hairline: #e3dac6;
+  --accent: #c8371e;
+  --accent-amber: #c77b0a;
+  --selection-bg: #f9e3db;
+  --selection-text: #a62b16;
+}
+
+.dark {
+  --paper: #0b1220;
+  --paper-raised: #121b2e;
+  --ink: #ede7da;
+  --ink-muted: #98a0b0;
+  --hairline: #1e293d;
+  --accent: #ff6b4a;
+  --accent-amber: #ffa02e;
+  --selection-bg: #3a1710;
+  --selection-text: #ffb29e;
+}
+
+@theme inline {
+  --color-paper: var(--paper);
+  --color-paper-raised: var(--paper-raised);
+  --color-ink: var(--ink);
+  --color-ink-muted: var(--ink-muted);
+  --color-hairline: var(--hairline);
+  --color-accent: var(--accent);
+  --color-accent-amber: var(--accent-amber);
+  --font-serif:
+    var(--font-instrument-serif), ui-serif, Georgia, Cambria, 'Times New Roman',
+    serif;
+  --font-sans:
+    var(--font-instrument-sans), ui-sans-serif, system-ui, sans-serif;
+}
+
+::selection {
+  background-color: var(--selection-bg);
+  color: var(--selection-text);
+}
+
+/* Newspaper drop cap for the first paragraph of the letter. */
+@utility drop-cap {
+  &::first-letter {
+    float: left;
+    margin-top: 0.08em;
+    padding-right: 0.12em;
+    font-family: var(--font-serif);
+    font-size: 3.1em;
+    line-height: 0.78;
+    color: var(--accent);
+  }
+}

@@ -1,0 +1,82 @@
+<!-- @dsCard group="Components" -->
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Figure</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:ital,wght@0,400..700;1,400..700&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --paper: #FAF6EF;
+    --paper-raised: #F3EDDF;
+    --ink: #1A1815;
+    --ink-muted: #6E6558;
+    --hairline: #E3DAC6;
+    --accent: #C8371E;
+    --accent-amber: #C77B0A;
+    --serif: "Instrument Serif", "Iowan Old Style", Georgia, "Times New Roman", serif;
+    --sans: "Instrument Sans", -apple-system, "Helvetica Neue", Arial, sans-serif;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body { background: var(--paper); }
+  body {
+    color: var(--ink);
+    font: 400 17px/1.65 var(--sans);
+    -webkit-font-smoothing: antialiased;
+    padding: 56px 48px 64px;
+    display: flex;
+    justify-content: center;
+  }
+  ::selection { background: #F9E3DB; color: #A62B16; }
+
+  .fig { max-width: 480px; width: 100%; }
+  .fig-frame {
+    aspect-ratio: 4 / 3;
+    border: 1px solid var(--hairline);
+    background: var(--paper-raised);
+    padding: 12px;
+  }
+  .fig-inner {
+    height: 100%;
+    border: 1px dashed var(--hairline);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 24px;
+  }
+  .fig-placeholder {
+    font-family: var(--serif);
+    font-style: italic;
+    font-size: 15px;
+    color: var(--ink-muted);
+    text-align: center;
+  }
+  .fig figcaption {
+    margin-top: 10px;
+    font-size: 13px;
+    line-height: 1.5;
+    color: var(--ink-muted);
+  }
+  .fig figcaption .lead {
+    font-family: var(--serif);
+    font-style: italic;
+    font-size: 14px;
+  }
+</style>
+</head>
+<body>
+
+  <figure class="fig">
+    <div class="fig-frame">
+      <div class="fig-inner">
+        <p class="fig-placeholder">photo of me mid-somersault, eventually</p>
+      </div>
+    </div>
+    <figcaption><span class="lead">SwissSkills 2025, Bern.</span> Real photo coming as soon as I find one where I&rsquo;m not blinking.</figcaption>
+  </figure>
+
+</body>
+</html>

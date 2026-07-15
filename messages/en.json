@@ -1,0 +1,136 @@
+{
+  "metadata": {
+    "title": "Jannis Milz · Software developer, curious by nature",
+    "description": "Jannis Milz is a software developer from Switzerland: building eintrittli, coaching gymnastics, and curious by nature."
+  },
+  "header": {
+    "dateline": "Programmer · Gymnast · Tinkerer",
+    "nav": {
+      "letter": "Front page",
+      "projects": "Projects",
+      "writing": "Writing"
+    },
+    "localeSwitch": "Diese Seite auf Deutsch lesen"
+  },
+  "themeToggle": {
+    "toMorning": "Switch to the morning edition",
+    "toEvening": "Switch to the evening edition",
+    "morning": "Morning edition",
+    "evening": "Evening edition"
+  },
+  "footer": {
+    "copyright": "© {year} Jannis Milz · Zürich",
+    "joke": "Printed in Zürich, read wherever you happen to be."
+  },
+  "home": {
+    "headline": "Either I find a way,<br></br>or I <gradient>create one</gradient>.",
+    "letter": {
+      "p1": "Hallo, I’m Jannis, a tinkerer and gymnast from Switzerland. Just like my life motto: I only believe something can’t work once I’ve seriously searched for a way.",
+      "p1Note": "Also known as stubbornness, but “motto” reads better.",
+      "p2": "I started programming at an early age; today I do it professionally with passion. Away from the keyboard I’ve been doing gymnastics at my club for more than ten years, and these days I coach the younger kids.",
+      "pullQuote": "“Experiment until it breaks. Then figure out why.”",
+      "figureAAlt": "Jannis working at his desk in the evening, two screens glowing.",
+      "figureACaptionLead": "Exhibit A.",
+      "figureACaption": "The newsroom, just before deadline."
+    },
+    "now": {
+      "title": "Now",
+      "item1": "Building <link>eintrittli.ch</link>, an easy to use door check-in system.",
+      "item2": "Software developer at BSI.",
+      "item3": "Volunteer accountant at my gymnastics club.",
+      "item4": "Competed at SwissSkills 2025 in Web Technologies."
+    },
+    "fresh": {
+      "title": "Fresh off the press",
+      "all": "All writing"
+    },
+    "projects": {
+      "title": "Projects",
+      "all": "All projects",
+      "eintrittli": "A simple check-in system for events and clubs."
+    },
+    "closing": {
+      "eyebrow": "In closing",
+      "p1": "Coaching gives me back as much as it demands, by the way: that same thrill of tinkering with a new move until it finally clicks.",
+      "p2": "The rest of my head belongs to whatever last caught my curiosity: biographies, design, psychology, and the occasional unsolvable math problem.",
+      "p2Note": "Haven’t solved one yet. The name checks out.",
+      "p3": "This site is the paper edition of all that. Have a look around, and if something sparks a thought, write me: <mail>hi@jannismilz.com</mail>.",
+      "signoff": "Jannis",
+      "figureBAlt": "Jannis doing a handstand on a mountain summit, the valley far below.",
+      "figureBCaptionLead": "Exhibit B.",
+      "figureBCaption": "Regularly upside down for ten-plus years."
+    }
+  },
+  "projects": {
+    "meta": {
+      "title": "Projects",
+      "description": "Things Jannis Milz has shipped, broken, and shipped again: Eintrittli and other projects."
+    },
+    "eyebrow": "The portfolio",
+    "headline": "Shipped, broken, and shipped again.",
+    "intro": "The projects I’m most proud of: from a live product to school projects that taught me why the live product works.",
+    "categories": {
+      "product": {
+        "title": "Products",
+        "tagline": "Things you can already use today."
+      },
+      "openSource": {
+        "title": "Open source",
+        "tagline": "Free to take and reuse."
+      },
+      "school": {
+        "title": "School projects",
+        "tagline": "Where I learned the craft."
+      }
+    },
+    "items": {
+      "eintrittli": {
+        "description": "A simple entry check-in system for events and clubs: configurable forms, data export, and deliberately nothing else. No payments, no login, no fuss."
+      },
+      "typst-payqr-swiss": {
+        "description": "A Swiss QR bill generator for Typst."
+      },
+      "bbw-heroes": {
+        "description": "A platform where BBW students share their work with others and grow together."
+      },
+      "linux-cookbook": {
+        "description": "A guide to the basics of Linux and how to actually use it, written while learning them myself."
+      }
+    },
+    "swissskills": {
+      "highlight": "Highlight",
+      "title": "SwissSkills 2025 · Web Technologies",
+      "body": "In 2025, I competed against Switzerland's best young web developers at SwissSkills. I was even interviewed by a newspaper. The short version of my answer made the headlines.",
+      "readInterview": "Read the interview",
+      "figureAlt": "Jannis smiling at his SwissSkills competition booth.",
+      "figureCaptionLead": "On assignment.",
+      "figureCaption": "SwissSkills 2025, Bern."
+    }
+  },
+  "writing": {
+    "meta": {
+      "title": "Writing",
+      "description": "Jannis Milz’s own writing, published right here, plus press highlights and an archive of older articles."
+    },
+    "eyebrow": "Writing",
+    "headline": "What’s been on my mind.",
+    "intro": "My own thoughts, typeset and published right here.",
+    "ownTitle": "My writing",
+    "ownTagline": "Thoughts at full length, published right here.",
+    "highlightsTitle": "Highlights",
+    "highlightsTagline": "Where my name has popped up elsewhere.",
+    "archiveTitle": "From the archive",
+    "archiveNote": "Mostly from my 2024 Medium era, preserved here like old newspapers.",
+    "langTag": {
+      "de": "German",
+      "en": "English"
+    },
+    "backToWriting": "Back to writing"
+  },
+  "notFound": {
+    "eyebrow": "Correction",
+    "headline": "This page never went to print.",
+    "body": "In an earlier edition we may have implied this page exists. We regret the error.",
+    "back": "Return to the front page"
+  }
+}
