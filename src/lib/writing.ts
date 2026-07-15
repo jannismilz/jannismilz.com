@@ -40,14 +40,14 @@ export interface MediumArticle {
 }
 
 export const ownArticles: OwnArticle[] = [
-  {
+/*   {
     slug: 'warum-diese-seite-aussieht-wie-eine-zeitung',
     title: 'Warum diese Seite aussieht wie eine Zeitung',
     description:
       'Über den Neuanfang dieser Website: weniger Template, mehr Brief. Und warum Papier das bessere Vorbild ist als ein Dashboard.',
     date: '14.07.2026',
     lang: 'de',
-  },
+  }, */
 ]
 
 export const highlights: Highlight[] = [
