@@ -1,6 +1,7 @@
 'use client'
 
 import { useSyncExternalStore } from 'react'
+import { useTranslations } from 'next-intl'
 import { useTheme } from 'next-themes'
 
 const emptySubscribe = () => () => {}
@@ -49,6 +50,7 @@ function MoonIcon(props: React.ComponentPropsWithoutRef<'svg'>) {
 }
 
 export function ThemeToggle() {
+  let t = useTranslations('themeToggle')
   let { resolvedTheme, setTheme } = useTheme()
   let mounted = useMounted()
 
@@ -56,15 +58,9 @@ export function ThemeToggle() {
     <button
       type="button"
       aria-label={
-        mounted && resolvedTheme === 'dark'
-          ? 'Switch to the morning edition'
-          : 'Switch to the evening edition'
+        mounted && resolvedTheme === 'dark' ? t('toMorning') : t('toEvening')
       }
-      title={
-        mounted && resolvedTheme === 'dark'
-          ? 'Morning edition'
-          : 'Evening edition'
-      }
+      title={mounted && resolvedTheme === 'dark' ? t('morning') : t('evening')}
       className="-m-1 p-1 text-ink-muted transition hover:text-accent"
       onClick={() => setTheme(resolvedTheme === 'dark' ? 'light' : 'dark')}
     >

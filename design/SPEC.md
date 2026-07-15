@@ -42,35 +42,47 @@ Semantic tokens that flip between themes (CSS variables):
 ## Recurring motifs
 
 - **Masthead** (site header): thin double rule on top (1px + 3px gap + 1px),
-  "JANNIS MILZ" serif letterspaced caps, small dateline "Zürich, Switzerland ·
-  Programming since age 12", right side: nav "Front page · Projects" + theme
-  toggle (sun/moon, minimal). Single hairline below. Mobile: stacks, nav stays
-  one row.
-- **Letter**: big serif headline ("Either I find a way, or I create one."),
-  body paragraphs, ends with a serif-italic sign-off "— Jannis" (~28px, like a
+  "JANNIS MILZ" serif letterspaced caps, small dateline with personality words
+  ("Programmierer · Turner · Tüftler" / "Programmer · Gymnast · Tinkerer"),
+  right side (vertically centered): nav "Der Brief · Projekte · Texte" (EN:
+  "The Letter · Projects · Writing") + theme toggle + tiny uppercase locale
+  switch showing the language you'd switch TO ("EN"/"DE"). Single hairline
+  below. Mobile: stacks, nav stays one row.
+- **Letter**: big serif headline ("Entweder finde ich einen Weg, oder ich
+  erschaffe einen." / "Either I find a way, or I create one."), body
+  paragraphs, ends with a serif-italic sign-off "Jannis" (~28px, like a
   signature). First paragraph gets a 3-line drop cap (serif, accent color).
 - **Margin notes**: on ≥1280px, small serif-italic asides sit in the right
-  margin next to their paragraph, marked with a superscript asterisk in accent
-  color in the text. Below 1280px they render inline as indented footnote-style
-  asides with a left hairline border. These carry the jokes.
+  margin next to their paragraph, with no marker glyph (user rejected both ✳
+  and †). Below 1280px they render inline as indented footnote-style asides
+  with a left hairline border. These carry the jokes.
+- **Pull quote**: a short line lifted from the letter, 26–30px serif italic
+  between two hairlines, small caps caption below. One per page max.
+- **PS box**: letter postscript as a bordered paper-raised aside after the
+  signature (e.g. pointing to the other language edition).
 - **Section labels**: eyebrow + hairline (see typography).
-- **Project entries**: newspaper listing rows — serif title (22px) with year in
-  ink-muted small caps, one-line description, small link label. Hover: title
-  gets accent underline (2px, offset), trailing "→" slides 4px right. Hairline
-  between rows.
-- **Work timeline**: two rows, company + role, years right-aligned in tabular
-  small caps.
-- **Writing list**: compact rows: date (13px ink-muted, fixed width), title
-  (16px, sans medium), external-link arrow ↗ on hover. No cards, no borders
-  except hairline separators.
-- **Figures (photos)**: at most 2–3 on the whole site. A figure = 4:3 or 3:4
-  frame with 1px hairline border, slight paper-raised bg, and a 13px caption
-  below in ink-muted with a serif-italic lead-in. Until real photos exist, the
-  frame shows a dashed inner border and a small centered serif-italic
-  placeholder line (e.g. "photo of me mid-somersault, eventually").
+- **Project entries**: newspaper listing rows — serif title (22px), optional
+  status in ink-muted small caps (omitted where a category heading already
+  says it), one-line description, small link label. Hover: title gets accent
+  underline (2px, offset), trailing "→" slides 4px right. Hairline between
+  rows. On the projects page, entries are grouped by category (Products / The
+  studio / Open source / School projects), each group under an eyebrow.
+- **Writing lists**: own articles as rows with date, serif title (24px), and
+  description; external archive as compact rows: date (13px ink-muted, fixed
+  width), title (16px, sans medium), external-link arrow ↗ on hover. Articles
+  in a different language than the page get a small uppercase language tag.
+  No cards, no borders except hairline separators.
+- **Figures (photos)**: a handful across the site (currently five slots:
+  gymnastics + coaching on home, desk on writing, eintrittli on projects,
+  SwissSkills in the highlight box). A figure = 4:3 or 3:4 frame with 1px
+  hairline border, slight paper-raised bg, and a 13px caption below in
+  ink-muted with a serif-italic lead-in. Until real photos exist, the frame
+  shows a dashed inner border and a small centered serif-italic placeholder
+  line (e.g. "photo of me mid-somersault, eventually"). User fills in real
+  photos over time.
 - **Footer**: hairline above, then: "© 2026 Jannis Milz · Zürich" /
-  links (GitHub, LinkedIn, hi@jannismilz.com) / joke line: "Set in Instrument
-  Serif & Sans. No cookies, no tracking — this paper doesn't follow you home."
+  links (GitHub, LinkedIn, hi@jannismilz.com) / joke line: "No cookies, no
+  tracking. This paper doesn't follow you home."
 - **404**: newspaper correction notice: eyebrow "CORRECTION", serif headline
   "This page never went to print.", body "In an earlier edition we may have
   implied this page exists. We regret the error." + link "Return to the front
@@ -80,32 +92,51 @@ Semantic tokens that flip between themes (CSS variables):
 
 ### Home (`/`) — the letter, everything at a glance
 1. Masthead
-2. Letter (headline, ~5 short paragraphs merging intro + about: started
-   programming at 12, apprentice software developer at BSI (before: University
-   of Zurich), gymnastics & athletics + coaching kids at the local club 10+
-   years, curiosity: self-improvement, biographies, design, psychology,
-   unsolvable math problems. 2 margin-note jokes max.) Signed "— Jannis".
+2. Letter: headline, then short paragraphs broken up by callouts so no big
+   text wall (user request 2026-07): intro/motto (+ margin note), origin/BSI
+   paragraph, PULL QUOTE ("Ausprobieren, bis etwas kaputtgeht…"), gymnastics
+   figure (float right) + two short coaching paragraphs, coaching figure
+   (float left, cleared) + curiosity paragraph (+ margin note), contact
+   paragraph. Signed "Jannis", then the PS box (points to the EN/DE switch).
 3. NOW — three short items: building eintrittli.ch with Weborb; apprentice at
-   BSI; competed at SwissSkills 2025 in Web Technologies.
-4. SELECTED PROJECTS — 3 entries (eintrittli, weborb.ch, typst-payqr-swiss) +
-   "All projects →" link.
-5. WORK — timeline (BSI 2024–present, University of Zurich 2022–2024).
-6. WRITING — compact list of external articles (Medium + the German
-   SwissSkills interview), note "mostly written 2024, preserved here like
-   old newspapers".
-7. Contact line + Footer.
+   BSI; competed at SwissSkills 2025 in Web Technologies. (Work history lives
+   here and in the letter; there is no separate WORK or SELECTED PROJECTS
+   section — projects live only on /projects.)
+4. Footer.
 
 ### Projects (`/projects`)
-Eyebrow "THE PORTFOLIO", serif headline, intro sentence, then entries with
-year + description + link: eintrittli (2025, live product — simple entry
-check-in system, configurable forms, data export, no payments, no login),
-weborb.ch (the small Swiss web studio it ships from), SwissSkills 2025
-highlight box (Web Technologies competitor + interview link),
-typst-payqr-swiss (Swiss QR bill generator for Typst), BBW Heroes,
-Linux Cookbook. One figure placeholder allowed here (SwissSkills photo).
+Eyebrow "DAS PORTFOLIO" / "THE PORTFOLIO", serif headline, intro sentence,
+small eintrittli figure right of the header, then entries grouped by
+category: Products (eintrittli), The studio (weborb.ch), Open source
+(typst-payqr-swiss), School projects (BBW Heroes, Linux Cookbook). Entries
+show no status label (the category heading carries it). SwissSkills 2025
+highlight box (Web Technologies competitor + interview link + figure
+placeholder) at the bottom.
+
+### Writing (`/writing`)
+Eyebrow "SCHREIBEN" / "WRITING" (user rejected "Texte"), serif headline,
+intro, small desk figure right of the header. Three clearly separated
+sections, all fed from the easy-to-edit lists in `src/lib/writing.ts`:
+1. EIGENE TEXTE / MY WRITING — own posts (MDX files in
+   `src/content/writing/`, rendered at `/writing/<slug>` with the site's
+   newspaper typography via `src/mdx-components.tsx`).
+2. HIGHLIGHTS — press features/interviews (title, description, source,
+   date), currently the German SwissSkills interview.
+3. AUS DEM ARCHIV / FROM THE ARCHIVE — compact Medium list, note "mostly
+   from my 2024 Medium era, preserved here like old newspapers".
+
+## Localization
+
+German is the default (native, more personal) at `/`; English lives under
+`/en` (next-intl, `localePrefix: 'as-needed'`). All UI and page copy lives in
+`messages/de.json` / `messages/en.json`. Articles stay in the language they
+were written in and get a language tag when it differs from the page locale.
+hreflang alternates + sitemap + robots are generated (`src/lib/seo.ts`,
+`src/app/sitemap.ts`, `src/app/robots.ts`).
 
 ## Voice
 
 First person, warm, direct, lightly self-deprecating. Jokes are short asides,
-never in the way. English throughout (the interview link stays German, marked
-"(German)").
+never in the way. No em-dashes anywhere in site copy; use commas, colons, or
+periods instead (verbatim external titles keep theirs). German copy uses
+«guillemets» for quotes.

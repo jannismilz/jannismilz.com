@@ -1,10 +1,11 @@
 'use client'
 
-import Link from 'next/link'
-import { usePathname } from 'next/navigation'
 import clsx from 'clsx'
+import { useTranslations } from 'next-intl'
 
+import { LocaleSwitch } from '@/components/LocaleSwitch'
 import { ThemeToggle } from '@/components/ThemeToggle'
+import { Link, usePathname } from '@/i18n/navigation'
 
 function NavLink({
   href,
@@ -32,11 +33,13 @@ function NavLink({
 }
 
 export function Header() {
+  let t = useTranslations('header')
+
   return (
     <header>
       {/* Newspaper double rule */}
       <div className="h-1.5 border-y border-ink" aria-hidden="true" />
-      <div className="flex flex-col gap-2 py-5 sm:flex-row sm:items-baseline sm:justify-between">
+      <div className="flex flex-col gap-2 py-5 sm:flex-row sm:items-center sm:justify-between">
         <div>
           <Link
             href="/"
@@ -45,13 +48,15 @@ export function Header() {
             Jannis Milz
           </Link>
           <p className="mt-1 text-[11px] tracking-[0.12em] text-ink-muted uppercase">
-            Zürich, Switzerland · Programming since age 12
+            {t('dateline')}
           </p>
         </div>
         <nav className="flex items-center gap-5">
-          <NavLink href="/">Front page</NavLink>
-          <NavLink href="/projects">Projects</NavLink>
+          <NavLink href="/">{t('nav.letter')}</NavLink>
+          <NavLink href="/projects">{t('nav.projects')}</NavLink>
+          <NavLink href="/writing">{t('nav.writing')}</NavLink>
           <ThemeToggle />
+          <LocaleSwitch />
         </nav>
       </div>
       <div className="border-t border-hairline" aria-hidden="true" />

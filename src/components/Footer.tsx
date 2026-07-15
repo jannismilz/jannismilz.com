@@ -1,4 +1,5 @@
 import Link from 'next/link'
+import { useTranslations } from 'next-intl'
 
 function FooterLink(props: React.ComponentPropsWithoutRef<typeof Link>) {
   return (
@@ -11,12 +12,14 @@ function FooterLink(props: React.ComponentPropsWithoutRef<typeof Link>) {
 }
 
 export function Footer() {
+  let t = useTranslations('footer')
+
   return (
     <footer className="mt-20 pb-10">
       <div className="border-t border-hairline" aria-hidden="true" />
       <div className="mt-6 flex flex-col gap-2 text-[13px] sm:flex-row sm:items-baseline sm:justify-between">
         <p className="text-ink-muted">
-          © {new Date().getFullYear()} Jannis Milz · Zürich
+          {t('copyright', { year: new Date().getFullYear() })}
         </p>
         <div className="flex gap-4">
           <FooterLink href="https://github.com/jannismilz">GitHub</FooterLink>
@@ -29,8 +32,7 @@ export function Footer() {
         </div>
       </div>
       <p className="mt-4 font-serif text-[14px] text-ink-muted/80 italic">
-        Set in Instrument Serif &amp; Sans. No cookies, no tracking — this paper
-        doesn&rsquo;t follow you home.
+        {t('joke')}
       </p>
     </footer>
   )

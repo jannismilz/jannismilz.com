@@ -1,0 +1,125 @@
+{
+  "metadata": {
+    "title": "Jannis Milz · Softwareentwickler, neugierig von Natur",
+    "description": "Jannis Milz ist Softwareentwickler aus der Schweiz. Er baut eintrittli, gibt Turntraining und probiert neue Technologien aus, bis sie kaputtgehen."
+  },
+  "header": {
+    "dateline": "Programmierer · Turner · Tüftler",
+    "nav": {
+      "letter": "Der Brief",
+      "projects": "Projekte",
+      "writing": "Schreiben"
+    },
+    "localeSwitch": "Read this page in English"
+  },
+  "themeToggle": {
+    "toMorning": "Zur Morgenausgabe wechseln",
+    "toEvening": "Zur Abendausgabe wechseln",
+    "morning": "Morgenausgabe",
+    "evening": "Abendausgabe"
+  },
+  "footer": {
+    "copyright": "© {year} Jannis Milz · Zürich",
+    "joke": "Keine Cookies, kein Tracking. Diese Zeitung verfolgt dich nicht nach Hause."
+  },
+  "home": {
+    "headline": "Entweder finde ich einen Weg,<br></br>oder ich <gradient>erschaffe einen</gradient>.",
+    "letter": {
+      "p1": "Hallo, ich bin Jannis, Softwareentwickler aus der Schweiz. Der Satz da oben ist seit Jahren mein Lebensmotto: Ich glaube erst, dass etwas nicht geht, wenn ich ernsthaft nach einem Weg gesucht habe.",
+      "p1Note": "Auch bekannt als Sturheit. Aber «Motto» liest sich besser auf einer Website.",
+      "p2": "Aufgewachsen bin ich zwischen allerlei Technik, der Weg war also mehr oder weniger vorgezeichnet. Mit zwölf habe ich angefangen zu programmieren, heute mache ich es beruflich: als Lernender Applikationsentwickler bei BSI, davor zwei Jahre an der Universität Zürich.",
+      "pullQuote": "«Ausprobieren, bis etwas kaputtgeht. Dann herausfinden, warum.»",
+      "pullQuoteCaption": "Meine Lernmethode, seit Tag eins. Das Kaputtmachen kommt von allein, das Reparieren ist die Kunst.",
+      "p3": "Abseits der Tastatur turne ich, seit über zehn Jahren im örtlichen Verein, dazu Leichtathletik. Inzwischen trainiere ich die Jüngeren, so wie mich damals jemand trainiert hat.",
+      "p4": "Das hält mich ehrlich: Kein Code-Review ist ein so hartes Publikum wie eine Gruppe Zehnjähriger.",
+      "p5": "Der Rest meines Kopfes gehört dem, was zuletzt meine Neugier geweckt hat: Biografien, Design, Psychologie und ab und zu ein unlösbares Matheproblem.",
+      "p5Note": "Gelöst habe ich noch keines. Der Name hält, was er verspricht.",
+      "p6": "Diese Seite ist die Zeitungsausgabe von all dem. Schau dich um, und wenn dich etwas zum Denken bringt, schreib mir: <mail>hi@jannismilz.com</mail>.",
+      "signoff": "Jannis",
+      "ps": "PS: Diese Zeitung gibt es auch auf Englisch. Der kleine Schalter im Zeitungskopf wechselt die Ausgabe.",
+      "figureAPlaceholder": "irgendwann ein Foto von mir mitten im Salto",
+      "figureACaptionLead": "Beweisstück A.",
+      "figureACaption": "Turnen, die analoge Art von Deployment.",
+      "figureBPlaceholder": "irgendwann ein Foto vom Training mit den Kids",
+      "figureBCaptionLead": "Beweisstück B.",
+      "figureBCaption": "Trainerbank statt Daily Standup."
+    },
+    "now": {
+      "title": "Jetzt",
+      "item1": "Ich baue <link>eintrittli.ch</link> mit Weborb, ein Tür-Check-in-System, so simpel, dass Klemmbretter nervös werden.",
+      "item2": "Lernender Applikationsentwickler bei BSI.",
+      "item3": "2025 an den SwissSkills in Web Technologies angetreten."
+    }
+  },
+  "projects": {
+    "meta": {
+      "title": "Projekte",
+      "description": "Was Jannis Milz gebaut, zerlegt und wieder gebaut hat: eintrittli, Weborb und andere Projekte."
+    },
+    "eyebrow": "Das Portfolio",
+    "headline": "Gebaut, zerlegt und wieder gebaut.",
+    "intro": "Die Projekte, auf die ich am stolzesten bin: von einem echten Produkt bis zu Schulprojekten, die mir gezeigt haben, warum das echte Produkt funktioniert. Mehr folgt.",
+    "figurePlaceholder": "irgendwann ein Screenshot von eintrittli",
+    "figureCaptionLead": "Frisch ab Presse.",
+    "figureCaption": "eintrittli, das erste echte Produkt.",
+    "categories": {
+      "product": "Produkte",
+      "studio": "Das Studio",
+      "openSource": "Open Source",
+      "school": "Schulprojekte"
+    },
+    "items": {
+      "eintrittli": {
+        "description": "Ein simples Eintritts- und Check-in-System für Events und Vereine: konfigurierbare Formulare, Datenexport und bewusst sonst nichts. Keine Zahlungen, kein Login, kein Aufwand. Gebaut und betrieben mit Weborb."
+      },
+      "weborb": {
+        "description": "Das kleine Schweizer Webstudio, in dem meine Projekte erwachsen werden: das Zuhause von eintrittli und von allem, was als Nächstes kommt."
+      },
+      "typst-payqr-swiss": {
+        "description": "Ein Generator für Schweizer QR-Rechnungen im Satzsystem Typst. Auch Rechnungen verdienen schöne Typografie."
+      },
+      "bbw-heroes": {
+        "description": "Eine Plattform, auf der BBW-Lernende ihre Arbeiten mit anderen teilen und gemeinsam wachsen."
+      },
+      "linux-cookbook": {
+        "description": "Ein Leitfaden zu den Grundlagen von Linux und wie man es wirklich benutzt, geschrieben, während ich sie selbst gelernt habe."
+      }
+    },
+    "swissskills": {
+      "highlight": "Highlight",
+      "title": "SwissSkills 2025 · Web Technologies",
+      "body": "2025 habe ich mich an den SwissSkills mit den besten jungen Webentwicklern der Schweiz gemessen. Eine Zeitung hat mich sogar zum Thema KI interviewt; die Kurzversion meiner Antwort wurde zur Schlagzeile: Meine Zukunft hängt von meiner Entwicklung ab, nicht von ihr.",
+      "readInterview": "Zum Interview",
+      "figurePlaceholder": "irgendwann ein Foto vom Wettkampfboden",
+      "figureCaptionLead": "Im Einsatz.",
+      "figureCaption": "SwissSkills 2025, Bern."
+    }
+  },
+  "writing": {
+    "meta": {
+      "title": "Schreiben",
+      "description": "Eigene Texte von Jannis Milz, hier veröffentlicht, plus Highlights aus der Presse und ein Archiv älterer Artikel."
+    },
+    "eyebrow": "Schreiben",
+    "headline": "Was mir durch den Kopf geht.",
+    "intro": "Eigene Gedanken, hier gesetzt und gedruckt. Kein Algorithmus, keine Paywall, nur Buchstaben.",
+    "ownTitle": "Eigene Texte",
+    "highlightsTitle": "Highlights",
+    "archiveTitle": "Aus dem Archiv",
+    "archiveNote": "Vor allem aus meiner Medium-Phase 2024, aufbewahrt wie alte Zeitungen.",
+    "figurePlaceholder": "irgendwann ein Foto vom Schreibtisch",
+    "figureCaptionLead": "Die Redaktion.",
+    "figureCaption": "Ein Schreibtisch, ein Stapel Ideen.",
+    "langTag": {
+      "de": "Deutsch",
+      "en": "Englisch"
+    },
+    "backToWriting": "Zurück zum Schreiben"
+  },
+  "notFound": {
+    "eyebrow": "Korrektur",
+    "headline": "Diese Seite ging nie in Druck.",
+    "body": "In einer früheren Ausgabe haben wir womöglich den Eindruck erweckt, diese Seite existiere. Wir bedauern den Fehler.",
+    "back": "Zurück zur Titelseite"
+  }
+}

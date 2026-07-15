@@ -1,7 +1,13 @@
-import { parseDate } from '@/lib/articles'
+/** Parses the site's `DD.MM.YYYY` date strings. */
+export function parseDate(dateString: string) {
+  const [day, month, year] = dateString.split('.').map(Number)
+  return new Date(year, month - 1, day)
+}
 
-export function formatDate(dateString: string) {
-  return parseDate(dateString).toLocaleDateString('en-GB', {
+const dateLocales = { de: 'de-CH', en: 'en-GB' } as const
+
+export function formatDate(dateString: string, locale: 'de' | 'en' = 'en') {
+  return parseDate(dateString).toLocaleDateString(dateLocales[locale], {
     month: 'short',
     year: 'numeric',
   })
