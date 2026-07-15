@@ -124,7 +124,9 @@
     "headline": "What’s been on my mind.",
     "intro": "My own thoughts, typeset and published right here. No algorithm, no paywall, just letters.",
     "ownTitle": "My writing",
+    "ownTagline": "Thoughts at full length, published right here.",
     "highlightsTitle": "Highlights",
+    "highlightsTagline": "Where my name has popped up elsewhere.",
     "archiveTitle": "From the archive",
     "archiveNote": "Mostly from my 2024 Medium era, preserved here like old newspapers.",
     "langTag": {

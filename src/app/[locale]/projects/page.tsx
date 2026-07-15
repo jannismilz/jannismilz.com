@@ -5,6 +5,7 @@ import { getTranslations, setRequestLocale } from 'next-intl/server'
 import { Eyebrow } from '@/components/Eyebrow'
 import { FigureFrame } from '@/components/FigureFrame'
 import { ProjectEntry } from '@/components/ProjectEntry'
+import { SectionHeader } from '@/components/SectionHeader'
 import { projectCategories, projects } from '@/lib/projects'
 import { alternatesFor } from '@/lib/seo'
 
@@ -86,15 +87,10 @@ function ProjectGroups() {
 
         return (
           <section key={category} className="mt-14">
-            <div className="h-1 border-y border-ink" aria-hidden="true" />
-            <div className="mt-5 flex flex-col gap-x-4 sm:flex-row sm:items-baseline">
-              <h2 className="font-serif text-[26px]">
-                {t(`categories.${category}.title`)}
-              </h2>
-              <p className="font-serif text-[15px] text-ink-muted italic">
-                {t(`categories.${category}.tagline`)}
-              </p>
-            </div>
+            <SectionHeader
+              title={t(`categories.${category}.title`)}
+              tagline={t(`categories.${category}.tagline`)}
+            />
             <div className="mt-1 divide-y divide-hairline">
               {entries.map((project) => (
                 <ProjectEntry

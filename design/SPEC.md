@@ -121,8 +121,10 @@ placeholder) at the bottom.
 
 ### Writing (`/writing`)
 Eyebrow "SCHREIBEN" / "WRITING" (user rejected "Texte"), serif headline,
-intro, small desk figure right of the header. Three clearly separated
-sections, all fed from the easy-to-edit lists in `src/lib/writing.ts`:
+intro. Three sections, each opened with the same newspaper section header as
+the projects page (double rule + serif title + italic tagline, shared
+`SectionHeader` component), all fed from the easy-to-edit lists in
+`src/lib/writing.ts`:
 1. EIGENE TEXTE / MY WRITING — own posts (MDX files in
    `src/content/writing/`, rendered at `/writing/<slug>` with the site's
    newspaper typography via `src/mdx-components.tsx`).

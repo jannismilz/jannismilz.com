@@ -124,7 +124,9 @@
     "headline": "Was mir durch den Kopf geht.",
     "intro": "Eigene Gedanken, hier gesetzt und gedruckt. Kein Algorithmus, keine Paywall, nur Buchstaben.",
     "ownTitle": "Eigene Texte",
+    "ownTagline": "Gedanken in voller Länge, direkt hier veröffentlicht.",
     "highlightsTitle": "Highlights",
+    "highlightsTagline": "Wo mein Name sonst noch aufgetaucht ist.",
     "archiveTitle": "Aus dem Archiv",
     "archiveNote": "Vor allem aus meiner Medium-Phase 2024, aufbewahrt wie alte Zeitungen.",
     "langTag": {

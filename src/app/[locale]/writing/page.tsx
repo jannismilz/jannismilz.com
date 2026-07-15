@@ -3,6 +3,7 @@ import { useLocale, useTranslations } from 'next-intl'
 import { getTranslations, setRequestLocale } from 'next-intl/server'
 
 import { Eyebrow } from '@/components/Eyebrow'
+import { SectionHeader } from '@/components/SectionHeader'
 import { Link } from '@/i18n/navigation'
 import { formatDate } from '@/lib/formatDate'
 import { alternatesFor } from '@/lib/seo'
@@ -40,9 +41,9 @@ function OwnArticles() {
   const locale = useLocale() as 'de' | 'en'
 
   return (
-    <section className="mt-12">
-      <Eyebrow>{t('ownTitle')}</Eyebrow>
-      <div className="divide-y divide-hairline">
+    <section className="mt-14">
+      <SectionHeader title={t('ownTitle')} tagline={t('ownTagline')} />
+      <div className="mt-1 divide-y divide-hairline">
         {getOwnArticles().map((article) => (
           <article key={article.slug} className="group relative py-5">
             <p className="text-[13px] text-ink-muted">
@@ -73,9 +74,12 @@ function Highlights() {
   const locale = useLocale() as 'de' | 'en'
 
   return (
-    <section className="mt-16">
-      <Eyebrow>{t('highlightsTitle')}</Eyebrow>
-      <div className="divide-y divide-hairline">
+    <section className="mt-14">
+      <SectionHeader
+        title={t('highlightsTitle')}
+        tagline={t('highlightsTagline')}
+      />
+      <div className="mt-1 divide-y divide-hairline">
         {getHighlights().map((highlight) => (
           <article key={highlight.link} className="group relative py-5">
             <p className="text-[13px] text-ink-muted">
@@ -113,11 +117,8 @@ function Archive() {
   const locale = useLocale() as 'de' | 'en'
 
   return (
-    <section className="mt-16">
-      <Eyebrow>{t('archiveTitle')}</Eyebrow>
-      <p className="mt-3 font-serif text-[15px] text-ink-muted italic">
-        {t('archiveNote')}
-      </p>
+    <section className="mt-14">
+      <SectionHeader title={t('archiveTitle')} tagline={t('archiveNote')} />
       <ul className="mt-2 divide-y divide-hairline">
         {getMediumArticles().map((article) => (
           <li key={article.link}>
