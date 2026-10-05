@@ -90,6 +90,12 @@
       "typst-payqr-swiss": {
         "description": "Ein Generator für Schweizer QR-Rechnungen in Typst."
       },
+      "athena": {
+        "description": "Ein persönliches Wiki, in das die eigene KI schreiben kann. Es dient als gemeinsamer Arbeitsplatz mit der KI."
+      },
+      "gratis-kirchenaustritt-formular": {
+        "description": "Bezahlen für ein Kirchenaustritt, nein danke. Einfacher Formulargenerator, der vollständig im Browser läuft."
+      },
       "bbw-heroes": {
         "description": "Eine Plattform, auf der BBW-Lernende ihre Arbeiten mit anderen teilen und gemeinsam wachsen."
       },

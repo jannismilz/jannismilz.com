@@ -90,6 +90,12 @@
       "typst-payqr-swiss": {
         "description": "A Swiss QR bill generator for Typst."
       },
+      "athena": {
+        "description": "A personal wiki that your own AI can write in. It serves as a shared workspace with the AI."
+      },
+      "gratis-kirchenaustritt-formular": {
+        "description": "Paying to leave the church? No, thanks. A simple form generator that runs entirely in the browser."
+      },
       "bbw-heroes": {
         "description": "A platform where BBW students share their work with others and grow together."
       },
