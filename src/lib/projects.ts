@@ -32,6 +32,24 @@ export const projects: Project[] = [
     },
   },
   {
+    slug: 'athena',
+    name: 'Athena',
+    category: 'openSource',
+    link: {
+      href: 'https://github.com/jannismilz/athena',
+      label: 'github.com/jannismilz/athena',
+    },
+  },
+  {
+    slug: 'gratis-kirchenaustritt-formular',
+    name: 'Gratis Kirchenaustritt-Formular',
+    category: 'openSource',
+    link: {
+      href: 'https://github.com/MilzInformatik/gratis-kirchenaustritt-formular',
+      label: 'github.com/MilzInformatik/gratis-kirchenaustritt-formular',
+    },
+  },
+  {
     slug: 'bbw-heroes',
     name: 'BBW Heroes',
     category: 'school',
