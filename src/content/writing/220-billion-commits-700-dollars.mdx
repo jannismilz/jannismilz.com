@@ -1,0 +1,125 @@
+TODO: Short disclaimer for research and challenge only.
+
+A commit is a small thing. A name, an email address, a date, a sentence about what changed, and forty characters that identify it for good. Somebody fixed a typo, or started a kernel, and git wrote it down.
+
+One evening me and my friend looked at the repository of the linux kernel and wondered what interesting data would be in that git history. The next question everyone would have also asked is what interesting data would be in every git repository on GitHub.
+
+Actually, we had absolutely no use for the answer but my stupid self saw an exciting challenge and it took off from there. In that case everyone would have seen the suffering  coming, except for my humble self.
+
+## One repository
+
+At least I knew how to start small, with a single repository. The goal was clear: clone the repo, extract the git history and delete the repo.
+
+The optimized code looked something like this:
+```bash
+TODO
+```
+
+- Optimization 1
+- Optimization 2
+- Optimization 3
+
+What scrolls past is a list of people and moments. Author, date, message. Author, date, message. It is oddly moving for a text file. It is also, I noticed, extremely regular. If one repository is a list, then all repositories are just a longer list.
+
+That sentence is where the trouble starts.
+
+## Every repository
+
+GitHub has no button that lists everything it hosts. But [GH Archive](https://www.gharchive.org) has recorded every public event on the platform since February 2011, and a repository that was ever pushed to, starred or forked appears in that record. One query over its tables in BigQuery, a `SELECT DISTINCT` on the repository name, came back with a list. The list was more than humbling, it just had *~577 MILLION* repos on it... F me.
+
+<Chart
+  title="Distinct repositories with activity per year, in millions"
+  caption="Source: GH Archive. 2025 covers January to end of October."
+>
+  <ColumnChart
+    columns={[
+      { label: '11', value: 1.16, display: '1' },
+      { label: '12', value: 2.74, display: '3' },
+      { label: '13', value: 4.65, display: '5' },
+      { label: '14', value: 8.08, display: '8' },
+      { label: '15', value: 13.23, display: '13' },
+      { label: '16', value: 19.86, display: '20' },
+      { label: '17', value: 25.87, display: '26' },
+      { label: '18', value: 31.38, display: '31' },
+      { label: '19', value: 37.13, display: '37' },
+      { label: '20', value: 50.59, display: '51' },
+      { label: '21', value: 61.94, display: '62' },
+      { label: '22', value: 78.28, display: '78' },
+      { label: '23', value: 82.03, display: '82' },
+      { label: '24', value: 86.79, display: '87' },
+      { label: '25', value: 74.12, display: '74', muted: true },
+    ]}
+  />
+</Chart>
+
+That is not a manageable list, so I cut it into pieces: files of ~10,000 repos each. Then I ran the first one.
+
+Ten thousand repos gave me *4.8 million commits* and *350MB* of data. I multiplied. Thirteen terabytes. Large, but the kind of large even I can rent.
+
+After a good night of sleep I had a not so good realization: forks. The multiplication stopped being comforting.
+
+## The same history, XX,000 times
+
+A fork on GitHub is a full copy of a repository, history included. The Linux kernel has ~1.4 million commits and XX,000 forks. Walk through all of them and you read the same diary XX,000 times: 81 billion rows from one project. TensorFlow would add 13.8 billion. VS Code, 4.9 billion.
+
+You cannot simply skip the forks, because git does not know what a fork is. To git, two repositories with the same history are just two repositories. Which one came first is a fact that lives on GitHub's servers, not in the data.
+
+So the project changed shape. I had set out to collect, and now most of the work would be throwing away.
+
+There was one piece of luck in this, and it had been there since the first paragraph: the forty characters. A commit's hash is computed from its content. The same commit has the same hash in every copy, anywhere in the world. I would not need to work out which repository was the original. I would only need to keep one row per hash.
+
+Sounds like a simple task but I completely underestimated it. This also ended in the decision to discard the repo name, I would only keep the commits themself.
+
+## Highly-complex distributed worker infrastructure
+
+Okay, I'm kidding, it's neither complex nor a real infrastructure. It's so simple it's almost amusing.
+
+## Just remove the waste
+
+## Sort was the key
+
+## A detour for a measly 7%
+
+## The godly machine
+
+Why do I always exaggerate.. it was just the biggest machine I needed for this.
+
+## What the pile contains
+
+## All of it together
+
+When I finally sketched out what I had built, for this blog post, I was almost disappointed by how little there was to draw.
+
+<Chart title="The pipeline">
+  <Flow
+    steps={[
+      {
+        tag: 'BigQuery',
+        title: 'Make a list',
+        detail:
+          'Every repository name GH Archive knows, minus the ones already found dead, in files of 10,000.',
+      },
+      {
+        tag: 'Bash, git, GNU parallel',
+        title: 'Clone, read the log, delete',
+        detail:
+          '12 to 15 small servers taking files from a folder.',
+      },
+      {
+        tag: 'ClickHouse',
+        title: 'Sort by hash, in 106 portions',
+        detail: 'Each on a server with 18 GB of memory and a 1 TB disk.',
+      },
+      {
+        tag: 'ClickHouse',
+        title: 'Sort by hash, all at once',
+        detail: '15.68 billion rows on one machine with 32 GB of memory.',
+      },
+      {
+        tag: 'ClickHouse',
+        title: 'Sort by person',
+        detail: 'One partition per month, one Parquet file per partition.',
+      },
+    ]}
+  />
+</Chart>

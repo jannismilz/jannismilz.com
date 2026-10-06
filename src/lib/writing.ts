@@ -40,14 +40,14 @@ export interface MediumArticle {
 }
 
 export const ownArticles: OwnArticle[] = [
-/*   {
-    slug: 'warum-diese-seite-aussieht-wie-eine-zeitung',
-    title: 'Warum diese Seite aussieht wie eine Zeitung',
+  {
+    slug: 'new-220-billion-commits-700-dollars',
+    title: '220 Billion Commits, 700 Dollars, One Bash-Script',
     description:
-      'Über den Neuanfang dieser Website: weniger Template, mehr Brief. Und warum Papier das bessere Vorbild ist als ein Dashboard.',
-    date: '14.07.2026',
-    lang: 'de',
-  }, */
+      'How I pulled the commit history of 577 million GitHub repositories and boiled it down to 6.2 billion unique commits with just Bash, DuckDB, ClickHouse and a dozen of cheap servers.',
+    date: '06.10.2026',
+    lang: 'en',
+  },
 ]
 
 export const highlights: Highlight[] = [
