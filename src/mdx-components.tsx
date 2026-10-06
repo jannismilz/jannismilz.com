@@ -1,12 +1,14 @@
 import { type MDXComponents } from 'mdx/types'
 
+import { BarChart, Chart, ColumnChart, Flow } from '@/components/ArticleFigures'
 import { FigureFrame } from '@/components/FigureFrame'
 import { MarginNote } from '@/components/MarginNote'
 
 /**
  * Maps MDX elements onto the site's newspaper styles so articles read
  * like the rest of the paper. Custom components (MarginNote,
- * FigureFrame) are available in every article without importing.
+ * FigureFrame, and the charts from ArticleFigures) are available in
+ * every article without importing.
  */
 export function useMDXComponents(components: MDXComponents): MDXComponents {
   return {
@@ -35,8 +37,18 @@ export function useMDXComponents(components: MDXComponents): MDXComponents {
     code: (props) => (
       <code className="bg-paper-raised px-1.5 py-0.5 text-[14px]" {...props} />
     ),
+    pre: (props) => (
+      <pre
+        className="overflow-x-auto border border-hairline bg-paper-raised p-4 text-[13px] leading-relaxed [&>code]:bg-transparent [&>code]:p-0 [&>code]:text-[13px]"
+        {...props}
+      />
+    ),
     MarginNote,
     FigureFrame,
+    Chart,
+    BarChart,
+    ColumnChart,
+    Flow,
     ...components,
   }
 }
