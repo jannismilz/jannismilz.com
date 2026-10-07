@@ -6,6 +6,12 @@ export function parseDate(dateString: string) {
 
 const dateLocales = { de: 'de-CH', en: 'en-GB' } as const
 
+/** `YYYY-MM-DD`, for metadata such as `article:published_time`. */
+export function toIsoDate(dateString: string) {
+  const [day, month, year] = dateString.split('.')
+  return `${year}-${month}-${day}`
+}
+
 /** A full date for datelines, e.g. '6 October 2026'. */
 export function formatLongDate(dateString: string, locale: 'de' | 'en' = 'en') {
   return parseDate(dateString).toLocaleDateString(dateLocales[locale], {

@@ -4,9 +4,11 @@ import { getTranslations, setRequestLocale } from 'next-intl/server'
 
 import { Eyebrow } from '@/components/Eyebrow'
 import { Link } from '@/i18n/navigation'
-import { formatDate } from '@/lib/formatDate'
+import { formatDate, toIsoDate } from '@/lib/formatDate'
 import { alternatesFor } from '@/lib/seo'
 import { getOwnArticle, loadArticleContent, ownArticles } from '@/lib/writing'
+
+const author = { name: 'Jannis Milz', url: 'https://jannismilz.com' }
 
 export function generateStaticParams() {
   return ownArticles.map((article) => ({ slug: article.slug }))
@@ -21,12 +23,26 @@ export async function generateMetadata({
   const article = getOwnArticle(slug)
   if (!article) return {}
 
+  const alternates = alternatesFor(locale, `/writing/${slug}`)
+
+  // The share image comes from opengraph-image.tsx next to this file.
   return {
     title: article.title,
     description: article.description,
-    alternates: alternatesFor(locale, `/writing/${slug}`),
+    authors: [{ name: author.name, url: author.url }],
+    alternates,
     openGraph: {
       type: 'article',
+      siteName: author.name,
+      url: alternates?.canonical as string,
+      locale: article.lang === 'de' ? 'de_CH' : 'en_US',
+      title: article.title,
+      description: article.description,
+      publishedTime: toIsoDate(article.date),
+      authors: [author.url],
+    },
+    twitter: {
+      card: 'summary_large_image',
       title: article.title,
       description: article.description,
     },
@@ -47,8 +63,25 @@ export default async function ArticlePage({
   const t = await getTranslations('writing')
   const Content = await loadArticleContent(slug)
 
+  // Structured data, so search engines can show the piece as an article.
+  const jsonLd = {
+    '@context': 'https://schema.org',
+    '@type': 'BlogPosting',
+    headline: article.title,
+    description: article.description,
+    datePublished: toIsoDate(article.date),
+    inLanguage: article.lang,
+    author: { '@type': 'Person', ...author },
+  }
+
   return (
     <article className="pt-12 sm:pt-16" lang={article.lang}>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify(jsonLd).replace(/</g, '\\u003c'),
+        }}
+      />
       <header>
         <Eyebrow>{t('eyebrow')}</Eyebrow>
         <h1 className="mt-4 font-serif text-[38px] leading-[1.1] sm:text-[48px]">
