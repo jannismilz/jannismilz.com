@@ -6,7 +6,7 @@ import { Eyebrow } from '@/components/Eyebrow'
 import { Link } from '@/i18n/navigation'
 import { formatDate } from '@/lib/formatDate'
 import { alternatesFor } from '@/lib/seo'
-import { getOwnArticle, ownArticles } from '@/lib/writing'
+import { getOwnArticle, loadArticleContent, ownArticles } from '@/lib/writing'
 
 export function generateStaticParams() {
   return ownArticles.map((article) => ({ slug: article.slug }))
@@ -45,9 +45,7 @@ export default async function ArticlePage({
   if (!article) notFound()
 
   const t = await getTranslations('writing')
-  const { default: Content } = await import(
-    `../../../../content/writing/${slug}.mdx`
-  )
+  const Content = await loadArticleContent(slug)
 
   return (
     <article className="pt-12 sm:pt-16" lang={article.lang}>

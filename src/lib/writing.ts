@@ -122,6 +122,12 @@ export function getOwnArticle(slug: string) {
   return ownArticles.find((article) => article.slug === slug)
 }
 
+/** The compiled MDX body of one of my own articles. */
+export async function loadArticleContent(slug: string) {
+  const { default: Content } = await import(`@/content/writing/${slug}.mdx`)
+  return Content as React.ComponentType
+}
+
 export function getHighlights() {
   return [...highlights].sort(byDateDesc)
 }

@@ -5,7 +5,6 @@ import { hasLocale, NextIntlClientProvider } from 'next-intl'
 import { getTranslations, setRequestLocale } from 'next-intl/server'
 
 import { Providers } from '@/app/providers'
-import { Layout } from '@/components/Layout'
 import { routing } from '@/i18n/routing'
 import { alternatesFor } from '@/lib/seo'
 
@@ -84,9 +83,7 @@ export default async function LocaleLayout({
     >
       <body className="h-full bg-paper font-sans text-[17px] leading-[1.65] text-ink">
         <NextIntlClientProvider>
-          <Providers>
-            <Layout>{children}</Layout>
-          </Providers>
+          <Providers>{children}</Providers>
         </NextIntlClientProvider>
       </body>
     </html>
