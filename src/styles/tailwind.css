@@ -12,6 +12,11 @@
   --accent-amber: #c77b0a;
   --selection-bg: #f9e3db;
   --selection-text: #a62b16;
+  --code-keyword: #a62b16;
+  --code-string: #4a6b1f;
+  --code-function: #1d5a8a;
+  --code-constant: #9a5b00;
+  --code-comment: #8a7f6e;
 }
 
 .dark {
@@ -24,6 +29,11 @@
   --accent-amber: #ffa02e;
   --selection-bg: #3a1710;
   --selection-text: #ffb29e;
+  --code-keyword: #ff8b70;
+  --code-string: #a9cf85;
+  --code-function: #8fbcf5;
+  --code-constant: #ffb454;
+  --code-comment: #7f8aa0;
 }
 
 @theme inline {
