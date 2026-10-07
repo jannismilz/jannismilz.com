@@ -107,7 +107,7 @@ That is not a manageable list, so I cut it into pieces: files of about 10,000 re
 
 Ten thousand repos gave me 4.8 million commits and 350 MB of data. I multiplied. Thirteen terabytes. Large, but the kind of large even I can rent.
 
-After a good night's sleep I had a not so good realization: forks. The multiplication stopped being comforting.
+After a good night's sleep came a not so good realization: forks. The multiplication stopped being comforting.
 
 ## The same history, 58,000 times
 
@@ -127,7 +127,7 @@ Okay, I'm kidding. It's neither complex nor a real infrastructure. It's so simpl
 
 One script on one machine would have taken years, so the script needed company, and company needs someone to hand out the work. I did not build that someone.
 
-The files of repo names already lay in a folder in an S3 bucket, so I came to the geniues idea to use the S3 as my queue. Yes.. I laughed as well, at firt. But it worked exceptionally well.
+The files of repo names already lay in a folder in an S3 bucket, and that gave me the genius idea of using the bucket itself as the queue. Yes, I laughed too, at first. But it worked exceptionally well.
 
 <Chart
   title="Life of a chunk"
@@ -275,7 +275,7 @@ Then, for months, twelve to fifteen of the smallest servers you can rent did not
   />
 </Chart>
 
-A big part of the names led nowhere: deleted, made private, or simply unreachable on the day a server came asking.
+About a third of the names led nowhere: deleted, made private, or simply unreachable on the day a server came asking.
 
 The fetching worked. It worked so well that the bucket kept filling up, day and night, with data I had no idea how to handle yet.
 
@@ -365,7 +365,7 @@ The first batch was a thousand files. Inserting took about twelve hours and the 
 
 It had worked. For the first time since the forks, a number in this project had gone *down*. Hurray!
 
-That batch filled 709 GB of a 1 TB disk, so I halved the portions to 500 files. Weeks later the files suddenly doubled in size, and I went down to 250 and, on the same day, to 125. That's what I call continuous improvement, lol.
+That batch filled 709 GB of a 1 TB disk, so I halved the portions to 500 files. Weeks later the files suddenly doubled in size, and I went down to 250 and, on the same day, to 125. That is what I call continuous improvement, lol.
 
 ## A detour for a measly 7%
 
@@ -423,7 +423,7 @@ The second chart is my favourite result of the whole project. The same rows, sor
 
 Storing the dates as real timestamps saved another 6%. The strongest compression saved 6% more but took over twice as long to write, which is a fair price for a file you write once.
 
-Was it worth an evening for a measly 7%? On one file, no. On multiple terabytes of data, very much. And the result would come in handy once more, at the very end.
+Was it worth an evening for a measly 7%? On one file, no. On several terabytes of them, very much. And the result would come in handy once more, at the very end.
 
 ## The godly machine
 
@@ -509,7 +509,7 @@ Six billion of anything will contain everything. A few things I found without ev
 
 **Commits from the past.** About nine million commits are dated 1970, most of them presumably from clocks that reported zero. Not every old date is a mistake, though. Projects older than git brought their history along when they moved, so a commit from the nineties can be perfectly honest.
 
-**Commits from the future.** Several million commits claim to be from 2027 or later. All in all it holds 1,594 different months, and git has existed for about 250 of them. People are crazy.
+**Commits from the future.** Several million commits claim to be from 2027 or later. All in all, the table holds 1,594 different months, and git has existed for about 250 of them. People are crazy.
 
 **Commits from no time at all.** Some have no date whatsoever. They fit into no month, so they got their own way across into the final table: 128 slices cut by hash, with a text file keeping track of which slices were done.
 
@@ -523,7 +523,7 @@ The project ended up keeping a diary of itself.
 
 ## All of what I'd built
 
-When I sketched out what I had built, for this blog post, I was almost disappointed by how little there was to draw.
+When I sketched out what I had built for this blog post, I was almost disappointed by how little there was to draw.
 
 <Chart title="The pipeline">
   <Flow
