@@ -68,3 +68,99 @@
     color: var(--accent);
   }
 }
+
+/*
+ * Print edition (/writing/<slug>/print): one article set as a newspaper
+ * page. Always the morning palette, whatever the reader's theme, and
+ * colours are printed exactly so the chart bars survive on paper.
+ */
+.print-edition {
+  --paper: #faf6ef;
+  --paper-raised: #f3eddf;
+  --ink: #1a1815;
+  --ink-muted: #6e6558;
+  --hairline: #e3dac6;
+  --accent: #c8371e;
+  --accent-amber: #c77b0a;
+  --code-keyword: #a62b16;
+  --code-string: #4a6b1f;
+  --code-function: #1d5a8a;
+  --code-constant: #9a5b00;
+  --code-comment: #8a7f6e;
+  print-color-adjust: exact;
+  -webkit-print-color-adjust: exact;
+}
+
+.print-columns {
+  font-size: 15px;
+  line-height: 1.55;
+  text-align: justify;
+  hyphens: auto;
+
+  & > * + * {
+    margin-top: 0.75rem;
+  }
+
+  & p {
+    orphans: 3;
+    widows: 3;
+  }
+
+  & h2 {
+    margin-top: 1.5rem;
+    font-size: 22px;
+    text-align: left;
+    break-after: avoid;
+  }
+
+  & figure,
+  & pre,
+  & li {
+    break-inside: avoid;
+  }
+
+  /* Charts and diagrams run across the full page width. */
+  & figure[data-chart] {
+    column-span: all;
+    margin-block: 1rem;
+    text-align: left;
+  }
+
+  /* Code stays inside its column, so long lines wrap instead of being cut. */
+  & pre,
+  & pre > code {
+    font-size: 11px;
+    text-align: left;
+    white-space: pre-wrap;
+    overflow-wrap: anywhere;
+  }
+
+  /* There is no margin to sit in between columns: notes go inline. */
+  & .margin-note {
+    position: static;
+    width: auto;
+    margin: 0.5rem 0 0;
+    padding-left: 1rem;
+    border-left: 1px solid var(--hairline);
+    text-align: left;
+  }
+}
+
+@media (min-width: 48rem), print {
+  .print-columns {
+    columns: 2;
+    column-gap: 2rem;
+    column-rule: 1px solid var(--hairline);
+  }
+}
+
+@media print {
+  @page {
+    size: A4;
+    margin: 16mm 14mm;
+  }
+
+  .print-edition {
+    --paper: #fff;
+  }
+}

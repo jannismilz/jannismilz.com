@@ -56,6 +56,13 @@ export default async function ArticlePage({
         </h1>
         <p className="mt-4 text-[13px] tracking-[0.08em] text-ink-muted uppercase">
           {formatDate(article.date, locale)}
+          <span aria-hidden="true"> · </span>
+          <Link
+            href={`/writing/${slug}/print`}
+            className="underline decoration-1 underline-offset-3 transition hover:text-accent"
+          >
+            {t('printEdition')}
+          </Link>
         </p>
       </header>
       <div className="mt-8 space-y-5">

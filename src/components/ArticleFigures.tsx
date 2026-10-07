@@ -17,7 +17,7 @@ export function Chart({
   children: React.ReactNode
 }) {
   return (
-    <figure className="py-2">
+    <figure data-chart className="py-2">
       <div className="border border-hairline bg-paper-raised p-4 sm:p-5">
         {title && (
           <p className="mb-4 text-[12px] tracking-[0.08em] text-ink-muted uppercase">
