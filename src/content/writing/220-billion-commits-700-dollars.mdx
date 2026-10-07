@@ -1,0 +1,568 @@
+*A note before we start: this was a personal challenge and a research project, nothing more. I only read public git history, and the dataset is not published, sold or used to contact anyone.*
+
+A commit is a small thing. A name, an email address, a date, a sentence about what changed, and forty characters that identify it for good. Somebody fixed a typo, or started a kernel, and git wrote it down.
+
+One evening a friend and I were looking at the repository of the Linux kernel and wondered what interesting data might be hiding in that git history. The next question is the one anybody would have asked: what would be hiding in the history of *every* repository on GitHub?
+
+We had absolutely no use for the answer. But I saw a challenge, and that was that. Everyone else would have seen the suffering coming. I did not.
+
+## One repository
+
+At least I knew to start small, with a single repository. The plan fit in one sentence: clone the repo, extract the git history, delete the repo.
+
+That plan became a Bash script of 170 lines. Its heart is one function that handles one repository, and it is worth reading in pieces, because every odd-looking part of it is a scar.
+
+**Clone, but only the diary.**
+
+```bash
+GIT_TERMINAL_PROMPT=0 git clone --bare --filter=blob:none --quiet "$repo_url" "$repo_dir" 2>/dev/null || {
+    log "Failed to clone $repo_id"
+    return 0
+}
+```
+
+`--bare --filter=blob:none` is a partial clone: git fetches the commits and the directory trees but not a single file. I only wanted the history, and the history is a small fraction of a repository.
+
+`GIT_TERMINAL_PROMPT=0` looks harmless and saved the project. Ask git for a repository that has been deleted or made private, and it politely asks for a username. Nobody would be there to type one. Without the variable, a server waits at that prompt forever. With it, the clone fails at once, the failure is logged, and the function returns 0 so that one dead repository never stops the other 9,999.
+
+One more setting lives outside the script: `git config --global gc.auto 0`. Git likes to tidy up a repository in the background. There is no point in tidying something that will be deleted a second later.
+
+**Print the history in a format nothing can break.**
+
+```bash
+git log --pretty=format:"%x1E%H%x1F%an%x1F%ae%x1F%ad%x1F%cn%x1F%ce%x1F%cd%x1F%B%x1D"
+```
+
+Hash, author, author email, authored date, committer, committer email, committed date, message. Eight fields per commit.
+
+Commit messages contain everything a keyboard can produce: tabs, commas, quotes, line breaks. No ordinary character is safe as a separator. So the fields are separated by `0x1F` and the records by `0x1E`, the ASCII unit and record separators. They were put into the standard in the 1960s for exactly this job and have been waiting for someone to use them ever since.<MarginNote>Somebody still managed to commit an entire PDF file as a commit message. The parser did not enjoy it.</MarginNote>
+
+What is missing from that line matters just as much. My first version had `--shortstat` in it, to get the lines added and removed per commit. For that, git has to compare every commit with its parent. Without the flag, the same script ran *13.66 times* faster. I dropped the flag and the idea.
+
+**Clean up the messages.**
+
+```bash
+awk -v RS="\x1E" -v FS="\x1F" -v OFS="\x1F" '
+    NF {
+        msg=$8;
+        sub(/\x1D.*/, "", msg);                 # cut at the end-of-message marker
+        sub(/^\n+/, "", msg); sub(/\n+$/, "", msg);
+        gsub(/\r/, "", msg);
+        gsub(/\n/, "\\n", msg);                 # one commit, one line
+        gsub(/\t/, " ", msg);
+        gsub(/\x1F/, " ", msg); gsub(/\x1E/, " ", msg);
+        print $1, $2, $3, $4, $5, $6, $7, msg;
+    }'
+```
+
+`git log` is piped straight into `awk`, which reads record by record using the same two separators. It trims the message, turns real line breaks into the two characters `\n` so that every commit ends up on one line, and removes the separator characters themselves in case somebody was creative enough to put one in a message.
+
+**Write, rename, delete.**
+
+```bash
+) > "$csv_tmp" && mv "$csv_tmp" "$csv_final"
+
+rm -rf "$repo_dir"
+log "Completed repo: $repo_id"
+```
+
+The output goes to a temporary file first and is only renamed when the whole pipeline succeeded. If the machine dies in the middle of a repository, there is no half-written file pretending to be finished.
+
+What scrolls past is a list of people and moments. Author, date, message. Author, date, message. It is oddly moving for a text file. It is also, I noticed, extremely regular. If one repository is a list, then all repositories are just a longer list.
+
+That sentence is where the trouble starts.
+
+## Every repository
+
+GitHub has no button that lists everything it hosts. But [GH Archive](https://www.gharchive.org) has recorded every public event on the platform since February 2011, and a repository that was ever pushed to, starred or forked appears in that record. One query over its tables in BigQuery, a `SELECT DISTINCT` on the repository name, came back with a list. The list was more than humbling. It had almost 500 MILLION repos on it... F me.
+
+<Chart
+  title="Repositories with any activity in a given year, in millions"
+  caption="Source: GH Archive. 2025 covers January to end of October."
+>
+  <ColumnChart
+    columns={[
+      { label: '11', value: 1.16, display: '1' },
+      { label: '12', value: 2.74, display: '3' },
+      { label: '13', value: 4.65, display: '5' },
+      { label: '14', value: 8.08, display: '8' },
+      { label: '15', value: 13.23, display: '13' },
+      { label: '16', value: 19.86, display: '20' },
+      { label: '17', value: 25.87, display: '26' },
+      { label: '18', value: 31.38, display: '31' },
+      { label: '19', value: 37.13, display: '37' },
+      { label: '20', value: 50.59, display: '51' },
+      { label: '21', value: 61.94, display: '62' },
+      { label: '22', value: 78.28, display: '78' },
+      { label: '23', value: 82.03, display: '82' },
+      { label: '24', value: 86.79, display: '87' },
+      { label: '25', value: 74.12, display: '74', muted: true },
+    ]}
+  />
+</Chart>
+
+Add up the bars and you get 578 million, which is more than my list. That is because a repo that was active in three different years shows up in three bars. Count every repo only once and 497.6 million remain.
+
+That is not a manageable list, so I cut it into pieces: files of about 10,000 repos each. Then I ran the first one.
+
+Ten thousand repos gave me 4.8 million commits and 350 MB of data. I multiplied. Thirteen terabytes. Large, but the kind of large even I can rent.
+
+After a good night's sleep came a not so good realization: forks. The multiplication stopped being comforting.
+
+## The same history, 58,000 times
+
+A fork on GitHub is a full copy of a repository, history included. The Linux kernel has about 1.4 million commits and 58,000 forks. Walk through all of them and you read the same diary 58,000 times: 81 billion rows from one project. TensorFlow would add 13.8 billion. VS Code, 4.9 billion.
+
+You cannot simply skip the forks, because git does not know what a fork is. To git, two repositories with the same history are just two repositories. Which one came first is a fact that lives on GitHub's servers, not in the data.
+
+So the project changed shape. I had set out to collect, and now most of the work would be throwing away.
+
+There was one piece of luck in this, and it had been there since the first paragraph: the forty characters. A commit's hash is computed from its content. The same commit has the same hash in every copy, anywhere in the world. I would not need to work out which repository was the original. I would only need to keep one row per hash.
+
+It sounds like a simple task, so I obviously underestimated it. It also settled another question: if I cannot tell the original from its copies, the repository name attached to a commit means nothing. I threw the names away and kept only the commits themselves.
+
+## Highly-complex distributed worker infrastructure
+
+Okay, I'm kidding. It's neither complex nor a real infrastructure. It's so simple it's almost embarrassing.
+
+One script on one machine would have taken years, so the script needed company, and company needs someone to hand out the work. I did not build that someone.
+
+The files of repo names already lay in a folder in an S3 bucket, and that gave me the genius idea of using the bucket itself as the queue. Yes, I laughed too, at first. But it worked exceptionally well.
+
+<Chart
+  title="Life of a chunk"
+  caption="A crashed worker leaves its chunk visibly stuck in the middle folder. At the end I moved those back and ran them again."
+>
+  <Flow
+    direction="horizontal"
+    steps={[
+      {
+        tag: 'Waiting',
+        title: 'chunks/',
+        detail: 'A worker lists the folder and picks the first file.',
+      },
+      {
+        tag: 'Claimed',
+        title: 'chunks_processing/',
+        detail:
+          'Moving the file is the claim. If the move fails, another worker was faster.',
+      },
+      {
+        tag: 'Finished',
+        title: 'chunks_done/',
+        detail: 'Moved only after the Parquet upload succeeded.',
+      },
+    ]}
+  />
+</Chart>
+
+A worker takes a job by moving a file, and where a file lies is what state it is in. That is the entire protocol. Here is the loop every worker runs, trimmed a little:
+
+```bash
+while [ ! -f stop.txt ]; do
+    # ...
+
+    mapfile -t chunks < <(rclone lsf "$CHUNKS_DIR" --files-only)
+    CHUNK_FILE="${chunks[0]}"
+
+    if ! rclone moveto "$CHUNKS_DIR/$CHUNK_FILE" "$PROCESSING_DIR/$CHUNK_FILE"; then
+        continue   # someone else got it
+    fi
+
+    if ./fetcher.bash "$CHUNK_ID"; then
+        rclone moveto "$PROCESSING_DIR/$CHUNK_FILE" "$DONE_DIR/$CHUNK_FILE"
+    fi
+done
+```
+
+To add a worker I rented a server, pasted six commands and walked away. To stop one I created a file called `stop.txt`, and it finished its current chunk and went quiet. If a server died in the night, its file stayed in the middle folder like a coat on a chair, and I knew exactly what had been left undone.
+
+The `fetcher.bash` in that loop is the script from the beginning. Around the function that handles one repository, it has four more parts, and they run in this order.
+
+**Read the to-do list.**
+
+```bash
+duckdb -c "COPY (SELECT username, name FROM read_parquet('$INPUT_PARQUET'))
+           TO '${OUTPUT_DIR}/tmp/repos.csv' (FORMAT CSV, HEADER);"
+```
+
+A chunk is a small Parquet file with 10,000 repository names. DuckDB turns it into a plain CSV that a shell loop can read.
+
+**Skip what is already done.**
+
+```bash
+[[ -f "$csv_final" ]] && return 0
+
+if grep -Fq "Completed repo: $repo_id" "$log_file"; then
+    return 0
+fi
+
+fail_count=$(grep -F "Failed to clone $repo_id" "$log_file" | wc -l)
+if (( fail_count >= 2 )); then
+    return 0
+fi
+```
+
+These are the first lines of the per-repository function. There is no database of progress and no state file. The script's own log is its memory: before cloning anything, it greps the log for the line that says this repository is finished. When a worker crashes and restarts, it reads its own diary and carries on where it stopped. A repository that failed twice is left alone, because the list is full of repositories that no longer exist. GH Archive remembers everything that ever happened and never hears when something is deleted.
+
+**Run three at a time.**
+
+```bash
+tail -n +2 "${OUTPUT_DIR}/tmp/repos.csv" | \
+    parallel -j 3 --colsep ',' --line-buffer process_repo {1} {2}
+```
+
+GNU parallel feeds the list to the function, three repositories at once, one per core of the server.
+
+**Turn 10,000 small files into one.**
+
+```bash
+duckdb -c "
+    CREATE TABLE tmp AS SELECT * FROM read_csv(
+      '${OUTPUT_DIR}/csv/*',
+      delim='$delim', header=false,
+      strict_mode=false, ignore_errors=true,
+      columns={'commit': 'TEXT', 'author': 'TEXT', 'author_email': 'TEXT', ...}
+    );
+    COPY tmp TO '${OUTPUT_DIR}/uploads/commits_${CHUNK_ID}.parquet'
+      (FORMAT parquet, COMPRESSION 'zstd');
+"
+```
+
+Every column is read as plain text, even the dates, so that nothing can fail on a strange value this early. Parsing comes later, in one place. `strict_mode=false` and `ignore_errors=true` are there because real commit data is dirty in ways I could not predict, and a single broken row must not cost me a whole chunk. More on that further down.
+
+**Upload first, delete after.**
+
+```bash
+if rclone copy "uploads/commits_${CHUNK_ID}.parquet" "$BUCKET/commits" --retries=3 --immutable; then
+    log "Parquet upload completed."
+else
+    log "Parquet upload failed, aborting cleanup."
+    exit 1
+fi
+
+rm -rf "$OUTPUT_DIR"/{repos,csv,tmp,uploads}
+```
+
+The local files are only deleted once the Parquet file is safely in the bucket. `--immutable` makes rclone refuse to overwrite a file that already exists, so two workers can never quietly replace each other's results. The log is uploaded as well. I did not know yet how glad I would be about that.
+
+Then, for months, twelve to fifteen of the smallest servers you can rent did nothing but this: 3 virtual cores and 8 GB of memory each, for a few dollars a month. Together they wrote 996 million lines of log.
+
+<Chart
+  title="What happened to the list"
+  caption="Counted afterwards from the 996 million log lines. About two million names fell through the cracks entirely, because mistakes happen everywhere."
+>
+  <BarChart
+    rows={[
+      {
+        label: 'Repository names on the list',
+        value: 497.6,
+        display: '497.6 million',
+        muted: true,
+      },
+      {
+        label: 'Cloned successfully',
+        value: 326,
+        display: '326 million',
+        muted: true,
+      },
+      {
+        label: 'Contained at least one commit',
+        value: 300,
+        display: '300 million',
+      },
+    ]}
+  />
+</Chart>
+
+About a third of the names led nowhere: deleted, made private, or simply unreachable on the day a server came asking.
+
+The fetching worked. It worked so well that the bucket kept filling up, day and night, with data I had no idea how to handle yet.
+
+## Just remove the waste
+
+How hard can it be? I had the files, every commit had its hash, and the tool for the job was already installed. DuckDB removes duplicates in one line:
+
+```sql
+SELECT DISTINCT ON (commit) * FROM read_parquet('commits_*.parquet');
+```
+
+I gave it ten files. The server ran out of memory, then out of disk. Ten files, out of what would become roughly fifty thousand.
+
+I rephrased the question as a `GROUP BY`. Dead. I tried a persistent table with a primary key that refuses duplicates on the way in. Dead, only slower. Every attempt failed for the same reason: to know whether it has seen a commit before, the program has to remember every commit it has seen. I was asking a machine with a few gigabytes of memory to hold billions of things in its head.
+
+My notes from that week get creative. One plan hashes every commit into 4,096 buckets so the duplicates at least land in the same place. Another pushes everything through SQLite, of all things, because it stores rows instead of columns and might swallow them more calmly. I seriously considered that one for an afternoon. That was the low point.
+
+And all the while, the servers kept delivering.
+
+## Sort was the key
+
+The way out was to stop asking for memory at all.
+
+Think of a deck of cards with duplicates in it. You can find them by remembering every card you have seen, or you can sort the deck. In a sorted deck the duplicates lie next to each other, and you find them by looking at two cards at a time. And sorting can be done in pieces, on disk, by a machine that never holds more than a handful of cards.
+
+ClickHouse has a table engine built on exactly that idea. It is called `ReplacingMergeTree`.
+
+```sql
+CREATE TABLE commits_raw (
+    commit          String,
+    author          Nullable(String) CODEC(ZSTD(3)),
+    author_email    Nullable(String) CODEC(ZSTD(3)),
+    authored_date   Nullable(DateTime64(0)) CODEC(ZSTD(3)),
+    committer       Nullable(String) CODEC(ZSTD(3)),
+    committer_email Nullable(String) CODEC(ZSTD(3)),
+    committed_date  Nullable(DateTime64(0)) CODEC(ZSTD(3)),
+    message         Nullable(String) CODEC(ZSTD(3))
+) ENGINE = ReplacingMergeTree()
+ORDER BY commit;
+```
+
+Everything you insert is written to disk as a small sorted pile. In the background the database merges piles into bigger piles, and whenever two rows with the same hash meet in a merge, it keeps one. You never ask it to deduplicate. You pour data in, and the duplicates dissolve on their own.
+
+The pile still did not fit on any disk I was willing to pay for, so I poured it in portions. A script takes one batch of files through the whole cycle: download, count the damaged rows, start ClickHouse in a container, insert, wait for the merges, delete every row whose hash is not forty hexadecimal characters, write the survivors out as one Parquet file, sorted by author, upload. It can be stopped and resumed at any step, and a second script checks the numbers before anything gets deleted.
+
+The servers for this had 18 GB of memory, which is not much for a billion rows. So the container was started like this:
+
+```bash
+docker run -d --memory="16g" --memory-swap="256g" clickhouse/clickhouse-server
+```
+
+A quarter of a terabyte of swap is slow. But slow finishes, and out of memory does not.
+
+The first batch was a thousand files. Inserting took about twelve hours and the process was killed several times along the way. Then the merges ran, and I looked at the numbers.
+
+<Chart
+  title="The first batch, before and after merging"
+  caption="1,000 input files. Inserting took about twelve hours and several out-of-memory kills."
+>
+  <BarChart
+    max={1.25}
+    rows={[
+      {
+        label: 'Rows inserted',
+        value: 1.25,
+        display: '1.25 billion',
+        muted: true,
+      },
+      { label: 'Rows after merging', value: 0.4, display: '400 million' },
+    ]}
+  />
+  <div className="mt-6">
+    <BarChart
+      max={404}
+      rows={[
+        {
+          label: 'Size on disk before',
+          value: 404,
+          display: '404 GB',
+          muted: true,
+        },
+        { label: 'Size on disk after', value: 60, display: '60 GB' },
+      ]}
+    />
+  </div>
+</Chart>
+
+It had worked. For the first time since the forks, a number in this project had gone *down*. Hurray!
+
+That batch filled 709 GB of a 1 TB disk, so I halved the portions to 500 files. Weeks later the files suddenly doubled in size, and I went down to 250 and, on the same day, to 125. That is what I call continuous improvement, lol.
+
+## A detour for a measly 7%
+
+In the end there were 106 batches, and they took weeks. While they ground along, I had time to get distracted.
+
+Every batch leaves as a Parquet file, written once and read many times, and Parquet has dials: how hard to compress, how many rows to put in a group, in what order to sort them. I did not know the right settings, and I do not like guessing.
+
+So I measured. Three compression levels, five row group sizes, five sort orders, dates stored as text or as real timestamps. That makes 150 combinations, each timed for writing and for three typical queries.
+
+<Chart
+  title="Time for three analytical queries by row group size, in seconds"
+  caption="Averages over 30 runs each on a 200 MB sample. The largest row groups were the smallest on disk and by far the slowest to read."
+>
+  <BarChart
+    rows={[
+      { label: '61,440 rows', value: 1.81, display: '1.81 s', muted: true },
+      { label: '122,880 rows', value: 1.35, display: '1.35 s' },
+      { label: '245,760 rows', value: 1.38, display: '1.38 s', muted: true },
+      { label: '491,520 rows', value: 1.84, display: '1.84 s', muted: true },
+      { label: '983,040 rows', value: 2.86, display: '2.86 s', muted: true },
+    ]}
+  />
+</Chart>
+
+<Chart
+  title="Average file size by sort order, in megabytes"
+  caption="Same rows, same compression. Only the order differs."
+>
+  <BarChart
+    rows={[
+      {
+        label: 'committed_date',
+        value: 170.1,
+        display: '170.1 MB',
+        muted: true,
+      },
+      {
+        label: 'committed_date, author_email',
+        value: 170.1,
+        display: '170.1 MB',
+        muted: true,
+      },
+      { label: 'author_email', value: 163.3, display: '163.3 MB', muted: true },
+      {
+        label: 'author_email, committed_date',
+        value: 158.1,
+        display: '158.1 MB',
+      },
+      { label: 'author, committed_date', value: 158.1, display: '158.1 MB' },
+    ]}
+  />
+</Chart>
+
+The second chart is my favourite result of the whole project. The same rows, sorted by author instead of by date, take 7% less space. Put one person's commits next to each other and the file shrinks, because people repeat themselves: the same name, the same address, the same habits of phrasing. Order is a form of compression.
+
+Storing the dates as real timestamps saved another 6%. The strongest compression saved 6% more but took over twice as long to write, which is a fair price for a file you write once.
+
+Was it worth an evening for a measly 7%? On one file, no. On several terabytes of them, very much. And the result would come in handy once more, at the very end.
+
+## The godly machine
+
+Why do I always exaggerate... It was just the biggest machine I needed for this: 12 cores, 32 GB of memory and a 4 TB disk.
+
+I needed it because 106 clean batches are not a clean dataset. Each batch was free of duplicates inside, but the same commit could still sit in 50 different batches. So the whole trick had to be done once more, this time to everything at once.
+
+**Step one: remove the remaining duplicates.**
+
+All 106 batches, 1.4 terabytes of Parquet, went into a single table on that one machine. It was the same kind of table as before: a `ReplacingMergeTree` sorted by commit hash.
+
+15.68 billion rows went in. The piles began to merge, and there was nothing left for me to do but wait.
+
+**Step two: put the survivors in a useful order.**
+
+A table sorted by hash is perfect for finding duplicates and useless for everything else, because a hash is noise by design. Neighbouring rows have nothing to do with each other. Whatever you might want to look up in a pile of commits will be about people and time.
+
+So the data needed a second table, built for reading. My little detour had already told me which order makes it smallest:
+
+```sql
+CREATE TABLE commits_optimized (
+    commit          FixedString(40) CODEC(ZSTD(3)),
+    author          String DEFAULT '' CODEC(ZSTD(3)),
+    author_email    String DEFAULT '' CODEC(ZSTD(3)),
+    authored_date   Nullable(DateTime64(0)) CODEC(DoubleDelta, LZ4),
+    committer       String DEFAULT '' CODEC(ZSTD(3)),
+    committer_email String DEFAULT '' CODEC(ZSTD(3)),
+    committed_date  Nullable(DateTime64(0)) CODEC(DoubleDelta, LZ4),
+    message         String DEFAULT '' CODEC(ZSTD(3))
+) ENGINE = MergeTree()
+PARTITION BY toYYYYMM(authored_date)
+ORDER BY (author_email, committed_date);
+```
+
+One partition per month, and within a month, one person's work side by side. The dates are stored with `DoubleDelta`, which records only how the gap between neighbouring values changes. On sorted timestamps that is almost nothing.
+
+All that was left was to copy the rows from the first table into the second, a few years at a time. It sounded like the easy part. It humbled me more than anything before it, three times over.
+
+- **Every copy read everything.** In a table sorted by hash, the commits of 2019 are scattered evenly across the entire table. To find them, the database had to read all 15.68 billion rows, 4.27 terabytes of uncompressed data. That took about five hours per run, no matter how few rows came out at the end, and I needed a dozen runs.
+- **I paid for the same sort twice.** To be helpful, I sorted the rows myself before inserting them. Throughput fell from 3.5 million rows a second to 1.1 million. ClickHouse sorts everything it receives anyway.
+- **The counts did not match.** When the copy was done, some months had a different number of rows in the two tables. I exported the row count per month from both, joined the two lists in DuckDB, dropped every month that disagreed and copied those years again.
+
+If I did this a second time, I would count what goes in and what comes out of every stage from the first day, instead of reconstructing it from a billion lines of log.
+
+Then one evening the merges were finished and the counts agreed, and I asked the table how many rows it had.
+
+```
+   ┌────COUNT()─┐
+1. │ 6221605130 │ -- 6.22 billion
+   └────────────┘
+
+1 row in set. Elapsed: 0.004 sec.
+```
+
+Around six billion commits. Each of them exactly once.
+
+A few months earlier, ten files had been enough to kill a server. Now six billion rows replied before my finger had left the key, because a table that is sorted all the way down already knows what it holds.
+
+<Chart
+  title="From raw rows to unique commits"
+  caption="97 of every 100 rows I downloaded were copies of a commit I already had."
+>
+  <BarChart
+    rows={[
+      {
+        label: 'Commit rows read from git log',
+        value: 220,
+        display: '~220 billion',
+        muted: true,
+      },
+      {
+        label: 'Unique commits after the global pass',
+        value: 6.22,
+        display: '6.22 billion',
+      },
+    ]}
+  />
+</Chart>
+
+## What the pile contains
+
+Six billion of anything will contain everything. A few things I found without even looking:
+
+**Commits from the past.** About nine million commits are dated 1970, most of them presumably from clocks that reported zero. Not every old date is a mistake, though. Projects older than git brought their history along when they moved, so a commit from the nineties can be perfectly honest.
+
+**Commits from the future.** Several million commits claim to be from 2027 or later. All in all, the table holds 1,594 different months, and git has existed for about 250 of them. People are crazy.
+
+**Commits from no time at all.** Some have no date whatsoever. They fit into no month, so they got their own way across into the final table: 128 slices cut by hash, with a text file keeping track of which slices were done.
+
+**Commits that are not text.** In the very first file, 426 of 4.8 million rows were not even valid text. I had decided early on that 426 rows would not get to stop five million, and turned DuckDB's strictness off.
+
+**A dataset I never planned for.** The workers wrote 996 million log lines, every clone and every failure with a timestamp. I loaded those into ClickHouse too, one raw line per row, and let the database pick out the event and the repository with regular expressions. I had decorated my log messages with emojis so they would be easier on my eyes. Months later I was writing queries that search a billion rows for a little package icon.
+
+Most of the numbers in this article come from that table, and it is honest about my mistakes too. About two million repos from the list were never processed at all, and the logs contain some fifty thousand more repo names than the list ever had. I still do not know where those came from.
+
+The project ended up keeping a diary of itself.
+
+## All of what I'd built
+
+When I sketched out what I had built for this blog post, I was almost disappointed by how little there was to draw.
+
+<Chart title="The pipeline">
+  <Flow
+    steps={[
+      {
+        tag: 'BigQuery',
+        title: 'Make a list',
+        detail:
+          'Every repository name GH Archive knows, in files of 10,000.',
+      },
+      {
+        tag: 'Bash, git, GNU parallel',
+        title: 'Clone, read the log, delete',
+        detail:
+          '12 to 15 small servers taking files from a folder.',
+      },
+      {
+        tag: 'ClickHouse',
+        title: 'Sort by hash, in 106 portions',
+        detail: 'Each on a server with 18 GB of memory and a 1 TB disk.',
+      },
+      {
+        tag: 'ClickHouse',
+        title: 'Sort by hash, all at once',
+        detail: '15.68 billion rows on one machine with 32 GB of memory.',
+      },
+      {
+        tag: 'ClickHouse',
+        title: 'Sort by person',
+        detail: 'One partition per month, one Parquet file per partition.',
+      },
+    ]}
+  />
+</Chart>
+
+A list, a loop, and three sorts. No cluster, no Spark, no Kubernetes, no queue, no scheduler. Folders, files and a script. Each tool did the one thing it is best at: git read git, DuckDB converted files, ClickHouse sorted more than fits in memory, and a bucket held whatever had to survive a crash. There are archives that do this with whole teams and real budgets. This one took one person, six months and about 600 Swiss francs, which is roughly 700 dollars.
+
+I had expected the hard part to be the size. It was not. The hard part was finding the simple thing: I never had to remember 220 billion rows. I only had to put them in order.
+
+It all sits on one disk now. One table, sorted by person, month after month from the first commit to the last. Six billion small things: a name, a date, a sentence about what changed.
+
+Nobody asked for this, and it proves nothing. I wanted to know whether it could be done, and the only way to find out was to walk the whole way once.

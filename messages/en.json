@@ -131,7 +131,13 @@
       "de": "German",
       "en": "English"
     },
-    "backToWriting": "Back to writing"
+    "backToWriting": "Back to writing",
+    "printEdition": "Print edition",
+    "print": {
+      "back": "Back to the article",
+      "print": "Print or save as PDF",
+      "byline": "By Jannis Milz"
+    }
   },
   "notFound": {
     "eyebrow": "Correction",

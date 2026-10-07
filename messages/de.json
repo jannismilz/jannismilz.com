@@ -131,7 +131,13 @@
       "de": "Deutsch",
       "en": "Englisch"
     },
-    "backToWriting": "Zurück zum Schreiben"
+    "backToWriting": "Zurück zum Schreiben",
+    "printEdition": "Druckausgabe",
+    "print": {
+      "back": "Zurück zum Artikel",
+      "print": "Drucken oder als PDF speichern",
+      "byline": "Von Jannis Milz"
+    }
   },
   "notFound": {
     "eyebrow": "Korrektur",

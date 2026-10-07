@@ -6,6 +6,15 @@ export function parseDate(dateString: string) {
 
 const dateLocales = { de: 'de-CH', en: 'en-GB' } as const
 
+/** A full date for datelines, e.g. '6 October 2026'. */
+export function formatLongDate(dateString: string, locale: 'de' | 'en' = 'en') {
+  return parseDate(dateString).toLocaleDateString(dateLocales[locale], {
+    day: 'numeric',
+    month: 'long',
+    year: 'numeric',
+  })
+}
+
 export function formatDate(dateString: string, locale: 'de' | 'en' = 'en') {
   return parseDate(dateString).toLocaleDateString(dateLocales[locale], {
     month: 'short',

@@ -40,14 +40,14 @@ export interface MediumArticle {
 }
 
 export const ownArticles: OwnArticle[] = [
-/*   {
-    slug: 'warum-diese-seite-aussieht-wie-eine-zeitung',
-    title: 'Warum diese Seite aussieht wie eine Zeitung',
+  {
+    slug: '220-billion-commits-700-dollars',
+    title: '220 Billion Commits, 700 Dollars, One Bash-Script',
     description:
-      'Über den Neuanfang dieser Website: weniger Template, mehr Brief. Und warum Papier das bessere Vorbild ist als ein Dashboard.',
-    date: '14.07.2026',
-    lang: 'de',
-  }, */
+      'How I pulled the commit history of almost 500 million GitHub repositories and boiled it down to 6.2 billion unique commits with just Bash, DuckDB, ClickHouse and a dozen of cheap servers.',
+    date: '06.10.2026',
+    lang: 'en',
+  },
 ]
 
 export const highlights: Highlight[] = [
@@ -120,6 +120,12 @@ export function getOwnArticles() {
 
 export function getOwnArticle(slug: string) {
   return ownArticles.find((article) => article.slug === slug)
+}
+
+/** The compiled MDX body of one of my own articles. */
+export async function loadArticleContent(slug: string) {
+  const { default: Content } = await import(`@/content/writing/${slug}.mdx`)
+  return Content as React.ComponentType
 }
 
 export function getHighlights() {

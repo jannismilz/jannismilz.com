@@ -7,7 +7,7 @@
  */
 export function MarginNote({ children }: { children: React.ReactNode }) {
   return (
-    <span className="my-3 block border-l border-hairline pl-4 font-serif text-[15px] leading-snug text-ink-muted italic xl:absolute xl:top-1 xl:left-full xl:my-0 xl:ml-12 xl:w-52 xl:border-0 xl:pl-0">
+    <span className="margin-note my-3 block border-l border-hairline pl-4 font-serif text-[15px] leading-snug text-ink-muted italic xl:absolute xl:top-1 xl:left-full xl:my-0 xl:ml-12 xl:w-52 xl:border-0 xl:pl-0">
       {children}
     </span>
   )
