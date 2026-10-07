@@ -503,9 +503,13 @@ A few months earlier, ten files had been enough to kill a server. Now six billio
   />
 </Chart>
 
+Measured in bytes, that was roughly 22 terabytes of uncompressed data going in at the top. What came out at the bottom fits comfortably on a single disk.
+
 ## What the pile contains
 
 Six billion of anything will contain everything. A few things I found without even looking:
+
+**87 million signatures.** The author column holds about 87 million different email addresses. That is not 87 million people. Most of us have multiple email adresses.
 
 **Commits from the past.** About nine million commits are dated 1970, most of them presumably from clocks that reported zero. Not every old date is a mistake, though. Projects older than git brought their history along when they moved, so a commit from the nineties can be perfectly honest.
 
@@ -563,6 +567,6 @@ A list, a loop, and three sorts. No cluster, no Spark, no Kubernetes, no queue, 
 
 I had expected the hard part to be the size. It was not. The hard part was finding the simple thing: I never had to remember 220 billion rows. I only had to put them in order.
 
-It all sits on one disk now. One table, sorted by person, month after month from the first commit to the last. Six billion small things: a name, a date, a sentence about what changed.
+It all sits on one disk now. One table, sorted by person, month after month from the first commit to the last. Six billion small things, signed by 87 million different email addresses: a name, a date, a sentence about what changed.
 
 Nobody asked for this, and it proves nothing. I wanted to know whether it could be done, and the only way to find out was to walk the whole way once.
