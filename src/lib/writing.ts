@@ -41,10 +41,10 @@ export interface MediumArticle {
 
 export const ownArticles: OwnArticle[] = [
   {
-    slug: 'new-220-billion-commits-700-dollars',
+    slug: '220-billion-commits-700-dollars',
     title: '220 Billion Commits, 700 Dollars, One Bash-Script',
     description:
-      'How I pulled the commit history of 577 million GitHub repositories and boiled it down to 6.2 billion unique commits with just Bash, DuckDB, ClickHouse and a dozen of cheap servers.',
+      'How I pulled the commit history of almost 500 million GitHub repositories and boiled it down to 6.2 billion unique commits with just Bash, DuckDB, ClickHouse and a dozen of cheap servers.',
     date: '06.10.2026',
     lang: 'en',
   },

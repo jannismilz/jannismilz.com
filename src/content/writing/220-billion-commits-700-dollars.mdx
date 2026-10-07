@@ -429,13 +429,19 @@ Was it worth an evening for a measly 7%? On one file, no. On multiple terabytes 
 
 Why do I always exaggerate... It was just the biggest machine I needed for this: 12 cores, 32 GB of memory and a 4 TB disk.
 
-I needed it because 106 clean batches are not a clean dataset. Each one was free of duplicates inside, but the same commit could still sit in fifty of them. Everything I had done so far had to be done once more, to all of it at the same time.
+I needed it because 106 clean batches are not a clean dataset. Each batch was free of duplicates inside, but the same commit could still sit in 50 different batches. So the whole trick had to be done once more, this time to everything at once.
 
-So all 106 batches, 1.4 terabytes of Parquet, went onto that one machine. The same table as before, one last time.
+**Step one: remove the remaining duplicates.**
+
+All 106 batches, 1.4 terabytes of Parquet, went into a single table on that one machine. It was the same kind of table as before: a `ReplacingMergeTree` sorted by commit hash.
 
 15.68 billion rows went in. The piles began to merge, and there was nothing left for me to do but wait.
 
-While it merged, I prepared the place where the rows would live. A table sorted by hash is perfect for finding duplicates and useless for everything else, because a hash is noise by design. Whatever you might want to look up in a pile of commits will be about people and time. And my little detour had already told me which order makes the data smallest:
+**Step two: put the survivors in a useful order.**
+
+A table sorted by hash is perfect for finding duplicates and useless for everything else, because a hash is noise by design. Neighbouring rows have nothing to do with each other. Whatever you might want to look up in a pile of commits will be about people and time.
+
+So the data needed a second table, built for reading. My little detour had already told me which order makes it smallest:
 
 ```sql
 CREATE TABLE commits_optimized (
@@ -454,13 +460,13 @@ ORDER BY (author_email, committed_date);
 
 One partition per month, and within a month, one person's work side by side. The dates are stored with `DoubleDelta`, which records only how the gap between neighbouring values changes. On sorted timestamps that is almost nothing.
 
-This last move humbled me more than any other.
+All that was left was to copy the rows from the first table into the second, a few years at a time. It sounded like the easy part. It humbled me more than anything before it, three times over.
 
-Because the source was sorted by noise, a request for "the commits from 2019" could skip nothing. Every such request read all 15.68 billion rows, 4.27 terabytes of uncompressed data, and took about five hours no matter how little it returned. I made that request a dozen times, a few years at a time.
+- **Every copy read everything.** In a table sorted by hash, the commits of 2019 are scattered evenly across the entire table. To find them, the database had to read all 15.68 billion rows, 4.27 terabytes of uncompressed data. That took about five hours per run, no matter how few rows came out at the end, and I needed a dozen runs.
+- **I paid for the same sort twice.** To be helpful, I sorted the rows myself before inserting them. Throughput fell from 3.5 million rows a second to 1.1 million. ClickHouse sorts everything it receives anyway.
+- **The counts did not match.** When the copy was done, some months had a different number of rows in the two tables. I exported the row count per month from both, joined the two lists in DuckDB, dropped every month that disagreed and copied those years again.
 
-I also tried to be helpful and sorted the rows before inserting them. Throughput fell from 3.5 million rows a second to 1.1 million. The database sorts everything it receives anyway. I had been paying for the same sort twice.
-
-And when it was done, the counts did not match. So I exported the number of rows per month from both tables, joined the two lists in DuckDB, dropped every month that disagreed and inserted those years again. If I did this a second time, I would count what goes in and what comes out of every stage from the first day, instead of reconstructing it from a billion lines of log.
+If I did this a second time, I would count what goes in and what comes out of every stage from the first day, instead of reconstructing it from a billion lines of log.
 
 Then one evening the merges were finished and the counts agreed, and I asked the table how many rows it had.
 
@@ -472,7 +478,7 @@ Then one evening the merges were finished and the counts agreed, and I asked the
 1 row in set. Elapsed: 0.004 sec.
 ```
 
-Around six billion. Each of them exactly once.
+Around six billion commits. Each of them exactly once.
 
 A few months earlier, ten files had been enough to kill a server. Now six billion rows replied before my finger had left the key, because a table that is sorted all the way down already knows what it holds.
 
@@ -499,15 +505,21 @@ A few months earlier, ten files had been enough to kill a server. Now six billio
 
 ## What the pile contains
 
-Six billion of anything will contain everything.
+Six billion of anything will contain everything. A few things I found without even looking:
 
-There are commits dated 1970, about nine million of them, most presumably from clocks that reported zero. There are commits from 2097. The table holds 1,594 different months, and git has existed for about 250 of them. ClickHouse, by the way, refuses to write more than 100 partitions in a single insert unless you insist. I insisted.
+**Commits from the past.** About nine million commits are dated 1970, most of them presumably from clocks that reported zero. Not every old date is a mistake, though. Projects older than git brought their history along when they moved, so a commit from the nineties can be perfectly honest.
 
-Some commits have no date at all. They fit into no month, so they got their own way across: 128 slices cut by hash, with a text file keeping track of which slices were done.
+**Commits from the future.** Several million commits claim to be from 2027 or later. All in all it holds 1,594 different months, and git has existed for about 250 of them. People are crazy.
 
-In the very first file, 426 of 4.8 million rows were not even valid text. I had decided early on that 426 rows would not get to stop five million, and turned DuckDB's strictness off.
+**Commits from no time at all.** Some have no date whatsoever. They fit into no month, so they got their own way across into the final table: 128 slices cut by hash, with a text file keeping track of which slices were done.
 
-And there is a second dataset that I never planned for: the 996 million log lines the workers wrote, every clone and every failure with a timestamp. I loaded those into ClickHouse too, one raw line per row, and let the database pick out the event and the repository with regular expressions. Most of the numbers in this article come from there. The project ended up keeping a diary of itself.
+**Commits that are not text.** In the very first file, 426 of 4.8 million rows were not even valid text. I had decided early on that 426 rows would not get to stop five million, and turned DuckDB's strictness off.
+
+**A dataset I never planned for.** The workers wrote 996 million log lines, every clone and every failure with a timestamp. I loaded those into ClickHouse too, one raw line per row, and let the database pick out the event and the repository with regular expressions. I had decorated my log messages with emojis so they would be easier on my eyes. Months later I was writing queries that search a billion rows for a little package icon.
+
+Most of the numbers in this article come from that table, and it is honest about my mistakes too. About two million repos from the list were never processed at all, and the logs contain some fifty thousand more repo names than the list ever had. I still do not know where those came from.
+
+The project ended up keeping a diary of itself.
 
 ## All of what I'd built
 
