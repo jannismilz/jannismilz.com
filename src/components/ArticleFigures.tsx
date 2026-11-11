@@ -180,3 +180,52 @@ export function Flow({
     </ol>
   )
 }
+
+/**
+ * A set of cards for short, parallel points, like rules or sources.
+ * `columns={2}` sets them in a grid from the `sm` breakpoint up;
+ * the default stacks them as a list.
+ */
+export function Cards({
+  columns = 1,
+  children,
+}: {
+  columns?: 1 | 2
+  children: React.ReactNode
+}) {
+  return (
+    <div
+      data-cards={columns === 2 ? 'grid' : 'list'}
+      className={clsx('grid gap-3', columns === 2 && 'sm:grid-cols-2')}
+    >
+      {children}
+    </div>
+  )
+}
+
+/** One card in `Cards`, with an optional small-caps tag above the title. */
+export function Card({
+  tag,
+  title,
+  children,
+}: {
+  tag?: string
+  title: string
+  children?: React.ReactNode
+}) {
+  return (
+    <section className="border border-hairline bg-paper-raised px-4 py-3.5">
+      {tag && (
+        <p className="text-[11px] tracking-[0.08em] text-accent uppercase">
+          {tag}
+        </p>
+      )}
+      <p className="font-serif text-[19px] leading-snug">{title}</p>
+      {children && (
+        <div className="mt-1.5 text-[15px] leading-relaxed text-ink-muted [&>*+*]:mt-2.5">
+          {children}
+        </div>
+      )}
+    </section>
+  )
+}
