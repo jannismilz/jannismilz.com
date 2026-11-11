@@ -1,10 +1,12 @@
+import linksImage from '@/images/writing/ai-assistant-links.png'
+
 For a while now I have been the accountant of my gymnastics club.
 
 The work has two parts: booking what happened, and finding what belongs to what. Booking is quick. Finding takes time. A booking needs a receipt, a receipt belongs to a payment, and all three arrive by different routes. To find out what a credit from March was for, you compare amounts, dates and names.
 
-I no longer wanted to do that by hand, so I built myself an AI assistant: a knowledge base that collects all the data of the club's bookkeeping, files and other data sources in one place and makes it available to an AI through an MCP ([Model Context Protocol](https://modelcontextprotocol.io)).
+I no longer wanted to do that by hand, so I built myself an AI assistant: a knowledge base that collects the club's bookkeeping, files and other data in one place and makes it available to an AI through MCP, the [Model Context Protocol](https://modelcontextprotocol.io).
 
-But let's not talk about boring accounting stuff but see how it's built.
+But enough about accounting. Let's look at how it's built.
 
 ## The ground rules
 
@@ -25,7 +27,7 @@ Four rules came before any technology. They made every later decision easier.
   </Card>
 </Cards>
 
-The project can look complex or complicated but when looking at it from the very top it's pretty simple.
+The project may look complicated, but seen from the very top, it's quite simple.
 
 <Chart
   title="The setup at a glance"
@@ -64,31 +66,31 @@ The project can look complex or complicated but when looking at it from the very
 
 ## The data sources
 
-Five sources feed the assistant. Read-only or via manual import from the beginning!
+Five sources feed the assistant. From the start, every one of them is either read-only or imported by hand.
 
 <Cards>
   <Card tag="Source of truth" title="The accounting software">
-    Booking journal, accounts, budget, receipts etc.
+    Booking journal, accounts, budget, receipts, etc.
   </Card>
   <Card tag="CSV export" title="The bank">
-    Manually exported account statements from eBanking.
+    Manually exported account statements from e-banking.
   </Card>
   <Card tag="IMAP" title="The mailbox">
     The complete mailbox except for spam, trash and drafts.
   </Card>
   <Card tag="API" title="The file storage">
-    All files of our club board. Deleted files disappear from the assistant.
+    All files of our club's board. Deleted files disappear from the assistant.
   </Card>
   <Card tag="Own entries" title="The inventory">
-    Our own stock is directly managed in the assistant's dashboard.
+    Our own stock is managed directly in the assistant's dashboard.
   </Card>
 </Cards>
 
 ### Two kinds of import
 
-**Structured exports** like bookings go straight into tables. Every row has a natural key from its respective data source. Importing data twice changes nothing.
+**Structured exports**, like bookings, go straight into tables. Every row has a natural key from its data source, so importing the same data twice changes nothing.
 
-**Everything unstructured** like receipts go through a pipeline that puts them into the right place.
+**Everything unstructured**, like receipts, goes through a pipeline that puts it in the right place.
 
 ## The jobs
 
@@ -101,10 +103,9 @@ Almost everything runs as a background job in a queue. Each job can fail and be 
   <Flow
     steps={[
       {
-        tag: 'SHA256',
+        tag: 'SHA-256',
         title: 'Deduplicate',
-        detail:
-          'If the content is already known, a link is created instead.',
+        detail: 'If the content is already known, a link is created instead.',
       },
       {
         tag: 'S3',
@@ -114,8 +115,7 @@ Almost everything runs as a background job in a queue. Each job can fail and be 
       {
         tag: 'Parser and vision model',
         title: 'Read the text',
-        detail:
-          'Text from PDF, Word, etc. directly. Images and scans via OCR.',
+        detail: 'Text from PDF, Word, etc. directly. Images and scans via OCR.',
       },
       {
         tag: 'Embedding model',
@@ -125,13 +125,14 @@ Almost everything runs as a background job in a queue. Each job can fail and be 
       {
         tag: 'AI',
         title: 'Link',
-        detail: 'Which receipt belongs to which booking is up to the AI if it can\'t be derived.',
+        detail:
+          'If a receipt cannot be matched to its booking by rule, the AI does it.',
       },
     ]}
   />
 </Chart>
 
-The first step pays off more than you would think. In a club, an invoice appears on multiple places like file storage, mail and booking receipt. The hash stays the same, so the file is stored, read and embedded only once. A separate table records every place it showed up.
+The first step pays off more than you would think. In a club, an invoice shows up in several places: the file storage, the mailbox and as a booking receipt. The hash stays the same, so the file is stored, read and embedded only once. A separate table records every place it showed up.
 
 ### Bank reconciliation
 
@@ -145,7 +146,7 @@ This job needs no AI at all and still saves the most time. After every import it
 score = 0.6 × date proximity + 0.4 × name similarity
 ```
 
-A pair is only confirmed with a score of at least 0.8 and a lead of at least 0.15 over any competing pair. That matters in a club because when four members pay the same fee in the same month, the pairs look almost identical, and picking one would be guessing. Such pairs stay candidates, and me or the AI decides.
+A pair is only confirmed with a score of at least 0.8 and a lead of at least 0.15 over any competing pair. That matters in a club because when four members pay the same fee in the same month, the pairs look almost identical, and picking one would be guessing. Such pairs stay candidates, and either the AI or I decide.
 
 ## The data storage
 
@@ -153,7 +154,7 @@ Data lives in exactly two places, and neither can be reached from outside. The o
 
 **Postgres** holds everything structured: accounts, bookings, bank lines, mails, files, vectors, links, the inventory, the import log and the AI's memory. The `pgvector` and `pg_trgm` extensions cover vector and fuzzy text search, so no separate search engine is needed.
 
-**S3** holds the original files so the postgres database is not bloated with raw files.
+**S3** holds the original files so the Postgres database isn't bloated with raw files.
 
 <Chart title="How the data fits together">
   <Flow
@@ -190,9 +191,12 @@ The links table ties it all together. Every record can be connected to others, a
 Each link has a source (rule, AI or me) and a status: candidate, confirmed or rejected.
 
 <FigureFrame
-  placeholder="Screenshot: the connections of a booking in the dashboard"
+  image={linksImage}
+  alt="The connections view of the assistant's dashboard: a large graph of colored dots, many of them grouped into small clusters."
+  aspect="natural"
+  sizes="(min-width: 768px) 42rem, 100vw"
   captionLead="Connections."
-  caption="A booking with its bank line, receipt and the mail it came with."
+  caption="Every dot is a record. Linked records cluster together, filtered by confirmed links, candidates, attachments and receipts."
 />
 
 ## Vectorization
@@ -209,50 +213,30 @@ I deliberately left out extracting fields like amount, date or supplier. The who
 
 Every text is cut into sections of about 1,500 characters, preferably at the end of a paragraph or sentence, with some overlap. A hit then points to a readable passage. Each section becomes a vector and is stored in Postgres together with the model's name, so a model switch can be detected and the old sections embedded again.
 
-OCR and embeddings run through a EU-based provider.
+OCR and embeddings run through an EU-based provider.
 
 ## MCP
 
-The AI gets tools and decides itself which one to call. For "Where is the invoice for this payment?" it might find the bank line with SQL, search the mails for the counterparty, open the attachment, check the amount and save the link.
+In a classic RAG setup, the application searches for matching passages and puts them into the prompt. Here the AI gets tools instead and decides itself which one to call. There are four kinds:
 
-<Chart
-  title="Tools the AI gets over MCP"
-  caption="The tool descriptions say when each one fits."
->
-  <Flow
-    steps={[
-      {
-        tag: 'Numbers',
-        title: 'describe_schema, query_sql',
-        detail:
-          'Tables and views explained, then a single SELECT query.',
-      },
-      {
-        tag: 'Documents',
-        title: 'search_keyword, search_semantic',
-        detail: 'For exact words and numbers, or for topics in one sentence.',
-      },
-      {
-        tag: 'Reading',
-        title: 'get_document, get_file, get_connections',
-        detail:
-          'Full text, the original as an image, and everything linked to a record.',
-      },
-      {
-        tag: 'Domains',
-        title: 'get_warehouse, create_note, create_note_from_excel',
-        detail: 'Read the inventory and create statements for the club sections.',
-      },
-      {
-        tag: 'Memory',
-        title: 'save_link, get_knowhow, save_knowhow',
-        detail: 'Keep connections and knowledge for good.',
-      },
-    ]}
-  />
-</Chart>
+<Cards columns={2}>
+  <Card tag="Search" title="Find records">
+    `query_sql` for numbers and lists, after `describe_schema` explains the tables. `search_keyword` and `search_semantic` for mails and files.
+  </Card>
+  <Card tag="Read" title="Open records">
+    `get_document` for the full text, `get_file` for the original, `get_connections` for everything linked and `get_warehouse` for the inventory.
+  </Card>
+  <Card tag="Remember" title="Keep what was learned">
+    `save_link` stores a connection between two records. `get_knowhow` and `save_knowhow` read and write the memory.
+  </Card>
+  <Card tag="Create" title="Generate documents">
+    `create_note` and `create_note_from_excel` create debit and credit notes for the club's subgroups.
+  </Card>
+</Cards>
 
-### Three ways to search
+For "Where is the invoice for this payment?" the AI might find the bank line with SQL, search the mails for the counterparty, open the attachment, check the amount and save the link.
+
+### Searching
 
 **SQL** is for numbers, sums and lists: account balances, budget against actuals, open invoices, bank lines without a booking. Views for bookings, balances and the bank reconciliation spare the AI from rebuilding the logic of double-entry bookkeeping.
 
@@ -272,25 +256,23 @@ rollback;
 
 **Keyword search** is for names, invoice numbers and IBANs. It combines Postgres' full-text index with trigrams, so typos and partial words are found too.
 
-**Semantic search** is for topics. The question is embedded into vectors and Postgres finds the closest sections. A question about the youth camp also finds mails that only use the club's nickname for it.
+**Semantic search** is for topics. The question is turned into a vector, and Postgres finds the closest sections. A question about the youth camp also finds mails that only use the club's nickname for it.
 
-### A memory
+### Remembering
 
-The AI forgets everything after each conversation. That's bad when information is gathered that helps understand existing data.
+The AI forgets everything after each conversation. That's a problem whenever a conversation uncovers something that explains existing data: what an account is really for, or which counterparty belongs where.
 
-So there is a `knowhow` table with two tools to read and write it. The AI is told to look things up at the start of every conversation and to store anything that applies beyond the current question. Every entry can be edited in the dashboard.
-
-Over time this grows into a reference book of the club's bookkeeping.
+So there is a `knowhow` table. The AI is told to look things up at the start of every conversation and to store anything that applies beyond the current question. Every entry can be edited in the dashboard. Over time, this grows into a reference book of the club's bookkeeping.
 
 ## The costs
 
-The complete system maybe looks big and resource-intensive but it's actually not.
+The whole system may look big and resource-hungry, but it isn't.
 
-The assistant with all services and resources costs around 8-10 francs per month to run and to keep up-to-date.
+The assistant with all services and resources costs around 8–10 francs per month to run and keep up to date.
 
-I chose open-weight ai models that are right for the job and do cost a fraction of frontier models but get the job done extremely well.
+I chose open-weight AI models that fit the job. They cost a fraction of frontier models and still do the job extremely well.
 
-Let's better not talk about how much my Claude subscription costs to actually use this assistant...
+Better not to mention what my Claude subscription costs to actually use the assistant.
 
 ## What it gives me
 

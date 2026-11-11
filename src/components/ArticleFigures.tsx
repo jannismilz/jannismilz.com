@@ -222,7 +222,7 @@ export function Card({
       )}
       <p className="font-serif text-[19px] leading-snug">{title}</p>
       {children && (
-        <div className="mt-1.5 text-[15px] leading-relaxed text-ink-muted [&>*+*]:mt-2.5">
+        <div className="mt-1.5 text-[15px] leading-relaxed text-ink-muted [&_code]:bg-paper [&>*+*]:mt-2.5">
           {children}
         </div>
       )}

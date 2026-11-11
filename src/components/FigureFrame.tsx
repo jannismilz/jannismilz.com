@@ -22,7 +22,8 @@ export function FigureFrame({
   placeholder?: string
   caption: string
   captionLead: string
-  aspect?: '4/3' | '3/4' | '1/1'
+  /** `natural` keeps the image's own proportions instead of cropping it. */
+  aspect?: '4/3' | '3/4' | '1/1' | 'natural'
   sizes?: string
   className?: string
 }) {
@@ -30,6 +31,7 @@ export function FigureFrame({
     '4/3': 'aspect-4/3',
     '3/4': 'aspect-3/4',
     '1/1': 'aspect-square',
+    natural: undefined,
   }[aspect]
 
   return (
@@ -40,7 +42,15 @@ export function FigureFrame({
           aspectClass,
         )}
       >
-        {image ? (
+        {image && aspect === 'natural' ? (
+          <Image
+            src={image}
+            alt={alt ?? caption}
+            sizes={sizes}
+            placeholder="blur"
+            className="h-auto w-full"
+          />
+        ) : image ? (
           <div className="relative h-full w-full overflow-hidden">
             <Image
               src={image}
