@@ -1,6 +1,13 @@
 import { type MDXComponents } from 'mdx/types'
 
-import { BarChart, Chart, ColumnChart, Flow } from '@/components/ArticleFigures'
+import {
+  BarChart,
+  Card,
+  Cards,
+  Chart,
+  ColumnChart,
+  Flow,
+} from '@/components/ArticleFigures'
 import { FigureFrame } from '@/components/FigureFrame'
 import { MarginNote } from '@/components/MarginNote'
 
@@ -49,6 +56,8 @@ export function useMDXComponents(components: MDXComponents): MDXComponents {
     BarChart,
     ColumnChart,
     Flow,
+    Cards,
+    Card,
     ...components,
   }
 }

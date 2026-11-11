@@ -48,6 +48,14 @@ export const ownArticles: OwnArticle[] = [
     date: '06.10.2026',
     lang: 'en',
   },
+  {
+    slug: 'an-ai-assistant-for-the-club-accountant',
+    title: 'An AI Assistant for Club Accounting',
+    description:
+      'How I built a knowledge base for AI that helps with my job as club accountant. Postgres, pgvector, OCR, RAG and MCP.',
+    date: '11.11.2026',
+    lang: 'en',
+  },
 ]
 
 export const highlights: Highlight[] = [

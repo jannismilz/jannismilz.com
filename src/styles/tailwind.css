@@ -126,6 +126,17 @@
     text-align: left;
   }
 
+  /* A card grid is too wide for one column. */
+  & [data-cards='grid'] {
+    column-span: all;
+    margin-block: 1rem;
+    text-align: left;
+  }
+
+  & [data-cards] > section {
+    break-inside: avoid;
+  }
+
   /* Code stays inside its column, so long lines wrap instead of being cut. */
   & pre,
   & pre > code {

@@ -1,0 +1,281 @@
+import linksImage from '@/images/writing/ai-assistant-links.png'
+
+For a while now I have been the accountant of my gymnastics club.
+
+The work has two parts: booking what happened, and finding what belongs to what. Booking is quick. Finding takes time. A booking needs a receipt, a receipt belongs to a payment, and all three arrive by different routes. To find out what a credit from March was for, you compare amounts, dates and names.
+
+I no longer wanted to do that by hand, so I built myself an AI assistant: a knowledge base that collects the club's bookkeeping, files and other data in one place and makes it available to an AI through MCP, the [Model Context Protocol](https://modelcontextprotocol.io).
+
+But enough about accounting. Let's look at how it's built.
+
+## The ground rules
+
+Four rules came before any technology. They made every later decision easier.
+
+<Cards columns={2}>
+  <Card tag="Rule 1" title="The accounting software is the source of truth">
+    The assistant only reads and never writes back.
+  </Card>
+  <Card tag="Rule 2" title="The AI never books anything itself">
+    It only proposes bookings. I enter them.
+  </Card>
+  <Card tag="Rule 3" title="Simplicity over elegance">
+    Postgres for everything. Better store too much than too little.
+  </Card>
+  <Card tag="Rule 4" title="Everything is traceable">
+    Every action is logged. Deletes are only soft deletes.
+  </Card>
+</Cards>
+
+The project may look complicated, but seen from the very top, it's quite simple.
+
+<Chart
+  title="The setup at a glance"
+  caption="The AI only sees the tools. The database and file storage cannot be reached from outside."
+>
+  <Flow
+    steps={[
+      {
+        tag: 'Sources',
+        title: 'Accounting, bank, mail, file storage, inventory',
+        detail: 'Statements, mails, files, own entries.',
+      },
+      {
+        tag: 'Jobs',
+        title: 'Import, read, embed, align',
+        detail: 'Everything runs as a retryable background job.',
+      },
+      {
+        tag: 'Storage',
+        title: 'Postgres with pgvector, S3',
+        detail: 'Tables, full-text search, vectors and original files.',
+      },
+      {
+        tag: 'MCP',
+        title: 'Tools for the AI',
+        detail: 'Search, read-only SQL, open documents, store knowledge.',
+      },
+      {
+        tag: 'Client',
+        title: 'Claude',
+        detail: 'Connected to the MCP.',
+      },
+    ]}
+  />
+</Chart>
+
+## The data sources
+
+Five sources feed the assistant. From the start, every one of them is either read-only or imported by hand.
+
+<Cards>
+  <Card tag="Source of truth" title="The accounting software">
+    Booking journal, accounts, budget, receipts, etc.
+  </Card>
+  <Card tag="CSV export" title="The bank">
+    Manually exported account statements from e-banking.
+  </Card>
+  <Card tag="IMAP" title="The mailbox">
+    The complete mailbox except for spam, trash and drafts.
+  </Card>
+  <Card tag="API" title="The file storage">
+    All files of our club's board. Deleted files disappear from the assistant.
+  </Card>
+  <Card tag="Own entries" title="The inventory">
+    Our own stock is managed directly in the assistant's dashboard.
+  </Card>
+</Cards>
+
+### Two kinds of import
+
+**Structured exports**, like bookings, go straight into tables. Every row has a natural key from its data source, so importing the same data twice changes nothing.
+
+**Everything unstructured**, like receipts, goes through a pipeline that puts it in the right place.
+
+## The jobs
+
+Almost everything runs as a background job in a queue. Each job can fail and be retried on its own. Every file takes the same path:
+
+<Chart
+  title="The path of a file"
+  caption="Each step is a job of its own. If one fails, only that one is retried."
+>
+  <Flow
+    steps={[
+      {
+        tag: 'SHA-256',
+        title: 'Deduplicate',
+        detail: 'If the content is already known, a link is created instead.',
+      },
+      {
+        tag: 'S3',
+        title: 'Store',
+        detail: 'The original once.',
+      },
+      {
+        tag: 'Parser and vision model',
+        title: 'Read the text',
+        detail: 'Text from PDF, Word, etc. directly. Images and scans via OCR.',
+      },
+      {
+        tag: 'Embedding model',
+        title: 'Embed',
+        detail: 'Turn the extracted text into embeddings.',
+      },
+      {
+        tag: 'AI',
+        title: 'Link',
+        detail:
+          'If a receipt cannot be matched to its booking by rule, the AI does it.',
+      },
+    ]}
+  />
+</Chart>
+
+The first step pays off more than you would think. In a club, an invoice shows up in several places: the file storage, the mailbox and as a booking receipt. The hash stays the same, so the file is stored, read and embedded only once. A separate table records every place it showed up.
+
+### Bank reconciliation
+
+This job needs no AI at all and still saves the most time. After every import it looks for the matching booking for each bank line, in two passes.
+
+**QR payments first.** Their reference contains the invoice number. If reference and amount match, the pair is confirmed, even inside collective credits where the bank bundles many payments into one line.
+
+**Then everything else.** Without a shared reference, the assistant looks for bookings with the same amount in the same direction, at most 60 days apart, and scores each pair:
+
+```text
+score = 0.6 × date proximity + 0.4 × name similarity
+```
+
+A pair is only confirmed with a score of at least 0.8 and a lead of at least 0.15 over any competing pair. That matters in a club because when four members pay the same fee in the same month, the pairs look almost identical, and picking one would be guessing. Such pairs stay candidates, and either the AI or I decide.
+
+## The data storage
+
+Data lives in exactly two places, and neither can be reached from outside. The only way in for the AI is through the MCP tools.
+
+**Postgres** holds everything structured: accounts, bookings, bank lines, mails, files, vectors, links, the inventory, the import log and the AI's memory. The `pgvector` and `pg_trgm` extensions cover vector and fuzzy text search, so no separate search engine is needed.
+
+**S3** holds the original files so the Postgres database isn't bloated with raw files.
+
+<Chart title="How the data fits together">
+  <Flow
+    direction="horizontal"
+    steps={[
+      {
+        tag: 'Bookkeeping',
+        title: 'Bookings, bank lines, ...',
+        detail: 'From the accounting software and the bank.',
+      },
+      {
+        tag: 'Connections',
+        title: 'Links',
+        detail: 'With score, source (rule, AI, me) and status.',
+      },
+      {
+        tag: 'Documents',
+        title: 'Mails, files, ...',
+        detail: 'Text, full-text index and vectors.',
+      },
+    ]}
+  />
+</Chart>
+
+### Connections
+
+The links table ties it all together. Every record can be connected to others, and the AI can follow those connections with a single tool call:
+
+- **Bank line and booking**, found by the bank reconciliation.
+- **Receipt and booking**, delivered by the accounting software or found by the AI.
+- **Mail and attachment**, recorded on import.
+- **File and its occurrences**, every place the same file showed up.
+
+Each link has a source (rule, AI or me) and a status: candidate, confirmed or rejected. There's even a nice graph that show me all connections.
+
+<FigureFrame
+  image={linksImage}
+  alt="The connections view of the assistant's dashboard: a large graph of colored dots, many of them grouped into small clusters."
+  aspect="natural"
+  sizes="(min-width: 768px) 42rem, 100vw"
+  captionLead="Connections."
+  caption="Every dot is a record. Linked records cluster together, filtered by confirmed links, candidates, attachments and receipts."
+/>
+
+## Vectorization
+
+For the AI to search documents, every file has to become text, and every text has to become vectors.
+
+### OCR
+
+PDF, Word, Excel, CSV and HTML are read directly. Photos and scans go to a vision model with a narrow instruction. Large phone photos are scaled down and cut into strips first.
+
+I deliberately left out extracting fields like amount, date or supplier. The whole text is stored, and the AI reads it when it needs something.
+
+### Embeddings
+
+Every text is cut into sections of about 1,500 characters, preferably at the end of a paragraph or sentence, with some overlap. A hit then points to a readable passage. Each section becomes a vector and is stored in Postgres together with the model's name, so a model switch can be detected and the old sections embedded again.
+
+OCR and embeddings run through an EU-based provider.
+
+## MCP
+
+In a classic RAG setup, the application searches for matching passages and puts them into the prompt. Here the AI gets tools instead and decides itself which one to call. There are four kinds:
+
+<Cards columns={2}>
+  <Card tag="Search" title="Find records">
+    `query_sql` for numbers and lists, after `describe_schema` explains the tables. `search_keyword` and `search_semantic` for mails and files.
+  </Card>
+  <Card tag="Read" title="Open records">
+    `get_document` for the full text, `get_file` for the original, `get_connections` for everything linked and `get_warehouse` for the inventory.
+  </Card>
+  <Card tag="Remember" title="Keep what was learned">
+    `save_link` stores a connection between two records. `get_knowhow` and `save_knowhow` read and write the memory.
+  </Card>
+  <Card tag="Create" title="Generate documents">
+    `create_note` and `create_note_from_excel` create debit and credit notes for the club's subgroups.
+  </Card>
+</Cards>
+
+For "Where is the invoice for this payment?" the AI might find the bank line with SQL, search the mails for the counterparty, open the attachment, check the amount and save the link.
+
+### Searching
+
+**SQL** is for numbers, sums and lists: account balances, budget against actuals, open invoices, bank lines without a booking. Views for bookings, balances and the bank reconciliation spare the AI from rebuilding the logic of double-entry bookkeeping.
+
+Letting an AI write SQL needs safeguards. Every query runs as a Postgres role that may only read and cannot see the technical tables, in a read-only transaction with a ten-second limit that is rolled back at the end:
+
+```sql
+begin;
+set transaction read only;
+set local statement_timeout = '10s';
+
+select * from (
+  -- the AI's query
+) as result limit 500;
+
+rollback;
+```
+
+**Keyword search** is for names, invoice numbers and IBANs. It combines Postgres' full-text index with trigrams, so typos and partial words are found too.
+
+**Semantic search** is for topics. The question is turned into a vector, and Postgres finds the closest sections. A question about the youth camp also finds mails that only use the club's nickname for it.
+
+### Remembering
+
+The AI forgets everything after each conversation. That's a problem whenever a conversation uncovers something that explains existing data: what an account is really for, or which counterparty belongs where.
+
+So there is a `knowhow` table. The AI is told to look things up at the start of every conversation and to store anything that applies beyond the current question. Every entry can be edited in the dashboard. Over time, this grows into a reference book of the club's bookkeeping.
+
+## The costs
+
+The whole system may look big and resource-hungry, but it isn't.
+
+The assistant with all services and resources costs around 8–10 francs per month to run and keep up to date.
+
+I chose open-weight AI models that fit the job. They cost a fraction of frontier models and still do the job extremely well.
+
+Better not to mention what my Claude subscription costs to actually use the assistant.
+
+## What it gives me
+
+The assistant does not replace me. It does not book, it does not sign, and at the audit it is still me sitting there.
+
+But questions that used to cost an evening, it answers in minutes. And every answer points to its source: a booking, a bank line, a mail or a file I can open. An accountant should not believe anything without a receipt. The same goes for the assistant.
